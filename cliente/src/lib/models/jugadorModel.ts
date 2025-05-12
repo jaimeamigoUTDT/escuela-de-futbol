@@ -5,7 +5,7 @@ export class Jugador extends Persona {
     private _genero: string;
     private _dni_padre: number;
 
-    constructor(dni: string, nombre: string, apellido: string, fecha_de_nacimiento: Date, genero: string, dni_padre: number) {
+    constructor(dni: number, nombre: string, apellido: string, fecha_de_nacimiento: Date, genero: string, dni_padre: number) {
         super(dni, nombre, apellido);
         this._fecha_de_nacimiento = fecha_de_nacimiento;
         this._genero = genero;

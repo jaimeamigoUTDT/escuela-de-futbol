@@ -1,16 +1,16 @@
 export class Persona {
-    private _dni: string;
+    private _dni: number;
     private _nombre: string;
     private _apellido: string;
   
-    constructor(dni: string, nombre: string, apellido: string) {
+    constructor(dni: number, nombre: string, apellido: string) {
       this._dni = dni;
       this._nombre = nombre;
       this._apellido = apellido;
     }
   
     // Getters
-    public get getDni(): string {
+    public get getDni(): number {
       return this._dni;
     }
   
@@ -23,7 +23,7 @@ export class Persona {
     }
   
     // Setters
-    public set setDni(dni: string) {
+    public set setDni(dni: number) {
       this._dni = dni;
     }
   

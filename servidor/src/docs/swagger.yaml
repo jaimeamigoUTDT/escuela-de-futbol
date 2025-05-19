@@ -1,0 +1,921 @@
+openapi: 3.0.0
+info:
+  title: API CRUD para escuela de fúbol
+  version: 1.0.0
+paths:
+  /user:
+    post:
+      tags:
+        - User
+      summary: Crear un usuario nuevo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '201':
+          description: User created
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+
+  /player:
+    post:
+      tags:
+          - Player
+      summary: Crear un jugador nuevo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dni:
+                  type: integer
+                  example: 12345678
+                name:
+                  type: string
+                  example: 'Juan'
+                surname:
+                  type: string
+                  example: 'Pérez'
+                date_of_birth:
+                  type: string
+                  format: date
+                  example: '2025-15-05'
+                gender:
+                  type: string
+                  example: 'Masculino'
+                parent_dni:
+                  type: integer
+                  example: 12345678
+      responses:
+        '201':
+          description: Player created
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+    get:
+      tags:
+          - Player
+      summary: Obtener todos los jugadores
+      parameters:
+        - in: query
+          name: player_dni
+          schema:
+            type: integer
+            example: 12345678
+          required: false
+          description: Get a particular player
+
+        - in: query
+          name: category_year
+          schema:
+            type: integer
+            example: 2015
+          required: false
+          description: Get all players from a certain category
+
+        - in: query
+          name: parent_dni
+          schema:
+            type: integer
+            example: 12345678
+          required: false
+          description: Get all players from a certain parent          
+          
+      responses:
+        '200':
+          description: List of players
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Player'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+    put:
+      tags:
+          - Player
+      summary: Actualizar un jugador
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dni:
+                  type: integer
+                  example: 12345678
+                name:
+                  type: string
+                  example: 'Juan'
+                surname:
+                  type: string
+                  example: 'Pérez'
+                date_of_birth:
+                  type: string
+                  format: date
+                  example: '2025-15-05'
+                gender:
+                  type: string
+                  example: 'Masculino'
+                parent_dni:
+                  type: integer
+                  example: 12345678
+      responses:
+        '201':
+          description: Player updated
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error 
+    delete:
+      tags:
+          - Player
+      summary: Eliminar a un jugador
+      parameters:
+        - in: query
+          name: dni
+          schema:
+            type: integer
+            example: 12345678
+          required: true
+          description: DNI del jugador a eliminar
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Player deleted
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+    
+  /match:
+    post:
+      tags:
+          - Match
+      summary: Crear un partido nuevo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                match_id:
+                  type: integer
+                  example: 1
+                fecha:
+                  type: string
+                  format: date
+                  example: '2025-05-15'
+                hora:
+                  type: string
+                  format: time
+                  example: '10:00'
+                rival:
+                  type: string
+                  example: 'Rival FC'
+                category_id:
+                  type: integer
+                  example: 1
+                cancha_id:
+                  type: integer
+                  example: 1
+      responses:
+        '201':
+          description: Match created
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+    get:
+      tags:
+          - Match
+      summary: Obtener todos los jugadores
+      parameters:
+        - in: query
+          name: match_id
+          schema:
+            type: integer
+            example: 1234
+          required: false
+          description: Get a particular match
+
+        - in: query
+          name: category_year
+          schema:
+            type: integer
+            example: 2015
+          required: false
+          description: Get all matches from a certain category
+
+        - in: query
+          name: player_dni
+          schema:
+            type: integer
+            example: 12345678
+          required: false
+          description: Get all matches from a certain player
+
+        - in: query
+          name: fecha
+          schema:
+            type: string
+            format: date
+            example: '2025-05-15'
+          required: false
+          description: Get all matches from a date
+          
+      responses:
+        '200':
+          description: List of Matches
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Match'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+    put:
+      tags:
+          - Match
+      summary: Actualizar un partido
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                match_id:
+                  type: integer
+                  example: 1
+                fecha:
+                  type: string
+                  format: date
+                  example: '2025-05-15'
+                hora:
+                  type: string
+                  format: time
+                  example: '10:00'
+                rival:
+                  type: string
+                  example: 'Rival FC'
+                category_id:
+                  type: integer
+                  example: 1
+                cancha_id:
+                  type: integer
+                  example: 1
+      responses:
+        '201':
+          description: Match updated
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error 
+    delete:
+      tags:
+          - Match
+      summary: Eliminar a un partido
+      parameters:
+        - in: query
+          name: match_id
+          schema:
+            type: integer
+            example: 1234
+          required: true
+          description: Id del partido a eliminar
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Match deleted
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+    
+  /notitication:
+    post:
+      tags:
+          - Notification
+      summary: Crear una notificación nueva
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                notitication_id:
+                  type: integer
+                  example: 1
+                match_id:
+                  type: integer
+                  example: 1
+                fecha:
+                  type: string
+                  format: date
+                  example: '2025-05-15'
+                hora:
+                  type: string
+                  format: time
+                  example: '10:00'
+                content:
+                  type: string
+                  example: 'Partido confirmado'
+      responses:
+        '201':
+          description: Notification created
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+    get:
+      tags:
+          - Notification
+      summary: Obtener todas las notificaciones
+      parameters:
+        - in: query
+          name: notitication_id
+          schema:
+            type: integer
+            example: 1234
+          required: false
+          description: Get a particular notification
+
+        - in: query
+          name: match_id
+          schema:
+            type: integer
+            example: 1234
+          required: false
+          description: Get all notifications from a certain match
+
+        - in: query
+          name: fecha
+          schema:
+            type: string
+            format: date
+            example: '2025-05-15'
+          required: false
+          description: Get all notifications from a date
+
+        - in: query
+          name: category_id
+          schema:
+            type: integer
+            example: 1
+          required: false
+          description: Get all notifications from a category
+
+      responses:
+        '200':
+          description: List of Notifications
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Notification'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+    put:
+      tags:
+          - Notification
+      summary: Actualizar una notificación
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                notitication_id:
+                  type: integer
+                  example: 1
+                match_id:
+                  type: integer
+                  example: 1
+                fecha:
+                  type: string
+                  format: date
+                  example: '2025-05-15'
+                hora:
+                  type: string
+                  format: time
+                  example: '10:00'
+                content:
+                  type: string
+                  example: 'Partido confirmado'
+      responses:
+        '201':
+          description: Notification updated
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+    delete:
+      tags:
+          - Notification
+      summary: Eliminar una notificación
+      parameters:
+        - in: query
+          name: notitication_id
+          schema:
+            type: integer
+            example: 1234
+          required: true
+          description: Id de la notificación a eliminar
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Notification deleted
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+
+  /team:
+    post:
+      tags:
+          - Team
+      summary: Crear un equipo nuevo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                team_id:
+                  type: integer
+                  example: 1
+                match_id:
+                  type: integer
+                  example: 1
+                category_id:
+                  type: integer
+                  example: 1
+                players:
+                  type: array
+                  items:
+                    type: integer
+                    example: 12345678
+                    summary: DNI del jugador
+
+      responses:
+        '201':
+          description: Team created
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+    get:
+      tags:
+          - Team
+      summary: Obtener todos los equipos
+      parameters:
+        - in: query
+          name: team_id
+          schema:
+            type: integer
+            example: 1234
+          required: false
+          description: Get a particular team
+
+        - in: query
+          name: match_id
+          schema:
+            type: integer
+            example: 1234
+          required: false
+          description: Get all teams from a certain match
+
+        - in: query
+          name: category_id
+          schema:
+            type: integer
+            example: 1
+          required: false
+          description: Get all teams from a category
+
+        - in: query
+          name: player_dni
+          schema:
+            type: integer
+            example: 12345678
+          required: false
+          description: Get all teams from a certain player
+
+      responses:
+        '200':
+          description: List of Teams
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Team'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+    put:
+      tags:
+          - Team
+      summary: Actualizar un equipo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                team_id:
+                  type: integer
+                  example: 1
+                match_id:
+                  type: integer
+                  example: 1
+                category_id:
+                  type: integer
+                  example: 1
+                players:
+                  type: array
+                  items:
+                    type: integer
+                    example: 12345678
+                    summary: DNI del jugador
+
+      responses:
+        '201':
+          description: Team updated
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+    delete:
+      tags:
+          - Team
+      summary: Eliminar un equipo
+      parameters:
+        - in: query
+          name: team_id
+          schema:
+            type: integer
+            example: 1234
+          required: true
+          description: Id del equipo a eliminar
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Team deleted
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+
+  /category:
+    get:
+      tags: 
+          - Category
+      summary: Obtener todas las categorías
+      parameters:
+      - in : query
+        name: category_id
+        schema:
+          type: integer
+          example: 1234
+        required: false
+        description: Get a particular category
+      - in : query
+        name: year
+        schema:
+          type: integer
+          example: 2015
+        required: false
+        description: Get all categories from a certain year
+      - in : query
+        name: gender
+        schema:
+          type: string
+          example: 'Masculino'
+          required: false
+          description: Get all categories from a certain gender
+
+      responses:
+        '201':
+          description: List of Categories
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+        
+  /cancha:
+    get:
+      tags: 
+          - Cancha
+      summary: Obtener todas las canchas
+      parameters:
+      - in : query
+        name: cancha_id
+        schema:
+          type: integer
+          example: 1234
+        required: false
+        description: Get a particular cancha
+      
+      - in : query
+        name: size
+        schema:
+          type: string
+          example: '11'
+        required: false
+        description: Get all canchas from a certain size
+
+      - in : query
+        name: shoe_type
+        schema:
+          type: string
+          example: 'Sintético'
+        required: false
+        description: Get all canchas from a certain shoe type
+
+      - in : query
+        name: buffet_available
+        schema:
+          type: boolean
+          example: true
+        required: false
+        description: Get all canchas with buffet available
+
+      - in : query
+        name: parking_available
+        schema:
+          type: boolean
+          example: true
+        required: false
+        description: Get all canchas with parking available
+
+      responses:
+        '201':
+          description: List of Canchas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cancha'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+
+
+components:
+  schemas:
+    Player:
+      type: object
+      required:
+        - dni
+        - name
+        - surname
+        - date_of_brith
+        - gender
+        - parent_dni
+
+      properties:
+        dni:
+          type: integer
+          example: 12345678
+        name:
+          type: string
+          example: 'Juan'
+        surname:
+          type: string
+          example: 'Pérez'
+        date_of_birth:
+          type: string
+          format: date
+          example: '2025-05-15'
+        gender:
+          type: string
+          example: 'Masculino'
+        parent_dni:
+          type: integer
+          example: 12345678
+    
+    Parent:
+      type: object
+      required:
+        - dni
+        - name
+        - surname
+        - email
+        - phoneNumber
+
+      properties:
+        dni:
+          type: integer
+          example: 12345678
+        name:
+          type: string
+          example: 'Juan'
+        surname:
+          type: string
+          example: 'Pérez'
+        email:
+          type: string
+          format: email
+          example: 'juan@gmail.com'
+        phoneNumber:
+          type: string
+          format: phone
+          example: '1123456789'
+
+    Match:
+      type: object
+      required:
+        - match_id
+        - fecha
+        - hora
+        - rival
+        - category_id
+        - cancha_id
+
+      properties:
+        match_id:
+          type: integer
+          example: 1
+        fecha:
+          type: string
+          format: date
+          example: '2025-05-15'
+        hora:
+          type: string
+          format: time
+          example: '10:00'
+        rival:
+          type: string
+          example: 'Rival FC'
+        category_id:
+          type: integer
+          example: 1
+        cancha_id:
+          type: integer
+          example: 1
+
+    Notification:
+      type: object
+      required:
+        - notitication_id
+        - match_id
+        - fecha
+        - hora
+        - content
+
+      properties:
+        notitication_id:
+          type: integer
+          example: 1
+        match_id:
+          type: integer
+          example: 1
+        fecha:
+          type: string
+          format: date
+          example: '2025-05-15'
+        hora:
+          type: string
+          format: time
+          example: '10:00'
+        content:
+          type: string
+          example: 'Partido confirmado'
+
+    Team:
+      type: object
+      required:
+        - team_id
+        - match_id
+        - category_id
+        - players
+
+      properties:
+        team_id:
+          type: integer
+          example: 1
+        match_id:
+          type: integer
+          example: 1
+        category_id:
+          type: integer
+          example: 1
+        players:
+          type: array
+          items:
+            type: integer
+            example: 12345678
+            summary: DNI del jugador
+
+    Category:
+      type: object
+      required:
+        - category_id
+        - year
+        - gender
+
+      properties:
+        category_id:
+          type: integer
+          example: 1
+        year:
+          type: integer
+          example: 2015
+        gender:
+          type: string
+          example: 'Masculino'
+
+    Cancha:
+      type: object
+      required:
+        - cancha_id
+        - address
+        - size
+        - shoe_type
+        - buffet_available
+        - parking_available
+
+      properties:
+        cancha_id:
+          type: integer
+          example: 1
+        address:
+          type: string
+          example: 'Calle Fútbol 123'
+        size:
+          type: string
+          example: '11'
+        shoe_type:
+          type: string
+          example: 'Sintético'
+        buffet_available:
+          type: boolean
+          example: true
+        parking_available:
+          type: boolean
+          example: true

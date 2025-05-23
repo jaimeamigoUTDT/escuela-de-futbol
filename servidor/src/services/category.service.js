@@ -1,6 +1,19 @@
+const categoryRepository = require('../repositories/category.repository');
+
 class CategoryService {
     getCategories(queryParams) {
-      return { message: 'List of categories', filters: queryParams };
+      
+      const allCategories = categoryRepository.categories;
+
+      console.log('All categories:', allCategories);
+
+      const filteredCategories = allCategories.filter(category => {
+        return Object.keys(queryParams).every(key => {
+          return category[key] && category[key].toString() === queryParams[key].toString();
+        });
+      });
+
+      return { message: 'List of categories', data: filteredCategories };
     }
   }
 

@@ -4,4 +4,4 @@ class CanchaService {
     }
   }
 
-export default new CanchaService();
+  module.exports = new CanchaService();

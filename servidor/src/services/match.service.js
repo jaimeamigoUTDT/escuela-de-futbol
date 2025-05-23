@@ -16,4 +16,4 @@ class MatchService {
     }
   }
 
-export default new MatchService();
+module.exports = new MatchService();

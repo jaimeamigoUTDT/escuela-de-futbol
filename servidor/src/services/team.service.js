@@ -16,4 +16,4 @@ class TeamService {
     }
   }
 
-export default new TeamService();
+  module.exports = new TeamService();

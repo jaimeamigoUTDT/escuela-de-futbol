@@ -1,8 +1,14 @@
+const userRepository = require('../repositories/user.repository');
+
 class UserService {
-    createUser(userData) {
+    async createUser(userData) {
       // Business logic for creating user
-      return { message: 'User created', data: userData };
+      const user = await userRepository.addUser(userData);
+      if (!user) {
+        return null;
+      }
+      return user;
     }
   }
-  
-export default new UserService();
+
+module.exports = new UserService();

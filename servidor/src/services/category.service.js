@@ -4,4 +4,4 @@ class CategoryService {
     }
   }
 
-export default new CategoryService();
+  module.exports = new CategoryService();

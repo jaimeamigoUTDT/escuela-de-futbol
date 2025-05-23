@@ -16,4 +16,4 @@ class PlayerService {
     }
   }
 
-export default new PlayerService();
+  module.exports = new PlayerService();

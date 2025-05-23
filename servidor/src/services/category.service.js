@@ -3,7 +3,7 @@ const categoryRepository = require('../repositories/category.repository');
 class CategoryService {
     getCategories(queryParams) {
       
-      const allCategories = categoryRepository.categories;
+      const allCategories = categoryRepository.getCategories();
 
       console.log('All categories:', allCategories);
 

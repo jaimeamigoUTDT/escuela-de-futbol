@@ -10,6 +10,10 @@ class categoryRepository {
         new Category(5, '2023', 'Masculino'),
         new Category(6, '2023', 'Femenino'),   
     ]
+
+    getCategories() {
+        return this.categories;
+    }
 }
 
 module.exports = new categoryRepository();

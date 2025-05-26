@@ -8,4 +8,4 @@ class Notification {
     }
   }
 
-export default Notification;
+module.exports = { Notification };

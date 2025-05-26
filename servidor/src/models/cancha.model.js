@@ -1,5 +1,5 @@
 class Cancha {
-    constructor({ cancha_id, address, size, shoe_type, buffet_available, parking_available }) {
+    constructor(cancha_id, address, size, shoe_type, buffet_available, parking_available) {
       this.cancha_id = cancha_id;
       this.address = address;
       this.size = size;
@@ -9,4 +9,4 @@ class Cancha {
     }
   }
 
-export default Cancha;
+module.exports = { Cancha };

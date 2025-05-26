@@ -3,7 +3,7 @@ info:
   title: API CRUD para escuela de fúbol
   version: 1.0.0
 paths:
-  /user:
+  /users:
     post:
       tags:
         - User
@@ -29,7 +29,7 @@ paths:
         '500':
           description: Internal server error
 
-  /player:
+  /players:
     post:
       tags:
           - Player
@@ -173,7 +173,7 @@ paths:
         '500':
           description: Internal server error
     
-  /match:
+  /matches:
     post:
       tags:
           - Match
@@ -328,7 +328,7 @@ paths:
         '500':
           description: Internal server error
     
-  /notitication:
+  /notitications:
     post:
       tags:
           - Notification
@@ -477,7 +477,7 @@ paths:
         '500':
           description: Internal server error
 
-  /team:
+  /teams:
     post:
       tags:
           - Team
@@ -623,7 +623,7 @@ paths:
         '500':
           description: Internal server error
 
-  /category:
+  /categories:
     get:
       tags: 
           - Category
@@ -665,7 +665,7 @@ paths:
         '500':
           description: Internal server error
         
-  /cancha:
+  /canchas:
     get:
       tags: 
           - Cancha
@@ -724,7 +724,6 @@ paths:
           description: Unauthorized
         '500':
           description: Internal server error
-
 
 components:
   schemas:

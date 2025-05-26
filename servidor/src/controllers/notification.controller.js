@@ -11,6 +11,7 @@ function createNotification(req, res) {
     if (!data.content) return res.status(400).send({ message: 'Content is missing' });
 
     const result = notificationService.createNotification(data);
+    
     res.status(201).send({ message: 'Notification created', data: result });
 
   } catch (e) {

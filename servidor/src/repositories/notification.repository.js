@@ -5,7 +5,9 @@ class NotificationRepository {
 
   createNotification(data) {
     const newNotification = new Notification(data);
+
     this.notifications.push(newNotification);
+    
     return newNotification;
   }
 

@@ -9,4 +9,4 @@ class Match {
     }
   }
 
-export default Match;
+module.exports = { Match };

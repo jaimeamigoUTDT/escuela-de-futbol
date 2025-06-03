@@ -1,11 +1,15 @@
 // src/Home.jsx
-import { useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 
 function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
 
+  const [count, setCount] = useState(0);
+
   useEffect(() => {
     setIsLoaded(true);
+    console.log(`Component loaded with count: ${count}`);
+
   }, []);
 
   return (
@@ -17,6 +21,8 @@ function Home() {
           Homepage loaded successfully!
         </p>
       )}
+
+      <button onClick={setCount((prevCount) => prevCount + 1)}></button>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import authService from '../services/authService';
 
 const registerController = {
-    validateUser: async (name, dni, email, password) => {
+    createUser: async (name, dni, email, password) => {
         try {
             console.log('Creando usuario:', {name, dni, email, password});
             const response = await authService.register({name, dni, email, password});
@@ -19,4 +19,4 @@ const registerController = {
     },
 };
 
-export default loginController;
+export default registerController;

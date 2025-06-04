@@ -17,7 +17,7 @@ const authService = {
     // Create a new user
     register: async (userData) => {
         try {
-            const response = await axios.post(`${API_URL}/register`, userData);
+            const response = await axios.post(`${API_URL}/register`, {userData});
             return response.data; // Return created user data
         } catch (error) {
             throw error.response ? error.response.data : error;

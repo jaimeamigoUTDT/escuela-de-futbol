@@ -4,7 +4,7 @@ const loginController = {
     validateUser: async (dni, password) => {
         try {
             console.log('Validating user:', { dni, password });
-            const response = await authService.login({dni, password});
+            const response = await authService.login({ dni, password });
             if (response.message == "Usuario autenticado exitosamente") {
                 console.log("User validated successfully:", response.data);
                 return true;

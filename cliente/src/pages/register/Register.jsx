@@ -4,6 +4,7 @@ import Button from "../../components/common/Button"
 import Form from "../../components/common/Form"
 import "../../styles/components/FormComponents.css"
 import "./Register.css"
+import useRegister from "../../hooks/useRegister"
 
 function Register() {
     const [formData, setFormData] = useState({
@@ -14,6 +15,7 @@ function Register() {
     })
     const [errors, setErrors] = useState({})
     const [isLoading, setIsLoading] = useState(false)
+    const {register, error} = useRegister()
 
     const handleInputChange = (e) => {
         const { name, value } = e.target
@@ -30,6 +32,21 @@ function Register() {
             }))
         }
     }
+
+    const handleRegister = async (e) => {
+        setIsLoading(true);
+        
+        const success = await register(e.target.name.value, e.target.dni.value, e.target.email.value, e.target.password.value); // Passing input elements, not their values
+        
+        if (success) {
+            // Redirect or show success message
+            console.log("Register successful");
+            window.location.href = "/login";
+        } else {
+            setIsLoading(false);
+            // Show error message
+            console.error("Register failed", error);}
+    };
 
     const validateForm = () => {
         const newErrors = {}
@@ -60,23 +77,6 @@ function Register() {
         return Object.keys(newErrors).length === 0
     }
 
-    const handleSubmit = async (e) => {
-        if (!validateForm()) return
-
-        setIsLoading(true)
-
-        try {
-            // Simulate API call
-            await new Promise((resolve) => setTimeout(resolve, 2000))
-            console.log("Intento de registro:", formData)
-            alert("Registro completado")
-        } catch (error) {
-            console.error("Error de registro:", error)
-            alert("Error al registrarse. Intentá nuevamente.")
-        } finally {
-            setIsLoading(false)
-        }
-    }
 
     return (
         <div className="register-container">
@@ -94,7 +94,7 @@ function Register() {
                 <div className="register-form-container">
                     <h2 className="register-title">Crea una cuenta</h2>
 
-                    <Form onSubmit={handleSubmit}>
+                    <Form onSubmit={handleRegister}>
                         <FormField
                             label="Nombre completo"
                             type="text"

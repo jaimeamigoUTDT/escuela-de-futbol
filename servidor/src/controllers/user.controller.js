@@ -46,7 +46,14 @@ async function createUser(req, res, next) {
       return res.status(400).json({ message: 'Request body is missing or invalid' });
     }
 
-    const { name, dni, email, password } = req.body;
+    const { userData } = req.body;
+
+    console.log('User data:', userData);
+  
+    const name = userData.name;
+    const dni = userData.dni;
+    const password = userData.password;
+    const email = userData.email;
 
     // Validate fields
     if (!name || !dni || !password || !email) {

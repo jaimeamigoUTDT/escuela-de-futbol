@@ -9,9 +9,11 @@ const users = [
 
 class UserRepository {
     // Add a new user
-    addUser(name, dni, email, password) {
-        const user = { name, dni, email, password }
+    addUser(userData) {
+        const user = { name: userData.name, dni: userData.dni, email: userData.email, password: userData.password };
         users.push(user);
+        console.log('User added:', user);
+        console.log('Current users:', users);
         return user;
     }
 
@@ -49,6 +51,7 @@ class UserRepository {
     findUserByUsernameAndPassword(dni, password) {
         console.log('Finding user with DNI:', dni, 'and password:', password);
         
+        console.log(users); 
         return users.find(user => user.dni === dni && user.password === password);
     }
 }

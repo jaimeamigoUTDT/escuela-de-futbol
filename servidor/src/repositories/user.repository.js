@@ -1,15 +1,23 @@
-const users = [];
+const users = [
+    {
+        "name": "John Doe",
+        "dni": "12345678",
+        "email": "johnDoe@gmail.com",
+        "password": "123456"
+    }
+];
 
 class UserRepository {
     // Add a new user
-    addUser(user) {
+    addUser(name, dni, email, password) {
+        const user = { name, dni, email, password }
         users.push(user);
         return user;
     }
 
     // Find a user by ID
-    findUserById(id) {
-        return users.find(user => user.id === id);
+    findUserById(dni) {
+        return users.find(user => user.dni === dni);
     }
 
     // Get all users
@@ -18,8 +26,8 @@ class UserRepository {
     }
 
     // Update a user by ID
-    updateUser(id, updatedData) {
-        const userIndex = users.findIndex(user => user.id === id);
+    updateUser(dni, updatedData) {
+        const userIndex = users.findIndex(user => user.dni === dni);
         if (userIndex === -1) {
             return null;
         }
@@ -28,13 +36,20 @@ class UserRepository {
     }
 
     // Delete a user by ID
-    deleteUser(id) {
-        const userIndex = users.findIndex(user => user.id === id);
+    deleteUser(dni) {
+        const userIndex = users.findIndex(user => user.dni === dni);
         if (userIndex === -1) {
             return null;
         }
         const deletedUser = users.splice(userIndex, 1);
         return deletedUser[0];
+    }
+
+    // Find a user by username and password
+    findUserByUsernameAndPassword(dni, password) {
+        console.log('Finding user with DNI:', dni, 'and password:', password);
+        
+        return users.find(user => user.dni === dni && user.password === password);
     }
 }
 

@@ -1,11 +1,11 @@
 // src/hooks/useRegister.jsx
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import registerController from '../controllers/registerController';
 
 const useRegister = () => {
   const [error, setError] = useState(null);
-  const navigate = useNavigate(); // Added for redirection after success
+  const {contextLogin } = useAuth();
 
   const register = async (name, dni, email, password) => {
     
@@ -15,9 +15,8 @@ const useRegister = () => {
       const response = await registerController.createUser(name, dni, email, password);
 
       if (response.success) {
-        // Store authToken if provided in response.data.token      
-        localStorage.setItem('authToken', response.token);
-
+        // Store authToken if provided in response.data.token
+        contextLogin(response.data.token);
         return true; // Return response for further handling if needed
 
       } else {

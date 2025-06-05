@@ -1,0 +1,114 @@
+.match-card {
+  width: 100%;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+}
+
+.match-card-header {
+  background-color: #f8fafc;
+  padding: 8px 12px 8px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.match-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+}
+
+.teams {
+  color: #1f2937;
+}
+
+.category-badge {
+  font-size: 14px;
+  font-weight: 400;
+  padding: 4px 8px;
+  background-color: #e2e8f0;
+  border-radius: 9999px;
+  color: #475569;
+}
+
+.match-card-content {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.match-detail {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.match-detail span {
+  font-size: 14px;
+  color: #374151;
+}
+
+.icon {
+  height: 16px;
+  width: 16px;
+  color: #6b7280;
+  flex-shrink: 0;
+}
+
+.content-left,
+.content-right {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.content-right {
+  text-align: right;
+}
+
+.content-right .match-detail {
+  justify-content: flex-end;
+}
+
+/* Responsive design */
+@media (max-width: 640px) {
+  .match-card {
+    max-width: 100%;
+  }
+
+  .match-title {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .category-badge {
+    align-self: flex-end;
+  }
+
+  .match-card-content {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .content-right {
+    text-align: left;
+  }
+
+  .content-right .match-detail {
+    justify-content: flex-start;
+  }
+}
+
+/* Hover effects */
+.match-card:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transform: translateY(-1px);
+  transition: all 0.2s ease-in-out;
+}

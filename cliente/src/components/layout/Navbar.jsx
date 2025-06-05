@@ -1,11 +1,12 @@
-"use client"
-
 import { useState } from "react"
+import { useAuth } from "../../context/AuthContext"
 import ProfileDropdown from "../common/ProfileDropdown"
 import "./navbar.css"
 
 function Navbar() {
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false)
+  
+  const {authToken} = useAuth()
 
   const toggleProfileDropdown = () => {
     setIsProfileDropdownOpen(!isProfileDropdownOpen)
@@ -30,7 +31,7 @@ function Navbar() {
       <div className="navbar-content navbar-content-no-padding">
         {/* Logo/Brand */}
         <div className="navbar-brand">
-          <h2>Escuela de Fútbol</h2>
+          <h3>Escuela de Fútbol San Esteban</h3>
         </div>
 
         {/* Navigation Links */}

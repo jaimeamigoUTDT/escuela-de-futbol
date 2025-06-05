@@ -1,17 +1,19 @@
-import authService from '../services/authService';
+import authService from '../api/services/authService';
 
 const registerController = {
     createUser: async (name, dni, email, password) => {
         try {
             console.log('Creando usuario:', {name, dni, email, password});
+            
             const response = await authService.register({name, dni, email, password});
-            if (response.message == "Usuario creado exitosamente") {
-                console.log("User created successfully:", response.data);
-                return true;
-            } else {
-                console.error("Creacion de usuario fallida:", response.message);
-                return false;
+
+            console.log('Respuesta del servidor:', response.message);
+
+            return {
+                success: response.success,
+                token: response.token
             }
+            
         } catch (error) {
             console.error('Creacion de usuario fallida:', error);
             return false;

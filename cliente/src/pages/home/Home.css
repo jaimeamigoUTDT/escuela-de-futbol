@@ -1,0 +1,357 @@
+/* Home Container */
+.home-container {
+    min-height: 100vh;
+    background-color: #f8f9fa;
+  }
+  
+  /* Navbar Styles */
+  .navbar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e9ecef;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .navbar-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+  }
+  
+  .navbar-brand h2 {
+    color: #007bff;
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  
+  .navbar-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+  
+  .nav-link {
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+  
+  .nav-link:hover {
+    background-color: #f8f9fa;
+    color: #007bff;
+  }
+  
+  .nav-link.active {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  /* Profile Section */
+  .profile-section {
+    position: relative;
+  }
+  
+  .profile-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .profile-button:hover {
+    background-color: #f8f9fa;
+    border-color: #007bff;
+  }
+  
+  .profile-avatar {
+    width: 32px;
+    height: 32px;
+    background-color: #007bff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+  
+  .profile-name {
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .dropdown-arrow {
+    transition: transform 0.2s ease;
+    color: #666;
+  }
+  
+  .dropdown-arrow.open {
+    transform: rotate(180deg);
+  }
+  
+  /* Profile Dropdown */
+  .profile-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 0.5rem;
+    background: white;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-width: 180px;
+    z-index: 1001;
+  }
+  
+  .dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    color: #333;
+    font-size: 0.875rem;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .dropdown-item.logout {
+    color: #dc3545;
+    border-top: 1px solid #e9ecef;
+  }
+  
+  .dropdown-item.logout:hover {
+    background-color: #fff5f5;
+  }
+  
+  /* Main Content */
+  .main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    min-height: calc(100vh - 80px);
+  }
+  
+  /* Left Section - 70% */
+  .left-section {
+    flex: 0 0 70%;
+  }
+  
+  .content-card {
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+  }
+  
+  .content-card h1 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+  
+  .content-card > p {
+    color: #666;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+  
+  /* News Section */
+  .news-section {
+    margin-top: 2rem;
+  }
+  
+  .news-section h2 {
+    color: #333;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  
+  .news-item {
+    padding: 1.5rem;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    transition: all 0.2s ease;
+  }
+  
+  .news-item:hover {
+    border-color: #007bff;
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.1);
+  }
+  
+  .news-item h3 {
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  
+  .news-item p {
+    color: #666;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+  
+  .news-date {
+    color: #999;
+    font-size: 0.875rem;
+  }
+  
+  /* Right Section - 30% */
+  .right-section {
+    flex: 0 0 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .sidebar-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+  }
+  
+  .sidebar-card h3 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 0.5rem;
+  }
+  
+  /* Match Items */
+  .match-item {
+    padding: 1rem;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+    transition: all 0.2s ease;
+  }
+  
+  .match-item:hover {
+    border-color: #007bff;
+    background-color: #f8f9fa;
+  }
+  
+  .match-teams {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.25rem;
+  }
+  
+  .match-time {
+    color: #666;
+    font-size: 0.875rem;
+  }
+  
+  /* Statistics */
+  .stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f1f3f4;
+  }
+  
+  .stat-item:last-child {
+    border-bottom: none;
+  }
+  
+  .stat-label {
+    color: #666;
+    font-size: 0.875rem;
+  }
+  
+  .stat-value {
+    color: #007bff;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .navbar-content {
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1rem;
+    }
+  
+    .navbar-links {
+      gap: 1rem;
+    }
+  
+    .main-content {
+      flex-direction: column;
+      padding: 1rem;
+    }
+  
+    .left-section,
+    .right-section {
+      flex: none;
+    }
+  
+    .content-card,
+    .sidebar-card {
+      padding: 1.5rem;
+    }
+  
+    .content-card h1 {
+      font-size: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .navbar-links {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  
+    .nav-link {
+      padding: 0.5rem;
+      font-size: 0.875rem;
+    }
+  
+    .profile-button {
+      padding: 0.5rem;
+    }
+  
+    .profile-name {
+      display: none;
+    }
+  }
+  

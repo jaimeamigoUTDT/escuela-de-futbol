@@ -47,21 +47,6 @@ function Login() {
         }
     }
 
-    const validateForm = () => {
-        const newErrors = {}
-
-        if (!formData.password) {
-            newErrors.password = "Ingresá tu contraseña"
-        }
-
-        if (!formData.dni) {
-            newErrors.dni = "Ingresá tu DNI"
-        }
-
-        setErrors(newErrors)
-        return Object.keys(newErrors).length === 0
-    }
-
     return (
         <div className="login-container">
             {/* Left side - Image */}

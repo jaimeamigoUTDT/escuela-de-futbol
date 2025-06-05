@@ -4,12 +4,9 @@ import { useBackendMessage } from "./hooks/useBackendMessage"
 import "./App.css"
 
 function App() {
-  const { message, loading, error } = useBackendMessage()
-
   return (
     <Router>
       <div>
-
         <main>
           <AppRoutes />
         </main>

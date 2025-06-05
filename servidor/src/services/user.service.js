@@ -3,16 +3,14 @@ const userRepository = require('../repositories/user.repository');
 class UserService {
     async createUser(userData) {
       // Business logic for creating user
-      const user = await userRepository.addUser(userData);
-      if (!user) {
-        return null;
-      }
-      return user;
+      const repositoryResponse = userRepository.addUser(userData);
+
+      return repositoryResponse;
     }
 
-    async authenticateUser(dni, password) {
+    async authenticateUser(dni, password, authToken) {
       // Business logic for authenticating user
-      const user = await userRepository.findUserByUsernameAndPassword(dni, password);
+      const user = userRepository.findUserByUsernameAndPassword(dni, password, authToken);
       if (!user) {
         return null;
       }

@@ -1,3 +1,4 @@
+// backend/controllers/userController.js
 const userService = require('../services/user.service');
 
 async function authenticateUser(req, res, next) {
@@ -7,32 +8,55 @@ async function authenticateUser(req, res, next) {
 
     // Check if req.body exists
     if (!req.body) {
-      return res.status(400).json({ message: 'Request body is missing or invalid' });
+      return res.status(400).json({
+        success: false,
+        message: 'Request body is missing or invalid',
+        token: {},
+      });
     }
 
     const { userData } = req.body;
 
-    const dni = userData.dni;
-    const password = userData.password;
-    
+    // Validate userData
+    if (!userData || !userData.dni || !userData.password) {
+      return res.status(400).json({
+        success: false,
+        message: 'Todos los campos son obligatorios',
+        token: {},
+      });
+    }
+
+    const { dni, password, authToken } = userData;
+
     console.log('DNI:', dni);
     console.log('Password:', password);
-
-    // Validate fields
-    if (!dni || !password) {
-      return res.status(400).json({ message: 'Todos los campos son obligatorios' });
-    }
+    console.log('Auth Token:', authToken);
 
     // Authenticate user
-    const user = await userService.authenticateUser(dni, password);
+    const userToken = await userService.authenticateUser(dni, password, authToken);
 
-    if (!user) {
-      return res.status(401).json({ message: 'Credenciales inválidas' });
+    if (!userToken) {
+      return res.status(401).json({
+        success: false,
+        message: 'Credenciales inválidas',
+        token: {},
+      });
     }
 
-    return res.status(200).json({ message: 'Usuario autenticado exitosamente', data: user });
+    return res.status(200).json({
+      success: true,
+      message: 'Usuario autenticado exitosamente',
+      token: userToken,
+    });
+
   } catch (error) {
-    next(error); // Pass errors to error middleware
+    // Pass errors to error middleware, but format the response
+    res.status(500).json({
+      success: false,
+      message: error.message || 'Error interno del servidor',
+      token: {},
+    });
+    next(error); // Still pass to error middleware for logging or other purposes
   }
 }
 
@@ -43,33 +67,51 @@ async function createUser(req, res, next) {
 
     // Check if req.body exists
     if (!req.body) {
-      return res.status(400).json({ message: 'Request body is missing or invalid' });
+      return res.status(400).json({
+        success: false,
+        message: 'Request body is missing or invalid',
+        token: {},
+      });
     }
 
     const { userData } = req.body;
 
-    console.log('User data:', userData);
-  
-    const name = userData.name;
-    const dni = userData.dni;
-    const password = userData.password;
-    const email = userData.email;
-
-    // Validate fields
-    if (!name || !dni || !password || !email) {
-      return res.status(400).json({ message: 'Todos los campos son obligatorios' });
+    // Validate userData
+    if (!userData || !userData.name || !userData.dni || !userData.password || !userData.email) {
+      return res.status(400).json({
+        success: false,
+        message: 'Todos los campos son obligatorios',
+        token: {},
+      });
     }
+
+    const { name, dni, email, password } = userData;
 
     // Create new user
-    const newUser = await userService.createUser({ name, dni, email, password });
+    const newUserToken = await userService.createUser({ name, dni, email, password });
 
-    if (!newUser) {
-      return res.status(500).json({ message: 'Error al crear el usuario' });
+    if (newUserToken == '') {
+      return res.status(500).json({
+        success: false,
+        message: 'Error al crear el usuario',
+        token: {},
+      });
     }
 
-    return res.status(201).json({ message: 'Usuario creado exitosamente', data: newUser });
+    return res.status(201).json({
+      success: true,
+      message: 'Usuario creado exitosamente',
+      token: newUserToken,
+    });
+    
   } catch (error) {
-    next(error); // Pass errors to error middleware
+    // Pass errors to error middleware, but format the response
+    res.status(500).json({
+      success: false,
+      message: error.message || 'Error interno del servidor',
+      token: {},
+    });
+    next(error); // Still pass to error middleware for logging or other purposes
   }
 }
 

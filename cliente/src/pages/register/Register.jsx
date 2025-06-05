@@ -41,7 +41,7 @@ function Register() {
         if (success) {
             // Redirect or show success message
             console.log("Register successful");
-            window.location.href = "/login";
+            window.location.href = "/home";
         } else {
             setIsLoading(false);
             // Show error message

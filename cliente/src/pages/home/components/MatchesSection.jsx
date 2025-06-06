@@ -1,5 +1,5 @@
 import "./MatchesSection.css"
-import MatchCard from "./MatchCard"
+import MatchCard from "../../../components/common/MatchCard.jsx"
 import { useMatches } from "../../../context/MatchesContext.jsx"
 
 function MatchesSection() {
@@ -9,8 +9,8 @@ function MatchesSection() {
   const matchItems = matches.length > 0 ? matches : defaultMatches
 
   // Show only first 3 matches if there are more than 4
-  const displayedMatches = matchItems.length > 4 ? matchItems.slice(0, 3) : matchItems
-  const showMoreButton = matchItems.length > 4
+  const displayedMatches = matchItems.length > 2 ? matchItems.slice(0, 2) : matchItems
+  const showMoreButton = matchItems.length > 2
 
   const handleViewMore = () => {
     window.location.href = "/partidos";

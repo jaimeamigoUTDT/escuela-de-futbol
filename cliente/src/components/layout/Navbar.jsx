@@ -20,7 +20,7 @@ function Navbar() {
   }
 
   const navigationItems = [
-    { key: "inicio", label: "Inicio" },
+    { key: "home", label: "Inicio" },
     { key: "partidos", label: "Partidos" },
     { key: "resultados", label: "Resultados" },
     { key: "torneos", label: "Torneos" },

@@ -3,7 +3,7 @@ import Home from "../pages/home/Home"
 import Register from "../pages/register/Register"
 import Login from "../pages/login/Login"
 import Error from "../pages/error/Error"
-import Matches from "../pages/matches/Matches"
+import MatchesPage from "../pages/matches/Matches"
 import Profile from "../pages/profile/Profile"
 import Results from "../pages/results/Results"
 import Tournaments from "../pages/tournaments/Tournaments"
@@ -34,7 +34,7 @@ export const routeConfig = [
   },
   {
     path: "/partidos",
-    element: <Matches />, // Default route
+    element: <MatchesPage />, // Default route
     label: "Matches",
   },
   {

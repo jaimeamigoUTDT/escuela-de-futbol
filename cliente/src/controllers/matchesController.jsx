@@ -21,7 +21,19 @@ const matchesController = {
 
     async createMatch(data) {
         try {
-            const newMatch = await matchService.createMatch(data);
+
+            const formmatedMatch = {
+                match_id: data.id,
+                fecha: data.date,
+                hora: data.time,
+                rival: data.rivalTeam,
+                category_id: data.category_id,
+                cancha_id: data.cancha_id
+            }
+
+            console.log("Creating match with data:", formmatedMatch);
+
+            const newMatch = await matchService.createMatch(formmatedMatch);
             return newMatch;
         } catch (error) {
             console.error('Error creating match:', error);

@@ -1,12 +1,15 @@
 // src/components/MatchesPage.jsx
+import React, { useState } from 'react';
 import { useMatches } from '../../context/MatchesContext';
 import Navbar from '../../components/layout/Navbar';
 import './matches.css';
 import MatchCard from '../../components/common/MatchCard';
+import AddMatchModal from "./components/addMatchModal";
 
 function MatchesPage() {
 
   const { matches, createMatch, deleteMatch, editMatc, updateMatches } = useMatches();
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const updateList = async () => {
     try {
@@ -16,6 +19,14 @@ function MatchesPage() {
       console.log('Error fetching matches:', error);
     }
   };
+
+  const handleAddMatch = () => {
+    setIsModalOpen(true)
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+  }
 
   const handleDeleteMatch = (id) => {
     deleteMatch(id)
@@ -29,7 +40,7 @@ function MatchesPage() {
       <p>Aquí puedes ver los partidos programados.</p>
       <div className = "matches-button-container">
         <button onClick={updateList}>Actualizar Partidos</button>
-        <button className = "matches-add-match" onClick={updateList}>Agregar Partido</button>
+        <button className = "matches-add-match" onClick={handleAddMatch}>Agregar Partido</button>
       </div>
       <div className="matches-list">
         {matches.length === 0 ? (
@@ -50,6 +61,7 @@ function MatchesPage() {
       </div>
 
     </div>
+    <AddMatchModal isOpen={isModalOpen} onClose={handleCloseModal} />
     </>
     
   );

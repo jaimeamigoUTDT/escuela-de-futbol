@@ -14,5 +14,13 @@
     "rival": "Barcelona",
     "category_id": 1,
     "cancha_id": 1
+  },
+  {
+    "match_id": 1749247003892,
+    "fecha": "2025-06-13",
+    "hora": "06:59",
+    "rival": "Real Madrid",
+    "category_id": 1,
+    "cancha_id": 2
   }
 ]

@@ -53,7 +53,10 @@ export const MatchesProvider = ({ children }) => {
     ]);
 
     const createMatch = (match) => {
+
         setMatches((prevMatches) => [...prevMatches, match]);
+
+        matchesController.createMatch(match);
     };
 
     const deleteMatch = (id) => {

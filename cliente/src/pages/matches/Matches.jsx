@@ -9,7 +9,9 @@ import AddMatchModal from "./components/addMatchModal";
 function MatchesPage() {
 
   const { matches, createMatch, deleteMatch, editMatc, updateMatches } = useMatches();
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  updateMatches(); // Initial fetch of matches when the component mounts
 
   const updateList = async () => {
     try {

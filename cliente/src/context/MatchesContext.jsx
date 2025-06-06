@@ -4,53 +4,7 @@ import matchesController from '../controllers/matchesController';
 export const MatchesContext = createContext();
 
 export const MatchesProvider = ({ children }) => {
-    const [matches, setMatches] = useState([
-        {
-        id: 1,
-        time: "16:00",
-        date: "2024-03-16",
-        localTeam: "Equipo A",
-        rivalTeam: "Equipo B",
-        category: "Juvenil",
-        fieldAddress: "Campo Municipal A",
-        },
-        {
-        id: 2,
-        time: "14:00",
-        date: "2024-03-17",
-        localTeam: "Equipo C",
-        rivalTeam: "Equipo D",
-        category: "Senior",
-        fieldAddress: "Campo Municipal B",
-        },
-        {
-        id: 3,
-        time: "14:00",
-        date: "2024-03-17",
-        localTeam: "Equipo C",
-        rivalTeam: "Equipo D",
-        category: "Senior",
-        fieldAddress: "Campo Municipal B",
-        },
-        {
-        id: 4,
-        time: "14:00",
-        date: "2024-03-17",
-        localTeam: "Equipo C",
-        rivalTeam: "Equipo D",
-        category: "Senior",
-        fieldAddress: "Campo Municipal B",
-        },
-        {
-        id: 5,
-        time: "14:00",
-        date: "2024-03-17",
-        localTeam: "Equipo C",
-        rivalTeam: "Equipo D",
-        category: "Senior",
-        fieldAddress: "Campo Municipal B",
-        }
-    ]);
+    const [matches, setMatches] = useState([]);
 
     const createMatch = (match) => {
 

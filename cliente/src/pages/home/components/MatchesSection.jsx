@@ -4,9 +4,11 @@ import { useMatches } from "../../../context/MatchesContext.jsx"
 
 function MatchesSection() {
 
-  const { matches } = useMatches()
+  const { matches, updateMatches } = useMatches()
 
-  const matchItems = matches.length > 0 ? matches : defaultMatches
+  updateMatches() // Fetch matches when the component mounts
+
+  const matchItems = matches.length > 0 ? matches : []
 
   // Show only first 3 matches if there are more than 4
   const displayedMatches = matchItems.length > 2 ? matchItems.slice(0, 2) : matchItems

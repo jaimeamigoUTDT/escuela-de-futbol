@@ -23,16 +23,6 @@ const authService = {
             throw error.response ? error.response.data : error;
         }
     },
-
-    // Validate token or session
-    validateToken: async (token) => {
-        try {
-            const response = await axios.post(`${API_URL}/validate-token`, { token });
-            return response.data; // Return validation result
-        } catch (error) {
-            throw error.response ? error.response.data : error;
-        }
-    },
 };
 
 export default authService;

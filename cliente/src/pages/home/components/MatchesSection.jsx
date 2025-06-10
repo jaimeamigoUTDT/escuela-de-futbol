@@ -1,12 +1,15 @@
 import "./MatchesSection.css"
 import MatchCard from "../../../components/common/MatchCard.jsx"
 import { useMatches } from "../../../context/MatchesContext.jsx"
+import { useEffect } from 'react'
 
 function MatchesSection() {
-
   const { matches, updateMatches } = useMatches()
 
-  updateMatches() // Fetch matches when the component mounts
+  // Fetch matches when the component mounts (only once)
+  useEffect(() => {
+    updateMatches();
+  }, []); // Empty dependency array ensures this runs only once on mount
 
   const matchItems = matches.length > 0 ? matches : []
 
@@ -20,29 +23,29 @@ function MatchesSection() {
 
   return (
     <div>
-    <div className="matches-section">
-      {displayedMatches.map((item) => (
-        <MatchCard 
-        key = {item.id}
-        time={item.time}
-        date={item.date}
-        localTeam={item.localTeam}
-        rivalTeam={item.rivalTeam}
-        category={item.category}
-        fieldAddress={item.fieldAddress}
-        />
-      ))}
-    </div>
+      <div className="matches-section">
+        {displayedMatches.map((item) => (
+          <MatchCard 
+            key={item.id}
+            time={item.time}
+            date={item.date}
+            localTeam={item.localTeam}
+            rivalTeam={item.rivalTeam}
+            category={item.category}
+            fieldAddress={item.fieldAddress}
+          />
+        ))}
+      </div>
 
       {showMoreButton && (
-        <div className = "view-more-container">
+        <div className="view-more-container">
           <button className="view-more-button" onClick={handleViewMore}>
             Ver más partidos
           </button>
         </div>
       )}
-
     </div>
   )
 }
+
 export default MatchesSection

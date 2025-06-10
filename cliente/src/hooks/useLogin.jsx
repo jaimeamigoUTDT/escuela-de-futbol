@@ -18,9 +18,9 @@ const useLogin = () => {
         if (authToken !== response.token) {
           contextLogin(response.token);
         }
-        return true; 
+        return true;
       }
-      return false; // Handle success (e.g., redirect or store token)
+      return false;
 
     } catch (err) {
       setError(err.message || 'Login failed');

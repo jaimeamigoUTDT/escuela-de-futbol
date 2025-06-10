@@ -22,5 +22,13 @@
     "rival": "Real Madrid",
     "category_id": 1,
     "cancha_id": 2
+  },
+  {
+    "match_id": 1749579247294,
+    "fecha": "2025-11-06",
+    "hora": "22:10",
+    "rival": "Independiente",
+    "category_id": 1,
+    "cancha_id": 2
   }
 ]

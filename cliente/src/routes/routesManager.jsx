@@ -8,6 +8,7 @@ import Profile from "../pages/profile/Profile"
 import Results from "../pages/results/Results"
 import Tournaments from "../pages/tournaments/Tournaments"
 import Admin from "../pages/admin/Admin"
+import Players from "../pages/players/Players"
 
 
 // Route configurations
@@ -56,6 +57,11 @@ export const routeConfig = [
     path: "/admin",
     element: <Admin />, // Default route
     label: "Admin",
+  },
+  {
+    path: "/jugadores",
+    element: <Players />, // Default route
+    label: "Players",
   },
 ]
 

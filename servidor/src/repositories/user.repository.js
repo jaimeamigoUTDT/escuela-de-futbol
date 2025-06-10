@@ -1,6 +1,5 @@
 const fs = require("fs")
 const path = require("path")
-const { v4: uuidv4 } = require("uuid")
 
 class UserRepository {
   constructor() {
@@ -72,12 +71,12 @@ class UserRepository {
     return this.users
   }
 
-  updateUser(dni, updatedData) {
-    const userIndex = this.users.findIndex((user) => user.dni === dni)
+  updateUser(user) {
+    const userIndex = this.users.findIndex((matchingUser) => matchingUser.dni === user.dni)
     if (userIndex === -1) {
       return null
     }
-    this.users[userIndex] = { ...this.users[userIndex], ...updatedData }
+    this.users[userIndex] = { ...this.users[userIndex], ...user }
     this.saveData()
     return this.users[userIndex]
   }
@@ -102,22 +101,7 @@ class UserRepository {
       return null
     }
 
-    const oneDayInMs = 24 * 60 * 60 * 1000
-    const now = new Date()
-    const tokenAge = user.tokenCreatedAt ? now - new Date(user.tokenCreatedAt) : Number.POSITIVE_INFINITY
-
-    if (user.authToken === authToken && tokenAge < oneDayInMs) {
-      console.log("Token is valid and recent")
-      return user.authToken
-    }
-
-    const newToken = uuidv4()
-    user.authToken = newToken
-    user.tokenCreatedAt = now
-    this.saveData()
-    console.log("Generated new token:", newToken)
-
-    return user.authToken
+    return user
   }
 }
 

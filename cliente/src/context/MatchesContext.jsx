@@ -6,6 +6,8 @@ export const MatchesContext = createContext();
 export const MatchesProvider = ({ children }) => {
     const [matches, setMatches] = useState([]);
 
+    
+
     const createMatch = (match) => {
 
         setMatches((prevMatches) => [...prevMatches, match]);
@@ -52,6 +54,7 @@ export const MatchesProvider = ({ children }) => {
             console.log('Error fetching matches:', error);
         }
     }
+
 
     return (
         <MatchesContext.Provider value={{ matches, createMatch, deleteMatch, editMatch, updateMatches }}>

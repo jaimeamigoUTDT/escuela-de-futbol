@@ -5,7 +5,9 @@
     "email": "johnDoe@gmail.com",
     "password": "123456",
     "authToken": "12345678-1234-1234-1234-123456789012",
-    "createdAt": "2023-10-01T12:00:00Z"
+    "createdAt": "2023-10-01T12:00:00Z",
+    "tokenCreatedAt": "2025-06-10T17:39:41.337Z",
+    "role": "admin"
   },
   {
     "name": "Jaime Amigo",
@@ -13,15 +15,8 @@
     "email": "jaimeamigo03@gmail.com",
     "password": "Standard2329",
     "createdAt": "2025-06-06T20:31:58.745Z",
-    "authToken": "e60e9349-ddc1-4821-b4aa-ea7a04ae74f1"
-  },
-  {
-    "name": "Jaime Amigo",
-    "dni": "12345679",
-    "email": "jaimeamigo03@gmail.com",
-    "password": "Standard2329",
-    "createdAt": "2025-06-06T20:32:29.681Z",
-    "authToken": "223a341a-de07-4f60-be32-8d623756a08c",
-    "tokenCreatedAt": "2025-06-06T20:33:46.889Z"
+    "authToken": "1e0d1c94-5593-4816-949b-534b8fbde5e4",
+    "tokenCreatedAt": "2025-06-10T17:39:41.337Z",
+    "role": "admin"
   }
 ]

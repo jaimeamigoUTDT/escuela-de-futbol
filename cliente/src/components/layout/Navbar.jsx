@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useAuth } from "../../context/AuthContext"
+import { useAuth } from "../../hooks/useAuth"
 import ProfileDropdown from "../common/ProfileDropdown"
 import "./navbar.css"
 
@@ -23,7 +23,7 @@ function Navbar() {
     { key: "home", label: "Inicio" },
     { key: "partidos", label: "Partidos" },
     { key: "resultados", label: "Resultados" },
-    { key: "torneos", label: "Torneos" },
+    { key: "jugadores", label: "Jugadores" },
   ]
 
   return (

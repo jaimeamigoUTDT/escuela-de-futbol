@@ -2,21 +2,23 @@ const notificationService = require('../services/notification.service');
 
 function createNotification(req, res) {
   try {
+    console.log('Creating notification with data:', req.body);
     const data = req.body;
-
-    if (!data.notitication_id) return res.status(400).send({ message: 'ID is missing' });
+    if (!data.notification_id) return res.status(400).send({ message: 'ID is missing' });
     if (!data.match_id) return res.status(400).send({ message: 'Match ID is missing' });
     if (!data.fecha) return res.status(400).send({ message: 'Fecha is missing' });
     if (!data.hora) return res.status(400).send({ message: 'Hora is missing' });
     if (!data.content) return res.status(400).send({ message: 'Content is missing' });
 
     const result = notificationService.createNotification(data);
-    
+    if (result.success === false) {
+      return res.status(400).send({ message: 'Notification already exists', data: {} });
+    }  else {
     res.status(201).send({ message: 'Notification created', data: result });
-
+    }
   } catch (e) {
     res.status(500).send({ message: `Error ${e}`, data: {} });
-  }
+  } 
 }
 
 function getNotifications(req, res) {

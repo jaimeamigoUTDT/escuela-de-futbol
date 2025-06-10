@@ -2,11 +2,11 @@ const notificationRepository = require('../repositories/notification.repository'
 
 class NotificationService {
   createNotification(data) {
-    const exists = notificationRepository.notifications.find(n => n.notitication_id === data.notitication_id);
-    if (exists) {
-      return { message: 'Notification already exists', data: exists };
-    }
+    const exists = notificationRepository.notifications.find(n => n.notification_id === data.notification_id);
 
+    if (exists) {
+      return {success: false};
+    }
     return notificationRepository.createNotification(data);
   }
 

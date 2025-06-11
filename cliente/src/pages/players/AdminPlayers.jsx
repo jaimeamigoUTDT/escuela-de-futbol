@@ -1,11 +1,11 @@
 import { React, useState, useEffect } from 'react';
 import { usePlayers } from '../../context/PlayersContext';
-import './Players.css';
+import './AdminPlayers.css';
 import Navbar from '../../components/layout/Navbar';
 import PlayerCard from './components/PlayerCard';
 import AddPlayerModal from './components/addPlayerModal';
 
-function PlayersPage() {
+function AdminPlayersPage() {
   const { players, updatePlayers } = usePlayers();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -74,4 +74,4 @@ function PlayersPage() {
   );
 }
 
-export default PlayersPage;
+export default AdminPlayersPage;

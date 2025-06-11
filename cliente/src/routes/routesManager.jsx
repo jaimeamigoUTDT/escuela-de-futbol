@@ -8,7 +8,8 @@ import Profile from "../pages/profile/Profile";
 import Results from "../pages/results/Results";
 import Tournaments from "../pages/tournaments/Tournaments";
 import Admin from "../pages/admin/Admin";
-import Players from "../pages/players/Players";
+import AdminPlayersPage from "../pages/players/AdminPlayers";
+import PlayersPage from "../pages/players/Players";
 import ProtectedRoute from "../components/ProtectedRoute";
 
 // Route configurations
@@ -29,7 +30,7 @@ export const routeConfig = [
     label: "Error",
   },
   {
-    element: <ProtectedRoute />, // No requiredRole for general protected routes
+    element: <ProtectedRoute />, // General protected routes
     children: [
       {
         path: "/home",
@@ -58,13 +59,20 @@ export const routeConfig = [
       },
       {
         path: "/jugadores",
-        element: <Players />,
+        element: (
+          <ProtectedRoute
+            roleComponents={{
+              admin: AdminPlayersPage,
+              parent: PlayersPage,
+            }}
+          />
+        ),
         label: "Players",
       },
     ],
   },
   {
-    element: <ProtectedRoute requiredRole="admin" />, // Admin route requires "admin" role
+    element: <ProtectedRoute requiredRole="admin" />, // Admin-only routes
     children: [
       {
         path: "/admin",

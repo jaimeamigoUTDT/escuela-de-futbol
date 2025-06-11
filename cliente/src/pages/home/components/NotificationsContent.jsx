@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import "./NotificationsContent.css";
-import notificationController from "../../../controllers/notificationController";
+import notificationController from "../../../controllers/notificationController.jsx";
 import NotificationCard from "./NotificationCard";
 
 function NotificationsContent() {

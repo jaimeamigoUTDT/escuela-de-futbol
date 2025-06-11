@@ -138,5 +138,33 @@
     "fecha": "2025-06-11",
     "hora": "04:52",
     "content": "esteban se enfermo, se suspenden las clases"
+  },
+  {
+    "notification_id": "e0afca92-446c-4971-90cf-d3bc09c1d9fc",
+    "match_id": "none",
+    "fecha": "2025-06-11",
+    "hora": "04:56",
+    "content": "partido del sabado adelantado a 9 am"
+  },
+  {
+    "notification_id": "63758663-db65-42d9-a9f6-e04fcffe138d",
+    "match_id": "none",
+    "fecha": "2025-06-11",
+    "hora": "04:58",
+    "content": "jimena renuncio"
+  },
+  {
+    "notification_id": "0dcbe369-f234-48fa-9825-f3be1e439977",
+    "match_id": "none",
+    "fecha": "2025-06-11",
+    "hora": "05:01",
+    "content": "partido suspendido"
+  },
+  {
+    "notification_id": "df1a4351-0da9-4ac9-acb8-8e7362cdaef0",
+    "match_id": "none",
+    "fecha": "2025-06-11",
+    "hora": "05:02",
+    "content": "partido suspendido"
   }
 ]

@@ -8,14 +8,16 @@ function NotificationsContent() {
   const [showInput, setShowInput] = useState(false);
   const [content, setContent] = useState("");
   const [notifications, setNotifications] = useState([]);
+  
+  const fetchNotifications = async () => {
+        const result = await notificationController.getNotifications();
+        if (result.success) {
+          setNotifications(result.data);
+        }
+      };
 
   useEffect(() => {
-    const fetchNotifications = async () => {
-      const result = await notificationController.getNotifications();
-      if (result.success) {
-        setNotifications(result.data);
-      }
-    };
+    
     fetchNotifications();
   }, []);
 
@@ -23,30 +25,26 @@ function NotificationsContent() {
     setShowInput(true);
   };
 
-  const handleConfirm = async () => {
-    const notification_id = uuidv4();
-    const fecha = new Date().toISOString().split("T")[0];
-    const hora = new Date().toLocaleTimeString().slice(0, 5);
-    const match_id = "none";
+const handleConfirm = async () => {
+  const notification_id = uuidv4();
+  const fecha = new Date().toISOString().split("T")[0];
+  const hora = new Date().toLocaleTimeString().slice(0, 5);
+  const match_id = "none";
 
-    const result = await notificationController.createNotification(
-      notification_id,
-      match_id,
-      fecha,
-      hora,
-      content
-    );
+  const result = await notificationController.createNotification(
+    notification_id,
+    match_id,
+    fecha,
+    hora,
+    content
+  );
+  await fetchNotifications(); // 👈 se vuelve a cargar la lista ordenada
+  
 
-    if (result && result.success) {
-      const updated = await notificationController.getNotifications();
-      if (updated.success) {
-        setNotifications(updated.data);
-      }
-    }
+  setContent("");
+  setShowInput(false);
+};
 
-    setContent("");
-    setShowInput(false);
-  };
 
   return (
     <div className="notifications-content-card">

@@ -14,9 +14,13 @@ const useRegister = () => {
     try {
       const response = await registerController.createUser(name, dni, email, password);
 
+      console.log(response);
+      
+
       if (response.success) {
         // Store authToken if provided in response.data.token
-        contextLogin(response.data.token);
+        contextLogin(response.token);
+
         return true; // Return response for further handling if needed
 
       } else {

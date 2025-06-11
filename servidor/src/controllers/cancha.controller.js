@@ -14,11 +14,20 @@ function getCanchas(req, res) {
     
         const data = canchaService.getCanchas(queryParameters)
     
-        res.status(200).send({ message: 'List of canchas', data: data });
+        res.status(200).send(
+          
+          {
+            success: true,
+            message: 'List of canchas', 
+            data: data 
+          });
     
       } catch (error) {
         console.log(error); // Pass errors to error middleware
-        res.status(500).send({ message: 'Internal Server Error', data: {} });
+        res.status(500).send({ 
+          success: false,
+          message: 'Internal Server Error', 
+          data: {} });
       }
   }
   

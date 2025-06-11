@@ -9,17 +9,14 @@ import { useEffect } from 'react';
 
 function MatchesPage() {
 
-  const { matches, createMatch, deleteMatch, editMatc, updateMatches } = useMatches();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
     // Fetch matches when the component mounts (only once)
     useEffect(() => {
-      updateMatches();
     }, []); // Empty dependency array ensures this runs only once on mount
 
   const updateList = async () => {
     try {
-      await updateMatches(); // Fetch matches from the server
       console.log('Matches fetched successfully:', matches); // Log the fetched matches
     } catch (error) {
       console.log('Error fetching matches:', error);

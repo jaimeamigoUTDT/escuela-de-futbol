@@ -1,18 +1,39 @@
 import React, { createContext, useState, useContext } from 'react';
-import matchesController from '../controllers/matchesController';
 
 export const MatchesContext = createContext();
 
 export const MatchesProvider = ({ children }) => {
     const [matches, setMatches] = useState([]);
 
-    
+    const getStoredMatches = () => {
+        return matches;
+    };
 
-    const createMatch = (match) => {
+    const deleteAllMatches = () => {
+        setMatches([]);
+    }
 
-        setMatches((prevMatches) => [...prevMatches, match]);
+    const saveMatch = (match) => {
 
-        matchesController.createMatch(match);
+        // Check if the match already exists
+        const existingMatch = matches.find((m) => m.id === match.id);
+
+        if (!existingMatch) {
+            setMatches((prevMatches) => [...prevMatches, match]);
+        }
+
+        matches.sort((a, b) => {
+            // Combine date and time into a single Date object for comparison
+            const dateTimeA = new Date(`${a.date}T${a.time}`);
+            const dateTimeB = new Date(`${b.date}T${b.time}`);
+            
+            // Handle invalid dates
+            if (isNaN(dateTimeA)) return 1; // Push invalid dates to the end
+            if (isNaN(dateTimeB)) return -1;
+            
+            return dateTimeB - dateTimeA; // Sort ascending (earliest first)
+        });
+
     };
 
     const deleteMatch = (id) => {
@@ -25,39 +46,8 @@ export const MatchesProvider = ({ children }) => {
         );
     };
 
-    const updateMatches = async () => {
-        console.log('Updating matches...');
-    
-        try {
-            console.log('Fetching matches from the server...');
-            const newMatches = await matchesController.getMatches();
-            
-            // Ensure we have an array before mapping
-            if (!Array.isArray(newMatches)) {
-                console.error('Expected array but got:', typeof newMatches);
-                return;
-            }
-            
-            const formattedMatches = newMatches.map(match => ({
-                id: match.match_id,
-                time: match.hora,
-                date: match.fecha,
-                localTeam: "San Esteban",
-                rivalTeam: match.rival,
-                category: "Juvenil",
-                fieldAddress: "Cancha 1"
-            }));
-    
-            setMatches(formattedMatches);
-            
-        } catch (error) {
-            console.log('Error fetching matches:', error);
-        }
-    }
-
-
     return (
-        <MatchesContext.Provider value={{ matches, createMatch, deleteMatch, editMatch, updateMatches }}>
+        <MatchesContext.Provider value={{ matches, saveMatch, deleteMatch, editMatch, getStoredMatches, deleteAllMatches}}>
             {children}
         </MatchesContext.Provider>
     );

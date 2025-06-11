@@ -42,24 +42,30 @@ class UserRepository {
   }
 
   addUser(userData) {
-    const user = { name: userData.name, dni: userData.dni, email: userData.email, password: userData.password }
-
+    const user = { 
+      name: userData.name, 
+      dni: userData.dni, 
+      email: userData.email, 
+      password: userData.password,
+      createdAt: userData.createdAt,
+      authToken: userData.authToken,
+      tokenCreatedAt: userData.tokenCreatedAt,
+      role: "parent",
+      }
     const existingUser = this.users.find((u) => u.dni === user.dni)
 
     if (existingUser) {
       console.log("User already exists:", user.dni)
-      return ""
-    } else {
-      const token = uuidv4()
-      const tokenDate = (user.createdAt = new Date().toISOString())
+      return false
 
-      user.authToken = token
-      user.createdAt = tokenDate
+    } else {
 
       this.users.push(user)
+
       this.saveData()
+
       console.log("User added successfully:", user)
-      return token
+      return true
     }
   }
 

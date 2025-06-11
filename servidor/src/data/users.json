@@ -18,5 +18,15 @@
     "authToken": "1e0d1c94-5593-4816-949b-534b8fbde5e4",
     "tokenCreatedAt": "2025-06-10T17:39:41.337Z",
     "role": "admin"
+  },
+  {
+    "name": "Jaime Amigo",
+    "dni": "45235541",
+    "email": "jaimeamigo03@gmail.com",
+    "password": "123456",
+    "createdAt": "2025-06-11T17:49:29.607Z",
+    "authToken": "dd2b2239-2b45-4504-8519-abf01979685b",
+    "tokenCreatedAt": "2025-06-11T17:49:29.607Z",
+    "role": "parent"
   }
 ]

@@ -1,42 +1,68 @@
-import "./MatchesSection.css"
-import MatchCard from "../../../components/common/MatchCard.jsx"
-import { useMatches } from "../../../context/MatchesContext.jsx"
-import { useEffect } from 'react'
+import "./MatchesSection.css";
+import MatchCard from "../../../components/common/MatchCard.jsx";
+import { useEffect, useState } from 'react';
+import { matchesController } from "../../../controllers/matchesController.jsx";
 
 function MatchesSection() {
-  const { matches, updateMatches } = useMatches()
+  const { getMatches } = matchesController();
+  const [matches, setMatches] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Fetch matches when the component mounts (only once)
+  const updateList = async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const newMatchesList = await getMatches();
+      console.log('Matches fetched:', newMatchesList);
+
+      // Validate response
+      if (!Array.isArray(newMatchesList)) {
+        throw new Error('Expected an array of matches, got:', newMatchesList);
+      }
+
+      setMatches(newMatchesList);
+    } catch (error) {
+      console.error('Error fetching matches:', error);
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    updateMatches();
-  }, []); // Empty dependency array ensures this runs only once on mount
+    updateList();
+  }, [matches]); // Run once on mount
 
-  const matchItems = matches.length > 0 ? matches : []
-
-  // Show only first 3 matches if there are more than 4
-  const displayedMatches = matchItems.length > 2 ? matchItems.slice(0, 2) : matchItems
-  const showMoreButton = matchItems.length > 2
+  const matchItems = matches.length > 0 ? matches : [];
+  const displayedMatches = matchItems.length > 2 ? matchItems.slice(0, 2) : matchItems;
+  const showMoreButton = matchItems.length > 2;
 
   const handleViewMore = () => {
     window.location.href = "/partidos";
-  }
+  };
 
   return (
     <div>
+      {loading && <p className="loading">Cargando partidos...</p>}
+      {error && <p className="error">Error: {error}</p>}
+      {!loading && !error && matchItems.length === 0 && (
+        <p className="no-matches">No hay partidos disponibles.</p>
+      )}
       <div className="matches-section">
         {displayedMatches.map((item) => (
-          <MatchCard 
-            key={item.id}
-            time={item.time}
-            date={item.date}
-            localTeam={item.localTeam}
-            rivalTeam={item.rivalTeam}
-            category={item.category}
-            fieldAddress={item.fieldAddress}
+          <MatchCard
+            key={item.match_id}
+            time={item.hora}
+            date={item.fecha}
+            localTeam="San Esteban"
+            rivalTeam={item.rival}
+            category={item.category.gender + " " + item.category.year}
+            fieldAddress={item.cancha.address}
           />
         ))}
       </div>
-
       {showMoreButton && (
         <div className="view-more-container">
           <button className="view-more-button" onClick={handleViewMore}>
@@ -45,7 +71,7 @@ function MatchesSection() {
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export default MatchesSection
+export default MatchesSection;

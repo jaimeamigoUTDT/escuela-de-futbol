@@ -11,7 +11,7 @@ const registerController = {
 
             return {
                 success: response.success,
-                token: response.token
+                token: response.tokenData.authToken
             }
             
         } catch (error) {

@@ -12,12 +12,12 @@ function createNotification(req, res) {
 
     const result = notificationService.createNotification(data);
     if (result.success === false) {
-      return res.status(400).send({ message: 'Notification already exists', data: {} });
+      return res.status(400).send({ message: 'Notification already exists', data: {}, success: false });
     }  else {
-    res.status(201).send({ message: 'Notification created', data: result });
+    res.status(201).send({ message: 'Notification created', data: result, success: true });
     }
   } catch (e) {
-    res.status(500).send({ message: `Error ${e}`, data: {} });
+    res.status(500).send({ success: false, message: `Error ${e}`, data: {} });
   } 
 }
 

@@ -75,15 +75,21 @@ function NotificationsContent() {
       )}
 
       <ul className="notification-list">
-        {notifications.map((n) => (
-          <NotificationCard
-            key={n.notification_id}
-            fecha={n.fecha}
-            hora={n.hora}
-            content={n.content}
-          />
-        ))}
-      </ul>
+  {[...notifications]
+    .sort((a, b) => {
+      const dateA = new Date(`${a.fecha}T${a.hora}`);
+      const dateB = new Date(`${b.fecha}T${b.hora}`);
+      return dateB - dateA; // más recientes primero
+    })
+    .map((n) => (
+      <NotificationCard
+        key={n.notification_id}
+        fecha={n.fecha}
+        hora={n.hora}
+        content={n.content}
+      />
+    ))}
+</ul>
     </div>
   );
 }

@@ -18,7 +18,7 @@ const notificationController = {
         content
       });
 
-      const response =  notificationService.createNotification({
+      const response =  await notificationService.createNotification({
         "notification_id": notification_id,
         "match_id": match_id,
         "fecha": fecha,

@@ -62,7 +62,7 @@ class LoginController {
         return res.status(400).json({
           success: false,
           message: 'Request body is missing or invalid',
-          token: {},
+          tokenData: {},
         });
       }
 
@@ -72,32 +72,32 @@ class LoginController {
         return res.status(400).json({
           success: false,
           message: 'Todos los campos son obligatorios',
-          token: {},
+          tokenData: {},
         });
       }
 
       const { name, dni, email, password } = userData;
 
-      const newUserToken = await userService.createUser({ name, dni, email, password });
+      const newUserTokenData = await userService.createUser({ name, dni, email, password });
 
-      if (newUserToken === '') {
+      if (newUserTokenData.authToken === '') {
         return res.status(500).json({
           success: false,
           message: 'Error al crear el usuario',
-          token: {},
+          tokenData: {},
         });
       }
 
       return res.status(201).json({
         success: true,
         message: 'Usuario creado exitosamente',
-        token: newUserToken,
+        tokenData: newUserTokenData,
       });
     } catch (error) {
       res.status(500).json({
         success: false,
         message: error.message || 'Error interno del servidor',
-        token: {},
+        tokenData: {},
       });
       next(error);
     }

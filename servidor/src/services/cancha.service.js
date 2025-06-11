@@ -13,7 +13,7 @@ class CanchaService {
       });
     });
 
-    return { message: 'List of canchas', data: filteredCanchas };
+    return filteredCanchas;
   }
 }
   

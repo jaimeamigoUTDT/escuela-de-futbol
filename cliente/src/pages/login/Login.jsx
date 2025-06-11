@@ -4,7 +4,7 @@ import Button from "../../components/common/Button"
 import Form from "../../components/common/Form"
 import "../../styles/components/FormComponents.css"
 import "./Login.css"
-import loginController from "../../controllers/loginController"
+import useLogin from "../../hooks/useLogin"
 import { useAuth } from "../../hooks/useAuth"
 
 
@@ -15,13 +15,13 @@ function Login() {
     })
     const [errors, setErrors] = useState({})
     const [isLoading, setIsLoading] = useState(false)
-    const { authToken } = useAuth();
+    const { login } = useLogin()
 
     // Incorrect implementation
     const handleLogin = async (e) => {
         setIsLoading(true);
         
-        const success = await loginController.validateUser(e.target.dni.value, e.target.password.value, authToken); // Passing input elements, not their values
+        const success = await login(e.target.dni.value, e.target.password.value); // Passing input elements, not their values
         
         if (success) {
             // Redirect or show success message

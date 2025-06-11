@@ -1,21 +1,23 @@
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import "./NotificationsContent.css";
-import notificationController from "../../../controllers/notificationController";
+import notificationController from "../../../controllers/notificationController.jsx";
+import NotificationCard from "./NotificationCard";
 
 function NotificationsContent() {
   const [showInput, setShowInput] = useState(false);
   const [content, setContent] = useState("");
   const [notifications, setNotifications] = useState([]);
+  
+  const fetchNotifications = async () => {
+        const result = await notificationController.getNotifications();
+        if (result.success) {
+          setNotifications(result.data);
+        }
+      };
 
-  // Cargar notificaciones al montar el componente
   useEffect(() => {
-    const fetchNotifications = async () => {
-      const result = await notificationController.getNotifications();
-      if (result.success) {
-        setNotifications(result.data);
-      }
-    };
+    
     fetchNotifications();
   }, []);
 
@@ -23,33 +25,26 @@ function NotificationsContent() {
     setShowInput(true);
   };
 
-  const handleConfirm = async () => {
-    const notification_id = uuidv4();
-    const fecha = new Date().toISOString().split("T")[0];
-    const hora = new Date().toLocaleTimeString().slice(0, 5);
-    const match_id = "none";
+const handleConfirm = async () => {
+  const notification_id = uuidv4();
+  const fecha = new Date().toISOString().split("T")[0];
+  const hora = new Date().toLocaleTimeString().slice(0, 5);
+  const match_id = "none";
 
-    
+  const result = await notificationController.createNotification(
+    notification_id,
+    match_id,
+    fecha,
+    hora,
+    content
+  );
+  await fetchNotifications(); // 👈 se vuelve a cargar la lista ordenada
+  
 
-    const result = await notificationController.createNotification(
-      notification_id,
-      match_id,
-      fecha,
-      hora,
-      content
-    );
+  setContent("");
+  setShowInput(false);
+};
 
-    if (result && result.success) {
-      const updated = await notificationController.getNotifications();
-      
-      if (updated.success) {
-        setNotifications(updated.data);
-      }
-    }
-
-    setContent("");
-    setShowInput(false);
-  };
 
   return (
     <div className="notifications-content-card">
@@ -64,13 +59,13 @@ function NotificationsContent() {
 
       {showInput && (
         <div className="input-group">
-          <input
-            type="text"
-            className="content-input"
-            placeholder="Escribí el texto de la notificación"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
+            <textarea
+              className="content-input"
+              placeholder="Escribí el texto de la notificación"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              rows={3}
+            />
           <button className="confirm-button" onClick={handleConfirm}>
             Confirmar
           </button>
@@ -78,12 +73,21 @@ function NotificationsContent() {
       )}
 
       <ul className="notification-list">
-        {notifications.map((n) => (
-          <li key={n.notification_id} className="notification-item">
-            <strong>{n.fecha} {n.hora}</strong>: {n.content}
-          </li>
-        ))}
-      </ul>
+  {[...notifications]
+    .sort((a, b) => {
+      const dateA = new Date(`${a.fecha}T${a.hora}`);
+      const dateB = new Date(`${b.fecha}T${b.hora}`);
+      return dateB - dateA; // más recientes primero
+    })
+    .map((n) => (
+      <NotificationCard
+        key={n.notification_id}
+        fecha={n.fecha}
+        hora={n.hora}
+        content={n.content}
+      />
+    ))}
+</ul>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 // src/components/MatchesPage.jsx
 import React, { useState } from 'react';
-import { useMatches } from '../../context/MatchesContext';
+import { matchesController } from "../../controllers/matchesController";
 import Navbar from '../../components/layout/Navbar';
 import './matches.css';
 import MatchCard from '../../components/common/MatchCard';
@@ -9,22 +9,34 @@ import { useEffect } from 'react';
 
 function MatchesPage() {
 
-  const { matches, createMatch, deleteMatch, editMatc, updateMatches } = useMatches();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { getMatches } = matchesController();
 
-    // Fetch matches when the component mounts (only once)
-    useEffect(() => {
-      updateMatches();
-    }, []); // Empty dependency array ensures this runs only once on mount
+  let [matches, setMatches] = useState([]); // Fetch matches from the controller
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const updateList = async () => {
     try {
-      await updateMatches(); // Fetch matches from the server
-      console.log('Matches fetched successfully:', matches); // Log the fetched matches
+      
+      const newMatchesList = await getMatches(); // Fetch matches from the server
+      
+      console.log('Matches fetched successfully:', newMatchesList); // Log the fetched matches
+
+      setMatches(newMatchesList); 
+
     } catch (error) {
       console.log('Error fetching matches:', error);
     }
   };
+
+
+    // Fetch matches when the component mounts (only once)
+    useEffect(() => {
+      updateList();
+
+    }, [matches]); // Empty dependency array ensures this runs only once on mount
+
+  
 
   const handleAddMatch = () => {
     setIsModalOpen(true)
@@ -32,10 +44,6 @@ function MatchesPage() {
 
   const handleCloseModal = () => {
     setIsModalOpen(false)
-  }
-
-  const handleDeleteMatch = (id) => {
-    deleteMatch(id)
   }
 
   return (
@@ -54,13 +62,13 @@ function MatchesPage() {
         ) : (
           matches.map((item) => (
             <MatchCard 
-              key = {item.id}
-              time={item.time}
-              date={item.date}
-              localTeam={item.localTeam}
-              rivalTeam={item.rivalTeam}
-              category={item.category}
-              fieldAddress={item.fieldAddress}
+              key = {item.match_id}
+              time = {item.hora}
+              date = {item.fecha}
+              localTeam = "San Esteban"
+              rivalTeam = {item.rival}
+              category = {item.category.gender + " " + item.category.year}
+              fieldAddress = {item.cancha.address}
             />
           ))
         )}

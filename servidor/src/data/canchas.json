@@ -1,0 +1,82 @@
+[
+    {
+      "cancha_id": 1,
+      "direccion": "Av. San Martín 1234, Buenos Aires",
+      "jugadores": "5",
+      "tipo_cesped": "sintético",
+      "buffet_available": true,
+      "parking_available": false
+    },
+    {
+      "cancha_id": 2,
+      "direccion": "Calle Fútbol 456, Córdoba",
+      "jugadores": "7",
+      "tipo_cesped": "natural",
+      "buffet_available": false,
+      "parking_available": true
+    },
+    {
+      "cancha_id": 3,
+      "direccion": "Pasaje Gol 789, Rosario",
+      "jugadores": "9",
+      "tipo_cesped": "sintético",
+      "buffet_available": true,
+      "parking_available": true
+    },
+    {
+      "cancha_id": 4,
+      "direccion": "Ruta Provincial 21 km 15, Mendoza",
+      "jugadores": "11",
+      "tipo_cesped": "natural",
+      "buffet_available": false,
+      "parking_available": false
+    },
+    {
+      "cancha_id": 5,
+      "direccion": "Av. Libertadores 2020, La Plata",
+      "jugadores": "7",
+      "tipo_cesped": "sintético",
+      "buffet_available": true,
+      "parking_available": true
+    },
+    {
+      "cancha_id": 6,
+      "direccion": "Calle Rivadavia 890, Salta",
+      "jugadores": "5",
+      "tipo_cesped": "sintético",
+      "buffet_available": false,
+      "parking_available": true
+    },
+    {
+      "cancha_id": 7,
+      "direccion": "Av. Colón 345, Tucumán",
+      "jugadores": "11",
+      "tipo_cesped": "natural",
+      "buffet_available": false,
+      "parking_available": true
+    },
+    {
+      "cancha_id": 8,
+      "direccion": "Calle Independencia 123, Mar del Plata",
+      "jugadores": "9",
+      "tipo_cesped": "sintético",
+      "buffet_available": true,
+      "parking_available": false
+    },
+    {
+      "cancha_id": 9,
+      "direccion": "Ruta Nacional 40 km 22, San Juan",
+      "jugadores": "7",
+      "tipo_cesped": "natural",
+      "buffet_available": false,
+      "parking_available": false
+    },
+    {
+      "cancha_id": 10,
+      "direccion": "Av. Belgrano 567, Santa Fe",
+      "jugadores": "5",
+      "tipo_cesped": "sintético",
+      "buffet_available": true,
+      "parking_available": true
+    }
+  ]

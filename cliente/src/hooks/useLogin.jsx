@@ -1,34 +1,31 @@
 // src/hooks/useLogin.js
 import { useState } from 'react';
 import loginController from '../controllers/loginController';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from './useAuth';
 
 const useLogin = () => {
 
-  const [error, setError] = useState(null);
   const {authToken, contextLogin} = useAuth();
 
   const login = async (dni, password) => {
-    setError(null);
     try {
+
+      console.log(dni, password, authToken);
 
       const response = await loginController.validateUser(dni, password, authToken);
 
       if (response.success) {
-        if (authToken !== response.token) {
-          contextLogin(response.token);
-        }
-        return true;
+        contextLogin(response.userData);
       }
-      return false;
+      
+      return response.success;
 
     } catch (err) {
-      setError(err.message || 'Login failed');
       throw err;
     }
   };
 
-  return { login, error };
+  return { login };
 };
 
 export default useLogin;

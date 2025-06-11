@@ -12,11 +12,22 @@ const useRegister = () => {
     setError(null);
     
     try {
+
       const response = await registerController.createUser(name, dni, email, password);
 
       if (response.success) {
+
+        const user = {
+          authToken: response.token, // Assuming the token is returned in response.token
+          name: name, 
+          dni: dni, 
+          email: email,
+          role: 'parent'
+        }
+
         // Store authToken if provided in response.data.token
-        contextLogin(response.data.token);
+        contextLogin(user);
+
         return true; // Return response for further handling if needed
 
       } else {

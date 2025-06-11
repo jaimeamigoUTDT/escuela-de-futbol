@@ -8,6 +8,7 @@ const authService = {
         try {
 
             const response = await axios.post(`${API_URL}/login`, {userData});
+            
             return response.data; // Return token or user data
         } catch (error) {
             throw error.response ? error.response.data : error;

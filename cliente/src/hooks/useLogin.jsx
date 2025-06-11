@@ -14,8 +14,6 @@ const useLogin = () => {
 
       const response = await loginController.validateUser(dni, password, authToken);
 
-      console.log(response.success, response.userData);
-
       if (response.success) {
         contextLogin(response.userData);
       }

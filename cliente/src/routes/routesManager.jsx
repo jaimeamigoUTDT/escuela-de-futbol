@@ -1,22 +1,22 @@
-import { Routes, Route } from "react-router-dom"
-import Home from "../pages/home/Home"
-import Register from "../pages/register/Register"
-import Login from "../pages/login/Login"
-import Error from "../pages/error/Error"
-import MatchesPage from "../pages/matches/Matches"
-import Profile from "../pages/profile/Profile"
-import Results from "../pages/results/Results"
-import Tournaments from "../pages/tournaments/Tournaments"
-import Admin from "../pages/admin/Admin"
-import Players from "../pages/players/Players"
-
+import { Routes, Route } from "react-router-dom";
+import Home from "../pages/home/Home";
+import Register from "../pages/register/Register";
+import Login from "../pages/login/Login";
+import Error from "../pages/error/Error";
+import MatchesPage from "../pages/matches/Matches";
+import Profile from "../pages/profile/Profile";
+import Results from "../pages/results/Results";
+import Tournaments from "../pages/tournaments/Tournaments";
+import Admin from "../pages/admin/Admin";
+import Players from "../pages/players/Players";
+import ProtectedRoute from "../components/ProtectedRoute";
 
 // Route configurations
 export const routeConfig = [
   {
-    path: "/home",
-    element: <Home />,
-    label: "Home",
+    path: "/login",
+    element: <Login />,
+    label: "Login",
   },
   {
     path: "/register",
@@ -24,63 +24,92 @@ export const routeConfig = [
     label: "Register",
   },
   {
-    path: "/login",
-    element: <Login />,
-    label: "login",
-  },
-  {
     path: "/",
-    element: <Error />, // Default route
+    element: <Error />,
     label: "Error",
   },
   {
-    path: "/partidos",
-    element: <MatchesPage />, // Default route
-    label: "Matches",
+    element: <ProtectedRoute />, // No requiredRole for general protected routes
+    children: [
+      {
+        path: "/home",
+        element: <Home />,
+        label: "Home",
+      },
+      {
+        path: "/partidos",
+        element: <MatchesPage />,
+        label: "Matches",
+      },
+      {
+        path: "/perfil",
+        element: <Profile />,
+        label: "Profile",
+      },
+      {
+        path: "/resultados",
+        element: <Results />,
+        label: "Results",
+      },
+      {
+        path: "/torneos",
+        element: <Tournaments />,
+        label: "Tournaments",
+      },
+      {
+        path: "/jugadores",
+        element: <Players />,
+        label: "Players",
+      },
+    ],
   },
   {
-    path: "/perfil",
-    element: <Profile />, // Default route
-    label: "Profile",
+    element: <ProtectedRoute requiredRole="admin" />, // Admin route requires "admin" role
+    children: [
+      {
+        path: "/admin",
+        element: <Admin />,
+        label: "Admin",
+      },
+    ],
   },
-  {
-    path: "/resultados",
-    element: <Results />, // Default route
-    label: "Results",
-  },
-  {
-    path: "/torneos",
-    element: <Tournaments />, // Default route
-    label: "Tournaments",
-  },
-  {
-    path: "/admin",
-    element: <Admin />, // Default route
-    label: "Admin",
-  },
-  {
-    path: "/jugadores",
-    element: <Players />, // Default route
-    label: "Players",
-  },
-]
+];
 
 // Routes component that renders all routes
 export function AppRoutes() {
   return (
     <Routes>
-      {routeConfig.map((route) => (
-        <Route key={route.path} path={route.path} element={route.element} />
+      {routeConfig.map((route, index) => (
+        <Route key={route.path || index} path={route.path} element={route.element}>
+          {route.children &&
+            route.children.map((child) => (
+              <Route
+                key={child.path}
+                path={child.path}
+                element={child.element}
+              />
+            ))}
+        </Route>
       ))}
       <Route path="*" element={<div>404 - Page Not Found</div>} />
     </Routes>
-  )
+  );
 }
 
 // Helper function to get navigation items
 export function getNavigationItems() {
-  return routeConfig.map((route) => ({
-    path: route.path,
-    label: route.label,
-  }))
+  const navItems = [];
+  routeConfig.forEach((route) => {
+    if (route.path && route.label) {
+      navItems.push({ path: route.path, label: route.label });
+    }
+    if (route.children) {
+      route.children.forEach((child) => {
+        if (child.path && child.label) {
+          navItems.push({ path: child.path, label: child.label });
+        }
+      });
+    }
+  });
+  return navItems;
 }

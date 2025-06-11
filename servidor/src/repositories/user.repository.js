@@ -56,7 +56,7 @@ class UserRepository {
 
     if (existingUser) {
       console.log("User already exists:", user.dni)
-      return false
+      return ""
 
     } else {
 

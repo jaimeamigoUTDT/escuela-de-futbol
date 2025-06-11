@@ -1,29 +1,32 @@
 // src/components/MatchesPage.jsx
 import React, { useState } from 'react';
-import { useMatches } from '../../context/MatchesContext';
+import { usePlayers } from '../../context/PlayersContext';
 import Navbar from '../../components/layout/Navbar';
-import './matches.css';
-import MatchCard from '../../components/common/MatchCard';
-import AddMatchModal from "./components/addMatchModal";
+import './players.css';
+import PlayerCard from '../../components/common/PlayerCard';
+import AddPlayerModal from "./components/addPlayerModal";
 import { useEffect } from 'react';
 
-function MatchesPage() {
+function PlayersPage() {
 
+  const { players, createPlayer, deletePlayer, editPlayer, updatePlayers } = usePlayers();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-    // Fetch matches when the component mounts (only once)
-    useEffect(() => {
-    }, []); // Empty dependency array ensures this runs only once on mount
+  // Fetch players when the component mounts (only once)
+  useEffect(() => {
+    updatePlayers();
+  }, []); // Empty dependency array ensures this runs only once on mount
 
   const updateList = async () => {
     try {
-      console.log('Matches fetched successfully:', matches); // Log the fetched matches
+      await updatePlayers(); // Fetch matches from the server
+      console.log('Players fetched successfully:', players); // Log the fetched matches
     } catch (error) {
-      console.log('Error fetching matches:', error);
+      console.log('Error fetching players:', error);
     }
   };
 
-  const handleAddMatch = () => {
+  const handleAddPlayer = () => {
     setIsModalOpen(true)
   }
 
@@ -31,43 +34,36 @@ function MatchesPage() {
     setIsModalOpen(false)
   }
 
-  const handleDeleteMatch = (id) => {
-    deleteMatch(id)
-  }
-
   return (
     <>
     <Navbar />
-    <div className="matches-container">
-      <h2>Partidos</h2>
-      <p>Aquí puedes ver los partidos programados.</p>
-      <div className = "matches-button-container">
-        <button onClick={updateList}>Actualizar Partidos</button>
-        <button className = "matches-add-match" onClick={handleAddMatch}>Agregar Partido</button>
+    <div className="players-container">
+      <h2>Jugadores</h2>
+      <p>Aquí puedes ver los jugadores registrados.</p>
+      <div className = "players-button-container">
+        <button onClick={updateList}>Actualizar Jugadores</button>
+        <button className = "players-add-match" onClick={handleAddPlayer}>Agregar Jugador</button>
       </div>
-      <div className="matches-list">
-        {matches.length === 0 ? (
-          <p>No hay partidos disponibles. Haz clic en "Actualizar Partidos".</p>
+      <div className="players-list">
+        {players.length === 0 ? (
+          <p>No hay jugadores registrados. Haz clic en "Actualizar Partidos".</p>
         ) : (
-          matches.map((item) => (
-            <MatchCard 
-              key = {item.id}
-              time={item.time}
-              date={item.date}
-              localTeam={item.localTeam}
-              rivalTeam={item.rivalTeam}
-              category={item.category}
-              fieldAddress={item.fieldAddress}
+          players.map((item) => (
+            <PlayerCard
+              key={item.dni}
+              name={item.name}
+              surname={item.surname}
+              dateOfBirth={item.dateOfBirth}
             />
           ))
         )}
       </div>
-
+    
     </div>
-    <AddMatchModal isOpen={isModalOpen} onClose={handleCloseModal} />
+    <AddPlayerModal isOpen={isModalOpen} onClose={handleCloseModal} />
     </>
     
   );
 }
 
-export default MatchesPage;
+export default PlayersPage;

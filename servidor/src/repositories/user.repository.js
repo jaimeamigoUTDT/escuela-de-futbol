@@ -50,11 +50,6 @@ class UserRepository {
       console.log("User already exists:", user.dni)
       return ""
     } else {
-      const token = uuidv4()
-      const tokenDate = (user.createdAt = new Date().toISOString())
-
-      user.authToken = token
-      user.createdAt = tokenDate
 
       this.users.push(user)
       this.saveData()

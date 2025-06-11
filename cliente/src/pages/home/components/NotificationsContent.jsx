@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import "./NotificationsContent.css";
 import notificationController from "../../../controllers/notificationController";
+import NotificationCard from "./NotificationCard";
 
 function NotificationsContent() {
   const [showInput, setShowInput] = useState(false);
   const [content, setContent] = useState("");
   const [notifications, setNotifications] = useState([]);
 
-  // Cargar notificaciones al montar el componente
   useEffect(() => {
     const fetchNotifications = async () => {
       const result = await notificationController.getNotifications();
@@ -29,8 +29,6 @@ function NotificationsContent() {
     const hora = new Date().toLocaleTimeString().slice(0, 5);
     const match_id = "none";
 
-    
-
     const result = await notificationController.createNotification(
       notification_id,
       match_id,
@@ -41,7 +39,6 @@ function NotificationsContent() {
 
     if (result && result.success) {
       const updated = await notificationController.getNotifications();
-      
       if (updated.success) {
         setNotifications(updated.data);
       }
@@ -64,13 +61,13 @@ function NotificationsContent() {
 
       {showInput && (
         <div className="input-group">
-          <input
-            type="text"
-            className="content-input"
-            placeholder="Escribí el texto de la notificación"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
+            <textarea
+              className="content-input"
+              placeholder="Escribí el texto de la notificación"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              rows={3}
+            />
           <button className="confirm-button" onClick={handleConfirm}>
             Confirmar
           </button>
@@ -79,9 +76,12 @@ function NotificationsContent() {
 
       <ul className="notification-list">
         {notifications.map((n) => (
-          <li key={n.notification_id} className="notification-item">
-            <strong>{n.fecha} {n.hora}</strong>: {n.content}
-          </li>
+          <NotificationCard
+            key={n.notification_id}
+            fecha={n.fecha}
+            hora={n.hora}
+            content={n.content}
+          />
         ))}
       </ul>
     </div>

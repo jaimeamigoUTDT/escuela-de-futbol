@@ -81,7 +81,11 @@ class playerRepository {
 
   getPlayerByDni(dni) {
     const player = this.players.find((p) => p.dni === dni)
-    return player ? this.resolveReferences(player) : null
+
+    console.log(`Searching for player with DNI: ${dni}`)
+    console.log(`Found player:`, player)
+
+    return player
   }
 
   updatePlayer(dni, playerData) {

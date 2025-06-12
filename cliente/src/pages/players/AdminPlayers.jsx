@@ -4,14 +4,19 @@ import './AdminPlayers.css';
 import Navbar from '../../components/layout/Navbar';
 import PlayerCard from './components/PlayerCard';
 import AddPlayerModal from './components/addPlayerModal';
+import TeamList from './components/TeamsList';'./components/TeamsList'
+import { teamsController } from '../../controllers/teamsController'; // Adjust the path as necessary
 
 function AdminPlayersPage() {
   const { players, updatePlayers } = usePlayers();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [ teams, setTeams] = useState([]); // State to hold teams
+  const { fetchTeams } = teamsController(); // Initialize teamsController
 
   // Fetch players when the component mounts (only once)
   useEffect(() => {
     updatePlayers();
+    updateTeamList(); // Fetch teams when the component mounts
   }, []); // Empty dependency array ensures this runs only once on mount
 
   const updateList = async () => {
@@ -23,8 +28,8 @@ function AdminPlayersPage() {
     }
   };
 
-  const handleAddPlayer = () => {
-    setIsModalOpen(true);
+  const updateTeamList = async () => {
+    setTeams(await fetchTeams()); // Fetch teams from the server
   };
 
   const handleCloseModal = () => {
@@ -37,9 +42,10 @@ function AdminPlayersPage() {
       <div className="players-container" style={{ display: 'flex', width: '100%' }}>
         {/* Left Side: Placeholder Component (70%) */}
         <div style={{ width: '70%', padding: '20px' }}>
-          <h2>Placeholder Component</h2>
-          <p>This is a placeholder for the left side component.</p>
-          {/* Add your custom component content here */}
+          <h2>Equipos</h2>
+          <p>Aquí podes ver todos los equipos que armaste para la próxima fecha:</p>
+          <button onClick={updateTeamList}>Actualizar Equipos</button>
+          <TeamList teams={teams}/>
         </div>
 
         {/* Right Side: Players List (30%) */}
@@ -48,9 +54,6 @@ function AdminPlayersPage() {
           <p>Aquí puedes ver los jugadores registrados.</p>
           <div className="players-button-container">
             <button onClick={updateList}>Actualizar Jugadores</button>
-            <button className="players-add-match" onClick={handleAddPlayer}>
-              Agregar Jugador
-            </button>
           </div>
           <div className="players-list">
             {players.length === 0 ? (

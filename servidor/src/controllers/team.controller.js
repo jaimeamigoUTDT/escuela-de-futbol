@@ -27,7 +27,7 @@ function createTeam(req, res) {
     
 }
 
-function getTeams(req, res) {
+async function getTeams(req, res) {
     try {
         // Log request body for debugging
         console.log('Request body:', req.body);
@@ -39,13 +39,22 @@ function getTeams(req, res) {
           queryParameters = req.body;
         }
     
-        const data = teamService.getTeams(queryParameters)
-    
-        res.status(200).send({ message: 'List of teams', data: data});
+        const teamsData = await teamService.getTeams(queryParameters)
+
+        res.status(200).send(
+            {   
+                success: true,
+                message: 'Teams fetched successfully', 
+                data: teamsData
+            });
     
       } catch (error) {
         console.log(error); // Pass errors to error middleware
-        res.status(500).send({ message: 'Internal Server Error', data: {} });
+        res.status(500).send(
+            { 
+            status: false, 
+            message: 'Internal Server Error', 
+            data: {} });
       }
 }
 

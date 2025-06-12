@@ -1,0 +1,80 @@
+/* TeamsList.css */
+.team-list-container {
+  margin: 0 auto;
+}
+
+.team-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 500px; /* Set a maximum height for the scrollable area */
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding-right: 10px; /* Add padding to prevent content from touching scrollbar */
+}
+
+.team-card-item {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.team-card-item p {
+  margin: 5px 0;
+  font-size: 1em;
+  color: #555;
+}
+
+.team-card-item p strong {
+  color: #000;
+}
+
+.team-card-item button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.team-card-item button:hover {
+  background-color: #0056b3;
+}
+
+.edit-button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  background-color: #0056b3;
+}
+
+.team-list-container p {
+  color: #777;
+}
+
+/* Optional: Style the scrollbar for better aesthetics */
+.team-card::-webkit-scrollbar {
+  width: 8px;
+}
+
+.team-card::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.team-card::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.team-card::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

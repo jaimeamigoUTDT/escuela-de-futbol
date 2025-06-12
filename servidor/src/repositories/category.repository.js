@@ -41,6 +41,10 @@ class categoryRepository {
     }
   }
 
+  getCategoryById(categoryId) {
+    return this.categories.find((c) => c.category_id === categoryId)
+  }
+
   getCategories() {
     return this.categories
   }

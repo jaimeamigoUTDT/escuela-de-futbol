@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { useMatches } from "../../../context/MatchesContext";
-import { useCanchas, CanchasProvider } from "../../../context/CanchasContext";
-import { canchasController } from "../../../controllers/canchasController";
-import { matchesController } from "../../../controllers/matchesController";
-import notificationController from "../../../controllers/notificationController";
+import { useMatches } from "../../../../context/MatchesContext";
+import { useCanchas, CanchasProvider } from "../../../../context/CanchasContext";
+import { canchasController } from "../../../../controllers/canchasController";
+import { matchesController } from "../../../../controllers/matchesController";
+import notificationController from "../../../../controllers/notificationController";
 import { v4 as uuidv4 } from 'uuid';
 
 

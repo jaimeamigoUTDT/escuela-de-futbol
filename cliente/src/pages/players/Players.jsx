@@ -1,64 +1,59 @@
-import { useState, useEffect } from "react"
-import { useAuth } from "../../hooks/useAuth"
-import "./Players.css"
-import Navbar from "../../components/layout/Navbar"
-import PlayerCard from "./components/PlayerCard"
-import AddPlayerModal from "./components/addPlayerModal"
-import playersController from "../../controllers/playersController"
+"use client";
+
+import { useState, useEffect } from "react";
+import { useAuth } from "../../hooks/useAuth";
+import "./Players.css";
+import Navbar from "../../components/layout/Navbar";
+import PlayerCard from "./components/PlayerCard";
+import AddPlayerModal from "./components/addPlayerModal";
+import playersController from "../../controllers/playersController";
 
 function PlayersPage() {
   const { getPlayers } = playersController();
-  const { userDni } = useAuth()
-  const [players, setPlayers] = useState([]) // Get players from context
-  const [filteredPlayers, setFilteredPlayers] = useState([])
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const { userDni } = useAuth();
+  const [players, setPlayers] = useState([]);
+  const [filteredPlayers, setFilteredPlayers] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Fetch players when the component mounts (only once)
+  // Fetch and filter players on mount
   useEffect(() => {
-    updateList()
-  }, []) // This will run on mount and whenever players changes
+    updateList();
+  }, []);
 
   const filterPlayers = (players) => {
-    const filtered = []
+    console.log("Input players:", players);
+    console.log("userDni:", userDni);
 
-    for (let i = 0; i < players.length; i++) {
-      if (players[i].parent !== null) {
-        if (players[i].parent.dni === userDni) {
-          filtered.push(players[i])
-        }
-      }
-    }
-    return filtered
-  }
+    return players.filter((player) => {
+      console.log("Checking player:", player.name, {
+        parent: player.parent,
+        parent_dni: player.parent_dni,
+      });
+      const parentDni = player.parent?.dni || player.parent_dni;
+      return parentDni && String(parentDni) === String(userDni);
+    });
+  };
 
   const updateList = async () => {
     try {
-      const players = await getPlayers(); // Fetch players from the server
-
-      setPlayers(players) // Update the players in context
-
-      const filteredPlayers = filterPlayers(players) // Filter players based on the parent DNI
-
-      setFilteredPlayers(filteredPlayers) // Update local state with all players
-
-      // No need to call setFilteredPlayers here as the useEffect will trigger again
+      const fetchedPlayers = await getPlayers();
+      setPlayers(fetchedPlayers);
+      const filtered = filterPlayers(fetchedPlayers);
+      setFilteredPlayers(filtered);
     } catch (error) {
-      console.error("Error updating players:", error)
+      console.error("Error updating players:", error);
+      alert("Error fetching players. Please try again.");
     }
-  }
+  };
 
   const handleAddPlayer = () => {
-    setIsModalOpen(true)
-  }
+    setIsModalOpen(true);
+  };
 
   const handleCloseModal = () => {
-    setIsModalOpen(false)
-    updateList() // Refresh the list when modal is closed
-  }
-
-  useEffect(() => {
-    setFilteredPlayers(filterPlayers(players))
-  }, [players, userDni])
+    setIsModalOpen(false);
+    updateList(); // Refresh after adding a player
+  };
 
   return (
     <>
@@ -79,10 +74,13 @@ function PlayersPage() {
               filteredPlayers.map((item) => (
                 <PlayerCard
                   key={item.dni}
+                  dni={item.dni}
                   name={item.name}
                   surname={item.surname}
                   dateOfBirth={item.date_of_birth}
                   gender={item.gender}
+                  parent={item.parent}
+                  updateList={updateList} // Pass updateList
                 />
               ))
             )}
@@ -91,7 +89,7 @@ function PlayersPage() {
       </div>
       <AddPlayerModal isOpen={isModalOpen} onClose={handleCloseModal} />
     </>
-  )
+  );
 }
 
-export default PlayersPage
+export default PlayersPage;

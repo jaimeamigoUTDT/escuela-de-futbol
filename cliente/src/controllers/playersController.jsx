@@ -43,9 +43,9 @@ const playersController = () => {
         }
     }
 
-    const updatePlayer = async (dni, data) => {
+    const updatePlayer = async (oldDni, updatedPlayerData) => {
         try {
-            const updatedPlayer = await playerService.updatePlayer(dni, data);
+            const updatedPlayer = await playerService.editPlayer(oldDni, updatedPlayerData);
             return updatedPlayer;
         } catch (error) {
             console.error('Error updating player:', error);
@@ -53,7 +53,7 @@ const playersController = () => {
         }
     }
 
-    const deletePlayer= async (dni) => {
+    const deletePlayer = async (dni) => {
         try {
             const result = await playerService.deletePlayer(dni);
             return result;

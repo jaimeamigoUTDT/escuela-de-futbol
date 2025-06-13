@@ -3,7 +3,8 @@ import Home from "../pages/home/Home";
 import Register from "../pages/register/Register";
 import Login from "../pages/login/Login";
 import Error from "../pages/error/Error";
-import MatchesPage from "../pages/matches/Matches";
+import AdminMatchesPage from "../pages/matches/adminMatches/AdminMatchesPage";
+import ParentMatchesPage from "../pages/matches/parentMatches/ParentMatchesPage";
 import Profile from "../pages/profile/Profile";
 import Results from "../pages/results/Results";
 import Tournaments from "../pages/tournaments/Tournaments";
@@ -39,7 +40,14 @@ export const routeConfig = [
       },
       {
         path: "/partidos",
-        element: <MatchesPage />,
+        element: (
+          <ProtectedRoute
+            roleComponents={{
+              admin: AdminMatchesPage,
+              parent: ParentMatchesPage, // Assuming ParentMatchesPage is defined elsewhere
+            }}
+          />
+        ),
         label: "Matches",
       },
       {

@@ -48,15 +48,15 @@ class PlayerService {
       return enrichedPlayers;
     }
   
-    updatePlayer(playerData) {
+    updatePlayer(dni, playerData) {
 
-      const existingPlayer = playerRepository.players.find(player => player.dni === playerData.dni);
+      const existingPlayer = playerRepository.players.find(player => player.dni === dni);
       
       if (!existingPlayer) {
         return null;
       }
 
-      const updatedPlayer = playerRepository.updatePlayer(playerData.dni, playerData);
+      const updatedPlayer = playerRepository.updatePlayer(dni, playerData);
 
       return updatedPlayer;
     }

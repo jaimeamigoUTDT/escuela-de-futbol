@@ -6,7 +6,7 @@ const playerService = {
     
     getPlayers: async (params) => {
         try {
-            const response = await axios.get(API_URL, { params });
+            const response = await axios.get(API_URL, {params});
             
             console.log('Fetched players:', response.data); // Log for debugging
             
@@ -28,18 +28,20 @@ const playerService = {
     },
 
     deletePlayer: async (dni) => {
-        try {
-            const response = await axios.delete(`${API_URL}/${dni}`);
-            return response.data;
-        } catch (error) {
-            console.error('Error deleting player:', error);
-            throw error;
-        }
-    },
+    try {
+        const response = await axios.delete(API_URL, {
+            data: { dni }, // Send dni in the request body
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error deleting player:', error);
+        throw error;
+    }
+},
 
-    editPlayer: async (dni, updatedPlayer) => {
+    editPlayer: async (dni, updatedPlayerData) => {
         try {
-            const response = await axios.put(`${API_URL}/${dni}`, updatedPlayer);
+            const response = await axios.put(API_URL, {dni, updatedPlayerData});
             return response.data;
         } catch (error) {
             console.error('Error editing player:', error);

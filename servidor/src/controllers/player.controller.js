@@ -33,44 +33,37 @@ function createPlayer(req, res) {
 
 function getPlayers(req, res) {
     try {
-        
-        queryParameters = {};
-    
-        // Check if req.body exists
-        if (req.body) {
-          queryParameters = req.body;
-        }
-    
-        const data = playerService.getPlayers(queryParameters)
-    
-        res.status(200).send({ message: 'List of players', data: data});
-    
-      } catch (error) {
-        console.log(error); // Pass errors to error middleware
-        res.status(500).send({ message: 'Internal Server Error', data: {} });
-      }
-}
+      const queryParameters = req.query;
+  
+      const data = playerService.getPlayers(queryParameters);
+  
+      res.status(200).json({ message: "List of players", data });
+    } catch (error) {
+      console.error("Error in getPlayers:", error);
+      res.status(500).json({ message: "Internal Server Error", data: {} });
+    }
+  }
 
 function updatePlayer(req, res) {
     try {
 
-        const updatePlayerData = req.body;
+        const {dni, updatedPlayerData} = req.body;
 
-        if (!updatePlayerData.dni){
+        if (!updatedPlayerData.dni){
             return res.status(400).send({ message: 'DNI is missing' });
-        } else if (!updatePlayerData.name){
+        } else if (!updatedPlayerData.name){
             return res.status(400).send({ message: 'Name is missing' });
-        } else if (!updatePlayerData.surname){
+        } else if (!updatedPlayerData.surname){
             return res.status(400).send({ message: 'Surname is missing' });
-        } else if (!updatePlayerData.date_of_birth){
+        } else if (!updatedPlayerData.date_of_birth){
             return res.status(400).send({ message: 'Date of birth is missing' });
-        } else if (!updatePlayerData.gender){
+        } else if (!updatedPlayerData.gender){
             return res.status(400).send({message: "Gender is missing"});
-        } else if (!updatePlayerData.parent_dni){
+        } else if (!updatedPlayerData.parent_dni){
             return res.status(400).send({message: "Parent DNI is missing"});
         }
 
-        const updatePlayer = playerService.updatePlayer(updatePlayerData);
+        const updatePlayer = playerService.updatePlayer(dni, updatedPlayerData);
 
         if (!updatePlayer) {
             return res.status(400).send({ message: 'Player not found' });
@@ -87,7 +80,8 @@ function updatePlayer(req, res) {
 function deletePlayer(req, res) {
     
     try {
-        const dni = req.body.dni;
+
+        const {dni} = req.body;
 
         if (!dni) {
             return res.status(400).send({ message: 'DNI is missing' });

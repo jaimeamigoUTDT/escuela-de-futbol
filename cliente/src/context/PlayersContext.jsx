@@ -25,10 +25,7 @@ export const PlayersProvider = ({ children }) => {
     };
 
     const updatePlayers = async () => {
-        console.log('Updating players...');
-    
         try {
-            console.log('Fetching players from the server...');
             const newPlayers = await playersController.getPlayers();
             
             // Ensure we have an array before mapping

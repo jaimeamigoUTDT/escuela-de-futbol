@@ -17,8 +17,6 @@ export const matchesController = () => {
 
             const matches = getStoredMatches(); // Get updated matches from context
 
-            console.log('Matches fetched successfully:', matches); // Log the fetched matches
-
             return matches; 
 
         } catch (error) {

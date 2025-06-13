@@ -39,6 +39,10 @@ class canchaRepository {
   getCanchas() {
     return this.canchas
   }
+
+  getCanchaById(cancha_id) {
+    return this.canchas.find((c) => c.cancha_id === cancha_id)
+  }
 }
 
 module.exports = new canchaRepository()

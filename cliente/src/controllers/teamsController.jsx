@@ -1,43 +1,55 @@
-import { useTeams } from '../context/TeamsContext'; // Adjust the path as necessary
-import teamsService from '../api/services/teamsService'; // Adjust the path to your service
+import { useTeams } from "../context/TeamsContext" // Adjust the path as necessary
+import teamsService from "../api/services/teamsService" // Adjust the path to your service
 
 export const teamsController = () => {
+  const { teams, updateTeams, saveTeam } = useTeams() // Adjust path to TeamsContext
 
-    const { saveTeam } = useTeams(); // Adjust path to TeamsContext
+  const fetchTeams = async ({ params } = {}) => {
+    try {
+      const teams = await teamsService.getTeams(params)
 
-    const fetchTeams = async ({params} = {}) => {
+      updateTeams(teams) // Update the teams in context or state
 
-        try {
-            const teams = await teamsService.getTeams(params);
-
-            for (const team of teams) {
-                // Ensure each team has a players array
-                saveTeam(team);
-            }
-
-            return teams; 
-
-        } catch (error) {
-            console.error('Error fetching players:', error);
-            throw error;
-        }
+      return teams
+    } catch (error) {
+      console.error("Error fetching players:", error)
+      throw error
     }
+  }
 
-    const createTeam = async (teamData) => {
-        try {
-            const newTeam = await teamsService.createTeam(teamData);
+  const createTeam = async (teamData) => {
+    try {
+      const newTeam = await teamsService.createTeam(teamData)
 
-            console.log('New team created:', newTeam); // Log for debugging
+      console.log("New team created:", newTeam) // Log for debugging
 
-            saveTeams(newTeam); // Save the new team to context or state
+      saveTeam(newTeam) // Save the new team to context or state
 
-            return newTeam;
-        } catch (error) {
-            console.error('Error creating team:', error);
-            throw error;
-        }
+      return newTeam
+    } catch (error) {
+      console.error("Error creating team:", error)
+      throw error
     }
+  }
 
+  const editTeam = async (updatedTeamData) => {
+    try {
 
-    return {fetchTeams, createTeam}
-};
+      updatedTeamData.match_id = updatedTeamData.match.match_id
+
+      const updatedTeam = await teamsService.editTeam(updatedTeamData)
+
+      console.log("Team updated:", updatedTeam) // Log for debugging
+
+      // Fetch all teams again to update the context
+      await fetchTeams()
+
+      return updatedTeam
+    } catch (error) {
+      console.error("Error updating team:", error)
+      throw error
+    }
+  }
+
+  return { fetchTeams, createTeam, editTeam }
+}

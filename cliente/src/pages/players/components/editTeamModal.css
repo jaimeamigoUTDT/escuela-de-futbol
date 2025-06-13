@@ -1,4 +1,4 @@
-/* Modal Styles */
+/* Modal Base Styles */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -60,24 +60,6 @@
 
 .modal-body {
   padding: 20px;
-}
-
-/* Players Modal Styles */
-.players-grid {
-  display: grid;
-  gap: 15px;
-}
-
-.player-card {
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 15px;
-  background-color: #f9f9f9;
-}
-
-.player-info p {
-  margin: 5px 0;
-  font-size: 0.9em;
 }
 
 /* Edit Form Styles */
@@ -162,39 +144,6 @@
   background-color: #0056b3;
 }
 
-/* TeamsList.css */
-.team-list-container {
-  margin: 0 auto;
-}
-
-.team-card {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-height: 500px; /* Scrollable height */
-  overflow-y: auto; /* Enable vertical scrolling */
-  padding-right: 10px; /* Prevent content overlap with scrollbar */
-}
-
-/* Scrollbar styling */
-.team-card::-webkit-scrollbar {
-  width: 8px;
-}
-
-.team-card::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 4px;
-}
-
-.team-card::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 4px;
-}
-
-.team-card::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
 /* Responsive Modal */
 @media (max-width: 600px) {
   .modal-content {
@@ -215,12 +164,117 @@
   }
 }
 
-/* Responsive design */
+/* Match Assignment Styles */
+.match-section {
+  margin-top: 20px;
+}
+
+.match-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.assign-match-container {
+  position: relative;
+}
+
+.assign-match-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.2s;
+}
+
+.assign-match-button:hover:not(:disabled) {
+  background-color: #218838;
+}
+
+.assign-match-button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.dropdown-arrow {
+  transition: transform 0.2s;
+  font-size: 0.8em;
+}
+
+.dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+.matches-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  min-width: 300px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.match-option {
+  padding: 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s;
+}
+
+.match-option:hover {
+  background-color: #f8f9fa;
+}
+
+.match-option:last-child {
+  border-bottom: none;
+}
+
+.match-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.match-details {
+  font-size: 0.85em;
+  color: #666;
+}
+
+.match-location {
+  font-size: 0.8em;
+  color: #888;
+}
+
+.no-matches {
+  padding: 12px;
+  text-align: center;
+  color: #666;
+  font-style: italic;
+}
+
+/* Responsive adjustments */
 @media (max-width: 600px) {
-  .team-list-container {
-    width: 90%;
+  .match-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
   }
-  .team-card {
-    max-height: 400px; /* Adjust for smaller screens */
+
+  .matches-dropdown {
+    right: 0;
+    left: 0;
+    min-width: auto;
   }
 }

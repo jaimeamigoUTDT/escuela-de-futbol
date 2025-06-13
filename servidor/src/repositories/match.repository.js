@@ -32,41 +32,6 @@ class matchRepository {
     }
   }
 
-  resolveReferences(match) {
-    // Import repositories here to avoid circular dependencies
-    const categoryRepository = require("./category.repository")
-    const canchaRepository = require("./cancha.repository")
-    const teamRepository = require("./team.repository")
-
-    const resolvedMatch = { ...match }
-
-    // Resolve category_id to category object
-    if (match.category_id) {
-      const category = categoryRepository.getCategories().find((c) => c.category_id === match.category_id)
-      resolvedMatch.category = category || null
-    }
-
-    // Resolve cancha_id to cancha object
-    if (match.cancha_id) {
-      const cancha = canchaRepository.getCanchas().find((c) => c.cancha_id === match.cancha_id)
-      resolvedMatch.cancha = cancha || null
-    }
-
-    // Resolve local_team_id to team object
-    if (match.local_team_id) {
-      const localTeam = teamRepository.getTeams().find((t) => t.team_id === match.local_team_id)
-      resolvedMatch.local_team = localTeam || null
-    }
-
-    // Resolve rival_team_id to team object
-    if (match.rival_team_id) {
-      const rivalTeam = teamRepository.getTeams().find((t) => t.team_id === match.rival_team_id)
-      resolvedMatch.rival_team = rivalTeam || null
-    }
-
-    return resolvedMatch
-  }
-
   createMatch(matchData) {
     this.matches.push(new Match(matchData))
     this.saveData()
@@ -75,18 +40,19 @@ class matchRepository {
   }
 
   getMatches() {
-    return this.matches.map((match) => this.resolveReferences(match))
+    return this.matches
   }
 
   getMatchById(match_id) {
     const match = this.matches.find((m) => m.match_id === match_id)
-    return match ? this.resolveReferences(match) : null
+    return match
   }
 
   updateMatch(match_id, matchData) {
     this.deleteMatch(match_id)
     this.createMatch(matchData)
-    return matchData
+
+    console.log("matchData in repo: ", matchData)
   }
 
   deleteMatch(match_id) {

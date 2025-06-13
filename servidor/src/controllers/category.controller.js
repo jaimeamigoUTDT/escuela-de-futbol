@@ -4,8 +4,6 @@ function getCategories(req, res) {
 
   try {
     // Log request body for debugging
-    console.log('Request body:', req.body);
-
     queryParameters = {};
 
     // Check if req.body exists

@@ -1,6 +1,24 @@
 const matchRepository = require('../repositories/match.repository');
+const canchaRepository = require('../repositories/cancha.repository');
+const categoryRepository = require('../repositories/category.repository');
 
 class MatchService {
+
+  enrichMatchData(match) {
+    if (!match) return null;
+    // Fetch related data if necessary
+    const cancha = canchaRepository.getCanchaById(match.cancha_id);
+    const category = categoryRepository.getCategoryById(match.category_id);
+
+    return {
+      ...match,
+      category: category || null,
+      cancha: cancha || [],
+    };
+    
+  
+  }
+
     createMatch(matchData) {
 
       // Check if the match already exists
@@ -18,7 +36,7 @@ class MatchService {
       return newMatch;
     }
   
-    getMatches(queryParams) {
+    getMatches(queryParams)  {
 
       const allMatches = matchRepository.getMatches();
 
@@ -27,7 +45,11 @@ class MatchService {
           return match[key] && match[key].toString() === queryParams[key].toString();
         });
       });
-      
+
+      for (let i = 0; i < filteredMatches.length; i++) {
+        filteredMatches[i] = this.enrichMatchData(filteredMatches[i]);
+      }
+
       return filteredMatches;
     }
   
@@ -35,13 +57,19 @@ class MatchService {
 
       const existingMatch = matchRepository.matches.find(match => match.match_id === matchData.match_id);
       
+      console.log('Existing Match:', existingMatch);
+
       if (!existingMatch) {
         return null;
       }
 
-      const updatedMatch = matchRepository.updateMatch(matchData.match_id, matchData);
+      matchRepository.updateMatch(matchData.match_id, matchData);
 
-      return updatedMatch;
+      console.log('Updated Match:', updatedMatch);
+
+      const matches = matchRepository.getMatches();
+
+      return matches;
     }
   
     deleteMatch(match_id) {

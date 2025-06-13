@@ -6,13 +6,12 @@ const teamsService = {
 
     getTeams: async (params) => {
         try {
-            console.log('Fetching teams with params:', params); // Log for debugging
+            const response = (await axios.get(API_URL, { params })).data;
             
-            const response = await axios.get(API_URL, { params });
+            console.log('Fetched teams:', response.data); // Log for debugging
             
-            console.log('Fetched teams:', response.data.data); // Log for debugging
-            
-            return response.data.data;
+            return response.data;
+
         } catch (error) {
             console.error('Error fetching teams:', error);
             throw error;
@@ -25,6 +24,16 @@ const teamsService = {
             return response.data;
         } catch (error) {
             console.error('Error creating team:', error);
+            throw error;
+        }
+    },
+
+    editTeam: async (updatedTeamData) => {
+        try {
+            const response = await axios.put(`${API_URL}`, updatedTeamData);
+            return response.data;
+        } catch (error) {
+            console.error('Error updating team:', error);
             throw error;
         }
     },

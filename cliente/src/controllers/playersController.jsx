@@ -5,11 +5,7 @@ const playersController = {
     async getPlayers(params) {
 
         try {
-            console.log('Fetching players with params:', params); // Log for debugging
-
             const players = await playerService.getPlayers(params);
-
-            console.log('Fetched players:', players); // Log for debugging
 
             return players.data; 
 

@@ -14,37 +14,5 @@
     "rival": "Barcelona",
     "category_id": 1,
     "cancha_id": 1
-  },
-  {
-    "match_id": 1749247003892,
-    "fecha": "2025-06-13",
-    "hora": "06:59",
-    "rival": "Real Madrid",
-    "category_id": 1,
-    "cancha_id": 2
-  },
-  {
-    "match_id": 1749579247294,
-    "fecha": "2025-11-06",
-    "hora": "22:10",
-    "rival": "Independiente",
-    "category_id": 1,
-    "cancha_id": 2
-  },
-  {
-    "match_id": 1749649418102,
-    "fecha": "2025-10-10",
-    "hora": "10:10",
-    "rival": "Real Madrid",
-    "category_id": 1,
-    "cancha_id": 2
-  },
-  {
-    "match_id": 1749654245983,
-    "fecha": "2025-11-11",
-    "hora": "10:10",
-    "rival": "Real Madrid",
-    "category_id": 1,
-    "cancha_id": 8
   }
 ]

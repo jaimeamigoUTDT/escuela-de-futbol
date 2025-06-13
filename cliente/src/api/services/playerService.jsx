@@ -6,9 +6,10 @@ const playerService = {
     
     getPlayers: async (params) => {
         try {
-            console.log('Fetching players with params:', params); // Log for debugging
             const response = await axios.get(API_URL, { params });
+            
             console.log('Fetched players:', response.data); // Log for debugging
+            
             return response.data;
         } catch (error) {
             console.error('Error fetching players:', error);

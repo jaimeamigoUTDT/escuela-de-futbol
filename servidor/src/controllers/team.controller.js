@@ -29,9 +29,6 @@ function createTeam(req, res) {
 
 async function getTeams(req, res) {
     try {
-        // Log request body for debugging
-        console.log('Request body:', req.body);
-    
         queryParameters = {};
     
         // Check if req.body exists
@@ -39,13 +36,13 @@ async function getTeams(req, res) {
           queryParameters = req.body;
         }
     
-        const teamsData = await teamService.getTeams(queryParameters)
+        const teamsList = await teamService.getTeams(queryParameters)
 
         res.status(200).send(
             {   
                 success: true,
                 message: 'Teams fetched successfully', 
-                data: teamsData
+                data: teamsList
             });
     
       } catch (error) {
@@ -58,7 +55,7 @@ async function getTeams(req, res) {
       }
 }
 
-function updateTeam(req, res) {
+async function updateTeam(req, res) {
     try {
 
         const updateTeamData = req.body;
@@ -73,17 +70,29 @@ function updateTeam(req, res) {
             return res.status(400).send({message: "Players is missing"});
         }
 
-        const updateTeam = teamService.updateTeam(updateTeamData);
+        const teamsList = await teamService.updateTeam(updateTeamData);
 
-        if (!updateTeam) {
-            return res.status(400).send({ message: 'Team not found' });
+        if (!teamsList) {
+            return res.status(400).send(
+                {
+                    success: false,
+                    message: 'Team not found',
+                    data: {}
+                });
         }
 
-        res.status(201).send({ message: 'Team updated', data: updateTeam });
+        res.status(200).send({
+            success: true,
+            message: 'Team updated successfully',
+            data: teamsList
+        });
 
 
     } catch (e) {
-        res.status(500).send({ message: `Error ${e} `, data: {}});
+        res.status(500).send({ 
+            success: false,
+            message: `Internal server error`, 
+            data: {}});
     }
 }
 

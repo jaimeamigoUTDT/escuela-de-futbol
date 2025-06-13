@@ -3,8 +3,7 @@ const userService = require('../services/user.service');
 class LoginController {
   async authenticateUser(req, res, next) {
     try {
-      console.log('Request body:', req.body);
-
+      
       if (!req.body) {
         return res.status(400).json({
           success: false,
@@ -56,8 +55,6 @@ class LoginController {
 
   async createUser(req, res, next) {
     try {
-      console.log('Request body:', req.body);
-
       if (!req.body) {
         return res.status(400).json({
           success: false,

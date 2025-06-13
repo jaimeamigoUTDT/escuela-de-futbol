@@ -1,27 +1,23 @@
 [
-    {
-      "team_id": 1,
-      "match_id": 1,
-      "category_id": 1,
-      "players": [
-        20000000,
-        20000001
-      ]
-    },
-    {
-      "team_id": 2,
-      "match_id": 2,
-      "category_id": 1,
-      "players": [
-        20000001
-      ]
-    },
-    {
-      "team_id": 3,
-      "match_id": 1749247003892,
-      "category_id": 1,
-      "players": [
-        20000000
-      ]
-    }
+  {
+    "team_id": 2,
+    "name": "Equipo B",
+    "match_id": 1,
+    "category_id": 1,
+    "players": []
+  },
+  {
+    "team_id": 3,
+    "name": "Equipo C",
+    "match_id": 1,
+    "category_id": 1,
+    "players": []
+  },
+  {
+    "team_id": 1,
+    "name": "Equipo Junior",
+    "match_id": 1,
+    "category_id": 1,
+    "players": []
+  }
 ]

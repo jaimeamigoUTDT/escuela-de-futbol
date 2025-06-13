@@ -3,34 +3,34 @@ const teamRepository = require('../repositories/team.repository');
 const matchRepository = require('../repositories/match.repository');
 const categoryRepository = require('../repositories/category.repository');
 const playerRepository = require('../repositories/player.repository');
+const canchaRepository = require('../repositories/cancha.repository');
 
 class TeamService {
   // Helper method to enrich team data with match, category, and players
-  async enrichTeamData(team) {
+  enrichTeamData(team) {
     if (!team) return null;
     // Fetch related data
     const match = matchRepository.getMatchById(team.match_id);
     const category = categoryRepository.getCategoryById(team.category_id);
-
-    console.log(team.players);
-
+    const cancha = canchaRepository.getCanchaById(match?.cancha_id);
     const players = team.players
       ? team.players.map((player_id) => playerRepository.getPlayerByDni(player_id)).filter(Boolean)
       : [];
 
     return {
       ...team,
-      match: match || null,
+      match: match ? { ...match, cancha: cancha || null } : null,
       category: category || null,
       players: players || [],
     };
   }
 
-  async createTeam(teamData) {
+  createTeam(teamData) {
     // Check if the team already exists
     const existingTeam = teamRepository.teams.find((team) => team.team_id === teamData.team_id);
+    
     if (existingTeam) {
-      const enrichedTeam = await this.enrichTeamData(existingTeam);
+      const enrichedTeam = this.enrichTeamData(existingTeam);
       return { message: 'Team already exists', data: enrichedTeam };
     }
 
@@ -45,6 +45,8 @@ class TeamService {
   async getTeams(queryParams) {
     const allTeams = teamRepository.getTeams();
 
+    console.log(allTeams);
+
     // Filter teams based on query parameters
     const filteredTeams = allTeams.filter((team) =>
       Object.keys(queryParams).every((key) => {
@@ -58,7 +60,7 @@ class TeamService {
     );
 
     // Enrich each team with related data
-    const enrichedTeams = await Promise.all(filteredTeams.map((team) => this.enrichTeamData(team)));
+    const enrichedTeams = filteredTeams.map((team) => this.enrichTeamData(team));
     
     return enrichedTeams;
   }
@@ -69,12 +71,17 @@ class TeamService {
       return null;
     }
 
-    const updatedTeam = teamRepository.updateTeam(teamData.team_id, teamData);
-    if (!updatedTeam) {
+    const updatedTeams = [...teamRepository.updateTeam(teamData.team_id, teamData)];
+    
+    if (!updatedTeams) {
       return null;
     }
 
-    return this.enrichTeamData(updatedTeam);
+    for (let i = 0; i < updatedTeams.length; i++) {
+      updatedTeams[i] = await this.enrichTeamData(updatedTeams[i]);
+    }
+
+    return updatedTeams
   }
 
   async deleteTeam(team_id) {

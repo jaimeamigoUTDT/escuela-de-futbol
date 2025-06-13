@@ -3,8 +3,6 @@ const canchaService = require('../services/cancha.service');
 function getCanchas(req, res) {
     try {
         // Log request body for debugging
-        console.log('Request body:', req.body);
-    
         queryParameters = {};
     
         // Check if req.body exists

@@ -1,11 +1,18 @@
 import "./ResultCard.css";
+import { Calendar, Clock, MapPin, Users, Bell } from "lucide-react"
 
 export default function ResultCard({ date, category, localTeam, rivalTeam, localScore, rivalScore }) {
   return (
     <div className="result-card">
       <div className="result-card-header">
-        <p><strong>Fecha:</strong> {date}</p>
-        <p><strong>Categoría:</strong> {category}</p>
+        <div className="result-detail">
+          <Calendar className="icon" />
+          <span>{date}</span>
+        </div>
+        <div className="result-detail">
+          <Users className="icon" />
+          <span>{category}</span>
+        </div>
       </div>
 
       <div className="result-card-body">

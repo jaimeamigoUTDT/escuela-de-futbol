@@ -1,11 +1,10 @@
 // src/components/MatchesPage.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { resultsController } from "../../controllers/resultsController";
 import Navbar from '../../components/layout/Navbar';
 import './results.css';
 import ResultCard from '../../components/common/ResultCard';
-//import AddMatchModal from "./components/addMatchModal";
-import { useEffect } from 'react';
+import AddResultModal from "./components/addResultModal";
 
 function ResultsPage() {
 
@@ -34,11 +33,11 @@ function ResultsPage() {
     useEffect(() => {
       updateList();
 
-    }, [results]); // Empty dependency array ensures this runs only once on mount
+    }, []); // Empty dependency array ensures this runs only once on mount
 
   
 
-  const handleAddMatch = () => {
+  const handleAddResult = () => {
     setIsModalOpen(true)
   }
 
@@ -52,8 +51,9 @@ function ResultsPage() {
     <div className="results-container">
       <h2>Resultados</h2>
       <p>Aquí puedes ver los resultados de partidos pasados</p>
-      <div className = "resultados-button-container">
+      <div className = "results-button-container">
         <button onClick={updateList}>Actualizar Resultados</button>
+        <button className = "results-add-result" onClick={handleAddResult}>Cargar Resultado</button>
       </div>
       
       <div className="results-list">
@@ -64,7 +64,7 @@ function ResultsPage() {
             <ResultCard
                 key={item.result_id}
                 date={item.match.fecha}
-                category={`${"completar"} - ${"completar"}`}
+                category={`${item.category.gender} - ${item.category.year}`}
                 localTeam="San Esteban"
                 rivalTeam={item.match.rival}
                 localScore={item.resultado_san_esteban}
@@ -75,7 +75,7 @@ function ResultsPage() {
       </div>
       
     </div>
-    {/*<AddMatchModal isOpen={isModalOpen} onClose={handleCloseModal} />*/}
+    <AddResultModal isOpen={isModalOpen} onClose={handleCloseModal} />
     </>
     
   );

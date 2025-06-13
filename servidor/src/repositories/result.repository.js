@@ -40,6 +40,7 @@ class resultRepository {
   }
 
   getResults() {
+    this.results = this.loadData()
     return this.results
   }
 

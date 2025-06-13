@@ -1,6 +1,21 @@
 const playerRepository = require('../repositories/player.repository');
+const userRepository = require('../repositories/user.repository');
 
 class PlayerService {
+
+    // Helper method to resolve references in player data
+    enrichPlayerData(player) {
+      if (!player) return null;
+
+      // Fetch related data
+      const parent = userRepository.getUserById(player.parent_dni);
+      
+      return {
+        ...player,
+        parent: parent ? { ...parent } : null
+      };
+    }
+
     createPlayer(playerData) {
 
       // Check if the player already exists
@@ -28,7 +43,9 @@ class PlayerService {
         });
       });
       
-      return filteredPlayers;
+      const enrichedPlayers = filteredPlayers.map(player => this.enrichPlayerData(player));
+
+      return enrichedPlayers;
     }
   
     updatePlayer(playerData) {

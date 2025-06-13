@@ -17,6 +17,8 @@ class TeamService {
       ? team.players.map((player_id) => playerRepository.getPlayerByDni(player_id)).filter(Boolean)
       : [];
 
+    console.log("players found:", players);
+
     return {
       ...team,
       match: match ? { ...match, cancha: cancha || null } : null,

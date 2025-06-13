@@ -32,42 +32,6 @@ class playerRepository {
     }
   }
 
-  resolveReferences(player) {
-    // Import repositories here to avoid circular dependencies
-    const categoryRepository = require("./category.repository")
-    const teamRepository = require("./team.repository")
-    const userRepository = require("./user.repository")
-
-    const resolvedPlayer = { ...player }
-
-    // Resolve category_id to category object
-    if (player.category_id) {
-      const category = categoryRepository.getCategories().find((c) => c.category_id === player.category_id)
-      resolvedPlayer.category = category || null
-    }
-
-    // Resolve team_id to team object
-    if (player.team_id) {
-      const team = teamRepository.getTeams().find((t) => t.team_id === player.team_id)
-      resolvedPlayer.team = team || null
-    }
-
-    // Resolve parent_dni to parent user object
-    if (player.parent_dni) {
-      // Convert to string to match user repository format
-      const parentDniStr = String(player.parent_dni)
-      const parent = userRepository.findUserById(parentDniStr)
-
-      // Debug logging
-      console.log(`Looking for parent with DNI: ${parentDniStr}`)
-      console.log(`Found parent:`, parent)
-
-      resolvedPlayer.parent = parent || null
-    }
-
-    return resolvedPlayer
-  }
-
   createPlayer(playerData) {
     this.players.push(new Player(playerData))
     this.saveData()
@@ -76,16 +40,14 @@ class playerRepository {
   }
 
   getPlayers() {
-    return this.players.map((player) => this.resolveReferences(player))
+    return this.players
   }
 
   getPlayerByDni(dni) {
-    const player = this.players.find((p) => p.dni === dni)
-
-    console.log(`Searching for player with DNI: ${dni}`)
-    console.log(`Found player:`, player)
-
-    return player
+    // Convert dni to number or string to match p.dni type
+    const player = this.players.find((p) => p.dni === Number(dni)); // If p.dni is a number
+    
+    return player;
   }
 
   updatePlayer(dni, playerData) {

@@ -13,7 +13,7 @@ const SelectPlayersModal = ({ isOpen, onClose, allPlayers, teamPlayers, onSaveSe
   useEffect(() => {
     if (isOpen && teamPlayers) {
       // Set initially selected players based on team's current players
-      setSelectedPlayers(teamPlayers.map((player) => player.player_id))
+      setSelectedPlayers(teamPlayers.map((player) => player.dni))
     }
   }, [isOpen, teamPlayers])
 
@@ -34,6 +34,7 @@ const SelectPlayersModal = ({ isOpen, onClose, allPlayers, teamPlayers, onSaveSe
 
   // Handle save button click
   const handleSave = () => {
+
     onSaveSelection(teamId, selectedPlayers)
     onClose()
   }
@@ -48,15 +49,17 @@ const SelectPlayersModal = ({ isOpen, onClose, allPlayers, teamPlayers, onSaveSe
           </button>
         </div>
         <div className="modal-body">
+
           {allPlayers && allPlayers.length > 0 ? (
             <div className="players-grid">
               {allPlayers.map((player) => {
-                const isSelected = selectedPlayers.includes(player.player_id)
+                const isSelected = selectedPlayers.includes(player.dni)
                 return (
                   <div
                     key={player.dni}
+                    
                     className={`player-card ${isSelected ? "selected-player" : ""}`}
-                    onClick={() => togglePlayerSelection(player.player_id)}
+                    onClick={() => togglePlayerSelection(player.dni)}
                   >
                     <div className="player-info">
                       <p>
@@ -65,7 +68,7 @@ const SelectPlayersModal = ({ isOpen, onClose, allPlayers, teamPlayers, onSaveSe
                         </strong>
                       </p>
                       <p>
-                        Categoría: {player.gender} - {new Date(player.dateOfBirth).getFullYear()}
+                        Categoría: {player.gender} - {new Date(player.dateOfBirth).getFullYear() || "N/A"}
                       </p>
                       {isSelected && <div className="selection-indicator">✓</div>}
                     </div>

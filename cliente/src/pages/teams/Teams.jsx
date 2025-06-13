@@ -31,7 +31,7 @@ function TeamsPage() {
       <Navbar />
       <div className="players-container" style={{ display: "flex", width: "100%" }}>
         {/* Left Side: Placeholder Component (70%) */}
-        <div style={{ width: "70%", padding: "20px" }}>
+        <div style={{ width: "100%", padding: "20px" }}>
           <h2>Equipos</h2>
           <p>Aquí podes ver todos los equipos que armaste para la próxima fecha:</p>
           <button onClick={updateTeamList}>Actualizar Equipos</button>

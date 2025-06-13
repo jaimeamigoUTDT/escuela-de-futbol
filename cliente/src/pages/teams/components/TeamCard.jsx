@@ -12,51 +12,53 @@ const TeamCard = ({ team, onViewPlayers, onEditTeam, allPlayers, onUpdateTeamPla
   }
 
   const handleSavePlayerSelection = (teamId, selectedPlayerIds) => {
+
     onUpdateTeamPlayers(teamId, selectedPlayerIds)
   }
 
   return (
     <div className="team-card-item">
-      <p>
-        <strong>{team.name || "N/A"}</strong>
-      </p>
-      <p>
-        <strong>Categoría:</strong>{" "}
-        {team.category?.gender && team.category?.year ? `${team.category.gender} ${team.category.year}` : "N/A"}
-      </p>
-      <p>
-        <strong>Jugadores confirmados:</strong> {team.players?.length || "0"}
-      </p>
       <div>
         <p>
-          <strong>Info partido:</strong>
+          <strong>{team.name || "N/A"}</strong>
         </p>
-        {team.match ? (
-          <div>
-            <p>Rival: {team.match.rival || "N/A"}</p>
-            <p>
-              Fecha y hora: {team.match.fecha || "N/A"} a las {team.match.hora || "N/A"}
-            </p>
-            <p>Ubicación: {team.match.cancha?.address || "N/A"}</p>
-          </div>
-        ) : (
-          <p>No asignado</p>
-        )}
+        <p>
+          <strong>Categoría:</strong>{" "}
+          {team.category?.gender && team.category?.year ? `${team.category.gender} ${team.category.year}` : "N/A"}
+        </p>
+        <p>
+          <strong>Jugadores confirmados:</strong> {team.players?.length || "0"}
+        </p>
       </div>
-
-      {/* Buttons container */}
+      <div>
+          <p>
+            <strong>Info partido:</strong>
+          </p>
+          {team.match ? (
+            <div>
+              <p>Rival: {team.match.rival || "N/A"}</p>
+              <p>
+                Fecha y hora: {team.match.fecha || "N/A"} a las {team.match.hora || "N/A"}
+              </p>
+              <p>Ubicación: {team.match.cancha?.address || "N/A"}</p>
+            </div>
+          ) : (
+            <p>No asignado</p>
+          )}
+      </div>
       <div className="button-container">
-        <button className="add-player-button" onClick={handleAddPlayers}>
-          Agregar jugador +
-        </button>
-        <button className="view-players-button" onClick={() => onViewPlayers(team.players)} aria-label="Ver jugadores">
-          Ver jugadores
-        </button>
-        <button className="edit-button" onClick={() => onEditTeam(team)} aria-label="Editar equipo">
-          Editar datos de equipo
-        </button>
-      </div>
-
+          
+          <button className="add-player-button" onClick={handleAddPlayers}>
+          + Agregar jugadores
+          </button>
+          <button className="view-players-button" onClick={() => onViewPlayers(team.players)} aria-label="Ver jugadores">
+            Ver jugadores
+          </button>
+          <button className="edit-button" onClick={() => onEditTeam(team)} aria-label="Editar equipo">
+            Editar datos de equipo
+          </button>
+        </div>
+    
       {/* Add the SelectPlayersModal */}
       <SelectPlayersModal
         isOpen={isSelectPlayersModalOpen}

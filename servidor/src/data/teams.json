@@ -1,23 +1,41 @@
 [
   {
-    "team_id": 2,
-    "name": "Equipo B",
-    "match_id": 1,
-    "category_id": 1,
-    "players": []
-  },
-  {
-    "team_id": 3,
-    "name": "Equipo C",
-    "match_id": 1,
-    "category_id": 1,
-    "players": []
-  },
-  {
     "team_id": 1,
     "name": "Equipo Junior",
     "match_id": 1,
     "category_id": 1,
-    "players": []
+    "players": [
+      [
+        null,
+        20000001
+      ]
+    ]
+  },
+  {
+    "team_id": 2,
+    "name": "Equipo B",
+    "match_id": 2,
+    "category_id": 1,
+    "players": [
+      20000000,
+      20000001,
+      20000002
+    ]
+  },
+  {
+    "team_id": 3,
+    "name": "Equipo C",
+    "match_id": 3,
+    "category_id": 1,
+    "players": [
+      {
+        "dni": 20000001,
+        "name": "Juan",
+        "surname": "Dominguez",
+        "date_of_birth": "2025-15-05",
+        "gender": "Masculino",
+        "parent_dni": 12345679
+      }
+    ]
   }
 ]

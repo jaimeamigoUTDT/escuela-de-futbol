@@ -109,6 +109,17 @@ class UserRepository {
 
     return user
   }
+
+  getUserById(dni) {
+    const user = this.findUserById(dni)
+
+    if (!user) {
+      console.log("User not found with DNI:", dni)
+      return null
+    }
+
+    return { ...user }
+  }
 }
 
 module.exports = new UserRepository()

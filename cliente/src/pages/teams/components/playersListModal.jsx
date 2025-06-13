@@ -18,7 +18,7 @@ const PlayersListModal = ({ isOpen, onClose, players }) => {
           {players && players.length > 0 ? (
             <div className="players-grid">
               {players.map((player) => (
-                <div key={player.player_id} className="player-card">
+                <div key={player.dni} className="player-card">
                   <div className="player-info">
                     <p>
                       <strong>{player.name + " " + player.surname || "N/A"}</strong> 

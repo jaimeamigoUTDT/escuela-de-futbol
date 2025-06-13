@@ -15,7 +15,7 @@ export const matchesController = () => {
                 saveMatch(match);
             }
 
-            const matches = getStoredMatches(); // Get updated matches from context
+            const matches = fetchedMatches.data; // Get updated matches from context
 
             return matches; 
 
@@ -74,3 +74,4 @@ export const matchesController = () => {
         deleteMatch
     };
 };
+

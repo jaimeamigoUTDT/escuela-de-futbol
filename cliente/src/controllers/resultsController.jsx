@@ -15,7 +15,7 @@ export const resultsController = () => {
                 saveResult(result);
             }
 
-            const results = getStoredResults(); // Get updated matches from context
+            const results = fetchedResults.data; // Get updated matches from context
 
             return results; 
 

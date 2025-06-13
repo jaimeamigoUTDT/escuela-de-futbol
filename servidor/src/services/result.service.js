@@ -1,5 +1,6 @@
 const resultRepository = require('../repositories/result.repository');
 const matchRepository = require('../repositories/match.repository');
+const categoryRepository = require('../repositories/category.repository');
 
 class ResultService {
 
@@ -7,10 +8,14 @@ class ResultService {
     if (!result) return null;
     // Fetch related data if necessary
     const match = matchRepository.getMatchById(result.match_id);
+    const category = categoryRepository.getCategoryById(match.category_id);
+    console.log('Match:', match);
+    console.log('Category:', category);
 
     return {
       ...result,
-      match: match || null
+      match: match || null,
+      category: category || null
     };
     
   

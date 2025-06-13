@@ -55,7 +55,7 @@
     background-color: #f5f5f5;
   }
   
-  .match-form {
+  .result-form {
     padding: 24px;
   }
   
@@ -157,7 +157,7 @@
       gap: 12px;
     }
   
-    .match-form {
+    .result-form {
       padding: 16px;
     }
   

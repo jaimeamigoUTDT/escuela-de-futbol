@@ -2,7 +2,6 @@ import notificationService from '../api/services/notificationService';
 
 const notificationController = {
   createNotification: async (
-    
     notification_id,
     match_id,
     fecha,
@@ -18,12 +17,12 @@ const notificationController = {
         content
       });
 
-      const response =  await notificationService.createNotification({
-        "notification_id": notification_id,
-        "match_id": match_id,
-        "fecha": fecha,
-        "hora": hora,
-        "content": content
+      const response = await notificationService.createNotification({
+        notification_id,
+        match_id,
+        fecha,
+        hora,
+        content
       });
 
       return {
@@ -51,6 +50,19 @@ const notificationController = {
       };
     }
   },
+
+  deleteNotification: async (notification_id) => {
+    try {
+      console.log('Eliminando notificación con ID:', notification_id);
+      const response = await notificationService.deleteNotification(notification_id);
+      return {
+        success: response.success,
+      };
+    } catch (error) {
+      console.error('Error al eliminar notificación:', error);
+      return { success: false };
+    }
+  }
 };
 
 export default notificationController;

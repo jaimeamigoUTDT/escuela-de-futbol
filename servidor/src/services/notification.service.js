@@ -21,10 +21,10 @@ class NotificationService {
   }
 
   updateNotification(data) {
-    const exists = notificationRepository.notifications.find(n => n.notitication_id === data.notitication_id);
+    const exists = notificationRepository.notifications.find(n => n.notification_id === data.notification_id);
     if (!exists) return null;
 
-    return notificationRepository.updateNotification(data.notitication_id, data);
+    return notificationRepository.updateNotification(data.notification_id, data);
   }
 
   deleteNotification(id) {

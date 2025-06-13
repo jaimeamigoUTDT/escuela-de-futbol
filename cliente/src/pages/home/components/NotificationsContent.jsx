@@ -87,13 +87,18 @@ const handleConfirm = async () => {
       return dateB - dateA; // más recientes primero
     })
     .map((n) => (
-      <NotificationCard
-        key={n.notification_id}
-        fecha={n.fecha}
-        hora={n.hora}
-        content={n.content}
-      />
-    ))}
+  <NotificationCard
+    key={n.notification_id}
+    fecha={n.fecha}
+    hora={n.hora}
+    content={n.content}
+    showDelete={userRole !== "parent"}
+    onDelete={async () => {
+      await notificationController.deleteNotification(n.notification_id);
+      await fetchNotifications();
+    }}
+  />
+))}
 </ul>
     </div>
   );

@@ -36,7 +36,7 @@ function updateNotification(req, res) {
   try {
     const data = req.body;
 
-    if (!data.notitication_id) return res.status(400).send({ message: 'ID is missing' });
+    if (!data.notification_id) return res.status(400).send({ message: 'ID is missing' });
 
     const result = notificationService.updateNotification(data);
     if (!result) return res.status(400).send({ message: 'Notification not found' });
@@ -50,11 +50,11 @@ function updateNotification(req, res) {
 
 function deleteNotification(req, res) {
   try {
-    const { notitication_id } = req.body;
+    const { notification_id } = req.body;
 
-    if (!notitication_id) return res.status(400).send({ message: 'ID is missing' });
+    if (!notification_id) return res.status(400).send({ message: 'ID is missing' });
 
-    const result = notificationService.deleteNotification(notitication_id);
+    const result = notificationService.deleteNotification(notification_id);
     if (!result) return res.status(400).send({ message: 'Notification not found' });
 
     res.status(200).send({ message: 'Notification deleted' });

@@ -328,7 +328,7 @@ paths:
         '500':
           description: Internal server error
     
-  /notitications:
+  /notifications:
     post:
       tags:
           - Notification
@@ -340,7 +340,7 @@ paths:
             schema:
               type: object
               properties:
-                notitication_id:
+                notification_id:
                   type: integer
                   example: 1
                 match_id:
@@ -370,7 +370,7 @@ paths:
       summary: Obtener todas las notificaciones
       parameters:
         - in: query
-          name: notitication_id
+          name: notification_id
           schema:
             type: integer
             example: 1234
@@ -426,7 +426,7 @@ paths:
             schema:
               type: object
               properties:
-                notitication_id:
+                notification_id:
                   type: integer
                   example: 1
                 match_id:
@@ -456,7 +456,7 @@ paths:
       summary: Eliminar una notificación
       parameters:
         - in: query
-          name: notitication_id
+          name: notification_id
           schema:
             type: integer
             example: 1234
@@ -821,14 +821,14 @@ components:
     Notification:
       type: object
       required:
-        - notitication_id
+        - notification_id
         - match_id
         - fecha
         - hora
         - content
 
       properties:
-        notitication_id:
+        notification_id:
           type: integer
           example: 1
         match_id:

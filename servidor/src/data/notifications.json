@@ -7,132 +7,6 @@
     "content": "Cambio de horario para el partido del sábado"
   },
   {
-    "notification_id": "3",
-    "match_id": "123",
-    "fecha": "2025-06-10",
-    "hora": "14:32",
-    "content": "esteban se quito la vida"
-  },
-  {
-    "notification_id": "4",
-    "match_id": "123",
-    "fecha": "2025-06-10",
-    "hora": "14:32",
-    "content": "esteban se quito la vida"
-  },
-  {
-    "notification_id": "1000",
-    "match_id": "123",
-    "fecha": "2025-06-10",
-    "hora": "14:32",
-    "content": "esteban se quito la vida"
-  },
-  {
-    "notification_id": "10000",
-    "match_id": "123",
-    "fecha": "2025-06-10",
-    "hora": "14:32",
-    "content": "esteban se quito la vida"
-  },
-  {
-    "notification_id": "0000",
-    "match_id": "123",
-    "fecha": "2025-06-10",
-    "hora": "14:32",
-    "content": "esteban la concha de tu madre"
-  },
-  {
-    "notification_id": "100",
-    "match_id": "123",
-    "fecha": "2025-06-10",
-    "hora": "14:32",
-    "content": "esteban la concha de tu madre"
-  },
-  {
-    "notification_id": "00",
-    "match_id": 23,
-    "fecha": "2025-06-10",
-    "hora": "14:32",
-    "content": "esteban la concha de tu madre"
-  },
-  {
-    "notification_id": "664b8191-fd1c-42cf-8b24-1f63101ba725",
-    "match_id": "none",
-    "fecha": "2025-06-10",
-    "hora": "07:29",
-    "content": "lpm"
-  },
-  {
-    "notification_id": "6f3c3d13-039d-494b-8f40-94be0e2bca03",
-    "match_id": "none",
-    "fecha": "2025-06-11",
-    "hora": "02:22",
-    "content": "jhtjtjht"
-  },
-  {
-    "notification_id": "bfb4c18b-1f84-4c1a-a1b3-65488fd8a325",
-    "match_id": "none",
-    "fecha": "2025-06-11",
-    "hora": "02:47",
-    "content": "bombrito bondito"
-  },
-  {
-    "notification_id": "ae34d35c-23fe-4dbc-8faf-9cabbae162bf",
-    "match_id": "none",
-    "fecha": "2025-06-11",
-    "hora": "02:49",
-    "content": "Esteban muere"
-  },
-  {
-    "notification_id": "454cc218-6e35-436e-b043-9206d386bb4f",
-    "match_id": "none",
-    "fecha": "2025-06-11",
-    "hora": "02:56",
-    "content": "jojojojo"
-  },
-  {
-    "notification_id": "c4ba143e-4693-4ba8-a72f-0dc18a775922",
-    "match_id": "none",
-    "fecha": "2025-06-11",
-    "hora": "02:58",
-    "content": "yorelejiju"
-  },
-  {
-    "notification_id": "0d12e761-2a17-4962-b33c-cb8e0bc2538a",
-    "match_id": "none",
-    "fecha": "2025-06-11",
-    "hora": "03:05",
-    "content": "lolollooolo"
-  },
-  {
-    "notification_id": "9a2b2cca-bb8e-4a24-88dd-6fefca3e0918",
-    "match_id": "none",
-    "fecha": "2025-06-11",
-    "hora": "04:20",
-    "content": "asdasdasd"
-  },
-  {
-    "notification_id": "25796678-a53d-4f49-9ab0-753f1e492bb4",
-    "match_id": "none",
-    "fecha": "2025-06-11",
-    "hora": "04:51",
-    "content": "partido suspendido"
-  },
-  {
-    "notification_id": "2e2f8047-4894-4d9d-a8a3-f93c8f8be9b5",
-    "match_id": "none",
-    "fecha": "2025-06-11",
-    "hora": "04:51",
-    "content": "cambio de horario"
-  },
-  {
-    "notification_id": "e4dad9ee-1222-4976-bbb1-b039fb92cb53",
-    "match_id": "none",
-    "fecha": "2025-06-11",
-    "hora": "04:51",
-    "content": "partido 6 al final es en la cancha 4"
-  },
-  {
     "notification_id": "fa8b15a3-def0-4b06-aa3b-f55f708c4aec",
     "match_id": "none",
     "fecha": "2025-06-11",
@@ -168,17 +42,38 @@
     "content": "partido suspendido"
   },
   {
-    "notification_id": "bae98c14-b85f-4831-89a3-31f205dc0149",
-    "match_id": "none",
-    "fecha": "2025-06-13",
-    "hora": "10:16",
-    "content": "sada"
-  },
-  {
     "notification_id": "c14bddb4-e6ab-4701-8de9-e0b1c6b94896",
     "match_id": 1749824483743,
     "fecha": "2025-06-13",
     "hora": "11:21",
     "content": "Partido contra Puercos FC el 2025-06-26 a las 11:18"
+  },
+  {
+    "notification_id": "1a098385-11d8-473e-b1c2-ccb0563d078b",
+    "match_id": "none",
+    "fecha": "2025-06-13",
+    "hora": "12:40",
+    "content": "Partido contra Barcelona el 2025-05-16 a las 10:00:\nPARTIDO SUSPENDIDO"
+  },
+  {
+    "notification_id": "a2d51ce3-3682-4dc2-9bf9-906bbb986f4a",
+    "match_id": "none",
+    "fecha": "2025-06-13",
+    "hora": "01:22",
+    "content": "Partido contra Barcelona el 2025-05-16 a las 10:00:\npartido postergado"
+  },
+  {
+    "notification_id": "da57f158-9b96-4de9-a83c-133eae55f352",
+    "match_id": "none",
+    "fecha": "2025-06-13",
+    "hora": "01:23",
+    "content": "Partido contra Rival FC el 2025-05-15 a las 10:00:\nAnotense al partidoo"
+  },
+  {
+    "notification_id": "d50e0d21-97a9-4e38-9456-b06a6997325e",
+    "match_id": "none",
+    "fecha": "2025-06-13",
+    "hora": "01:26",
+    "content": "Partido contra Rival FC el 2025-05-15 a las 10:00:\nPARTIDO NUEVOOO"
   }
 ]

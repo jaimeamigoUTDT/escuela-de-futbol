@@ -80,3 +80,22 @@
     font-size: 14px;
   }
 }
+
+.notification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  color: #dc2626;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.delete-button:hover {
+  color: #b91c1c;
+}

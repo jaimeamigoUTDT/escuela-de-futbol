@@ -25,11 +25,11 @@ const notificationService = {
   },
 
   // DELETE /api/notifications
-  deleteNotification: async (notification_id) => {
-    return axios.delete(API_URL, {
-      data: { notification_id }, // 🔥 Así se envía el body en DELETE
-    }).then(res => res.data);
-  },
+deleteNotification: async (notification_id) => {
+  return axios.delete(API_URL, {
+    data: { notification_id }
+  }).then(res => res.data);
+}
 };
 
 export default notificationService;

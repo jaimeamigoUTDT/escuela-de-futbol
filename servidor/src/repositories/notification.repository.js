@@ -66,12 +66,12 @@ class NotificationRepository {
   }
 
   getNotificationById(id) {
-    const notification = this.notifications.find((n) => n.notitication_id === id)
+    const notification = this.notifications.find((n) => n.notification_id === id)
     return notification ? this.resolveReferences(notification) : null
   }
 
   updateNotification(id, updatedData) {
-    const index = this.notifications.findIndex((n) => n.notitication_id === id)
+    const index = this.notifications.findIndex((n) => n.notification_id === id)
     if (index === -1) return null
 
     this.notifications[index] = { ...this.notifications[index], ...updatedData }
@@ -80,7 +80,7 @@ class NotificationRepository {
   }
 
   deleteNotification(id) {
-    const index = this.notifications.findIndex((n) => n.notitication_id === id)
+    const index = this.notifications.findIndex((n) => n.notification_id === id)
     if (index === -1) return null
 
     const deleted = this.notifications.splice(index, 1)[0]

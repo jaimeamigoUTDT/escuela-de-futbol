@@ -10,33 +10,93 @@
     "role": "admin"
   },
   {
-    "name": "Felipe Caracoix",
+    "name": "Jaime Amigo",
     "dni": "12345680",
-    "email": "felipe@caracoix.com",
-    "password": "123456",
+    "email": "jaimeamigo03@gmail.com",
+    "password": "Standard2329",
     "createdAt": "2025-06-06T20:31:58.745Z",
-    "authToken": "6d839344-afd7-406e-88b5-aa3d77d20697",
-    "tokenCreatedAt": "2025-06-13T14:06:48.917Z",
+    "authToken": "28863cae-96c2-4914-a519-7d0ab3feeffc",
+    "tokenCreatedAt": "2025-06-13T16:50:30.228Z",
     "role": "admin"
+  },
+  {
+    "name": "Jaime Amigo",
+    "dni": "45235541",
+    "email": "jaimeamigo03@gmail.com",
+    "password": "123456",
+    "createdAt": "2025-06-11T17:49:29.607Z",
+    "authToken": "dd2b2239-2b45-4504-8519-abf01979685b",
+    "tokenCreatedAt": "2025-06-11T17:49:29.607Z",
+    "role": "parent"
   },
   {
     "name": "Jaime Amigo",
     "dni": "45235544",
     "email": "jaimeamigo03@gmail.com",
     "password": "123456",
-    "createdAt": "2025-06-11T17:49:29.607Z",
-    "authToken": "90372302-190c-4e81-89d3-e0716ffaf76a",
-    "tokenCreatedAt": "2025-06-13T14:07:18.578Z",
-    "role": "parent"
-  },
-  {
-    "name": "Nicolás Peralta",
-    "dni": "30000000",
-    "email": "nico@peralta.com",
-    "password": "123456",
     "createdAt": "2025-06-11T20:17:35.378Z",
     "authToken": "b2a89963-b016-40e7-b7f4-0fbae8ac518c",
     "tokenCreatedAt": "2025-06-13T13:06:33.441Z",
+    "role": "parent"
+  },
+  {
+    "name": "Jaime Amigo",
+    "dni": "45235543",
+    "email": "jaimeamigo03@gmail.com",
+    "password": "123456",
+    "createdAt": "2025-06-11T20:27:46.380Z",
+    "authToken": "99535a70-b826-4e60-b58c-d5650bb411d3",
+    "tokenCreatedAt": "2025-06-11T20:27:46.380Z",
+    "role": "parent"
+  },
+  {
+    "name": "Jaime Amigo",
+    "dni": "45235546",
+    "email": "jaimeamigo03@gmail.com",
+    "password": "123456",
+    "createdAt": "2025-06-11T20:28:27.770Z",
+    "authToken": "f8c54fc0-17d4-4100-a92a-6f325475044e",
+    "tokenCreatedAt": "2025-06-11T20:28:27.770Z",
+    "role": "parent"
+  },
+  {
+    "name": "Jaime Amigo",
+    "dni": "45235550",
+    "email": "jaimeamigo03@gmail.com",
+    "password": "123456",
+    "createdAt": "2025-06-11T20:29:04.195Z",
+    "authToken": "3ff85ac8-a462-4f70-a945-9bca24977f9f",
+    "tokenCreatedAt": "2025-06-11T20:29:04.195Z",
+    "role": "parent"
+  },
+  {
+    "name": "Jaime Amigo",
+    "dni": "45235510",
+    "email": "jaimeamigo03@gmail.com",
+    "password": "123456",
+    "createdAt": "2025-06-11T20:30:01.187Z",
+    "authToken": "d07ec383-511c-47e1-86d0-3af5111b33a6",
+    "tokenCreatedAt": "2025-06-11T20:30:01.187Z",
+    "role": "parent"
+  },
+  {
+    "name": "Jaime Amigo",
+    "dni": "45235540",
+    "email": "jaimeamigo03@gmail.com",
+    "password": "123456",
+    "createdAt": "2025-06-11T20:30:40.628Z",
+    "authToken": "d0ff28ec-3351-4121-884d-f9e57310d198",
+    "tokenCreatedAt": "2025-06-11T20:30:40.628Z",
+    "role": "parent"
+  },
+  {
+    "name": "felipe caracoix",
+    "dni": "45224476",
+    "email": "f@gmail.com",
+    "password": "1",
+    "createdAt": "2025-06-13T13:42:23.761Z",
+    "authToken": "09ec5ee8-b18d-462f-983d-0deee9382172",
+    "tokenCreatedAt": "2025-06-13T16:46:59.162Z",
     "role": "parent"
   }
 ]

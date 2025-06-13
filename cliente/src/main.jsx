@@ -8,6 +8,7 @@ import { PlayersProvider } from './context/PlayersContext';
 import { CanchasProvider } from './context/CanchasContext';
 import { TeamsProvider } from './context/TeamsContext';
 import './index.css';
+import { ResultsProvider } from './context/ResultsContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 
@@ -16,7 +17,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <MatchesProvider>
         <CanchasProvider>
           <PlayersProvider>
-            <App />
+            <ResultsProvider>
+              <App />
+            </ResultsProvider>
           </PlayersProvider>
         </CanchasProvider>
       </MatchesProvider>

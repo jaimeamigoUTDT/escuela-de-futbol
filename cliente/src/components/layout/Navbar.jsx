@@ -6,7 +6,7 @@ import "./navbar.css"
 function Navbar() {
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false)
   
-  const {authToken} = useAuth()
+  const {userRole} = useAuth()
 
   const toggleProfileDropdown = () => {
     setIsProfileDropdownOpen(!isProfileDropdownOpen)
@@ -23,7 +23,7 @@ function Navbar() {
     { key: "home", label: "Inicio" },
     { key: "partidos", label: "Partidos" },
     { key: "resultados", label: "Resultados" },
-    { key: "jugadores", label: "Jugadores" },
+    { key: "jugadores", label: userRole === "admin"? "Equipos " : "Mis hijos" },
   ]
 
   return (

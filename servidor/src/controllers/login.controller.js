@@ -30,7 +30,7 @@ class LoginController {
 
       const user = await userService.authenticateUser(dni, password, authToken);
 
-      if (!user.authToken) {
+      if (user.authToken === null) {
         return res.status(401).json({
           success: false,
           message: 'Credenciales inválidas',

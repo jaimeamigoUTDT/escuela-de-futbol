@@ -88,5 +88,15 @@
     "authToken": "d0ff28ec-3351-4121-884d-f9e57310d198",
     "tokenCreatedAt": "2025-06-11T20:30:40.628Z",
     "role": "parent"
+  },
+  {
+    "name": "felipe caracoix",
+    "dni": "45224476",
+    "email": "f@gmail.com",
+    "password": "1",
+    "createdAt": "2025-06-13T13:42:23.761Z",
+    "authToken": "cd32a13a-e4f2-4306-bd9a-e2bbff7c894e",
+    "tokenCreatedAt": "2025-06-13T13:42:23.761Z",
+    "role": "admin"
   }
 ]

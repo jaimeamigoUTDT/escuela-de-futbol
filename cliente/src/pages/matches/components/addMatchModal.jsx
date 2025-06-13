@@ -3,6 +3,9 @@ import { useMatches } from "../../../context/MatchesContext";
 import { useCanchas, CanchasProvider } from "../../../context/CanchasContext";
 import { canchasController } from "../../../controllers/canchasController";
 import { matchesController } from "../../../controllers/matchesController";
+import notificationController from "../../../controllers/notificationController";
+import { v4 as uuidv4 } from 'uuid';
+
 
 import "./AddMatchModal.css";
 
@@ -77,6 +80,14 @@ const AddMatchModal = ({ isOpen, onClose }) => {
       await saveMatch(matchData);
 
       await createMatch(matchData);
+
+      await notificationController.createNotification(
+        uuidv4(),
+        matchData.id,
+        new Date().toISOString().split("T")[0],
+        new Date().toLocaleTimeString().slice(0, 5),
+        "Partido contra " + matchData.rivalTeam + " el " + matchData.date + " a las " + matchData.time
+      );
 
       // Reset form
       setFormData({

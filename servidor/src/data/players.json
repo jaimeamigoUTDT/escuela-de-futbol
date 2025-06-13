@@ -32,6 +32,22 @@
     "parent_dni": 23333333
   },
   {
+    "dni": 222222,
+    "name": "loan",
+    "surname": "perdido",
+    "date_of_birth": "2023-07-15",
+    "gender": "Masculino",
+    "parent_dni": 222222
+  },
+  {
+    "dni": 2222222,
+    "name": "loan",
+    "surname": "perdido",
+    "date_of_birth": "2023-07-15",
+    "gender": "Masculino",
+    "parent_dni": 45224476
+  },
+  {
     "dni": 90909090,
     "name": "Jaime",
     "surname": "Amigo",

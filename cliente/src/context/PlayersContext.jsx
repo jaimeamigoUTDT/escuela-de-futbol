@@ -6,12 +6,8 @@ export const PlayersContext = createContext();
 export const PlayersProvider = ({ children }) => {
     const [players, setPlayers] = useState([]);
 
-    
-
     const createPlayer = (player) => {
         setPlayers((prevPlayers) => [...prevPlayers, player]);
-
-        playersController.createPlayer(player);
     };
 
     const deletePlayer = (dni) => {
@@ -40,7 +36,11 @@ export const PlayersProvider = ({ children }) => {
                 surname: player.surname,
                 dateOfBirth: player.date_of_birth,
                 gender: player.gender,
-                parentDni: player.parent_dni
+                parentDni: player.parent_dni,
+                parent: player.parent ? {
+                    dni: player.parent.dni,
+                    name: player.parent.name,
+                } : null,
             }));
     
             setPlayers(formattedPlayers);

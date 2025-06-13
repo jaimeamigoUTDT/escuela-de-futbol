@@ -16,7 +16,7 @@ function TeamsPage() {
   useEffect(() => {
     updatePlayers()
     updateTeamList() // Fetch teams when the component mounts
-  }, []) // Empty dependency array ensures this runs only once on mount
+  }, [])
 
   const updateTeamList = async () => {
     await fetchTeams() // This will update the teams in context

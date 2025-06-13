@@ -30,5 +30,37 @@
     "date_of_birth": "2025-06-25",
     "gender": "Masculino",
     "parent_dni": 23333333
+  },
+  {
+    "dni": 90909090,
+    "name": "Jaime",
+    "surname": "Amigo",
+    "date_of_birth": "2005-10-10",
+    "gender": "Masculino",
+    "parent_dni": 45235544
+  },
+  {
+    "dni": 90909091,
+    "name": "Felipe",
+    "surname": "Caracoix",
+    "date_of_birth": "2003-02-01",
+    "gender": "Femenino",
+    "parent_dni": 45235544
+  },
+  {
+    "dni": 90909092,
+    "name": "jaime",
+    "surname": "amigo",
+    "date_of_birth": "1011-01-20",
+    "gender": "Masculino",
+    "parent_dni": 45235544
+  },
+  {
+    "dni": 10101010,
+    "name": "Harry",
+    "surname": "Potter",
+    "date_of_birth": "2010-10-10",
+    "gender": "Masculino",
+    "parent_dni": 45235544
   }
 ]

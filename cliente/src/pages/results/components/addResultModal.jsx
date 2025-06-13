@@ -129,12 +129,13 @@ const AddResultModal = ({ isOpen, onClose }) => {
           </div>
 
           <div className="form-actions">
-            <button type="submit" disabled={loading}>
-              {loading ? "Cargando..." : "Guardar Resultado"}
-            </button>
             <button type="button" onClick={onClose}>
               Cancelar
             </button>
+            <button id='guardar_button' type="submit" disabled={loading} >
+              {loading ? "Cargando..." : "Guardar Resultado"}
+            </button>
+            
           </div>
         </form>
       </div>

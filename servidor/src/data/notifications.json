@@ -180,5 +180,40 @@
     "fecha": "2025-06-13",
     "hora": "11:21",
     "content": "Partido contra Puercos FC el 2025-06-26 a las 11:18"
+  },
+  {
+    "notification_id": "23482070-21e1-4468-b3a0-7f017b4ec7f3",
+    "match_id": 4,
+    "fecha": "2025-06-13",
+    "hora": "12:25",
+    "content": "Partido contra ${matchData.rivalTeam} el ${matchData.date} a las ${matchData.time}: \n${content}"
+  },
+  {
+    "notification_id": "1a098385-11d8-473e-b1c2-ccb0563d078b",
+    "match_id": "none",
+    "fecha": "2025-06-13",
+    "hora": "12:40",
+    "content": "Partido contra Barcelona el 2025-05-16 a las 10:00:\nPARTIDO SUSPENDIDO"
+  },
+  {
+    "notification_id": "a2d51ce3-3682-4dc2-9bf9-906bbb986f4a",
+    "match_id": "none",
+    "fecha": "2025-06-13",
+    "hora": "01:22",
+    "content": "Partido contra Barcelona el 2025-05-16 a las 10:00:\npartido postergado"
+  },
+  {
+    "notification_id": "da57f158-9b96-4de9-a83c-133eae55f352",
+    "match_id": "none",
+    "fecha": "2025-06-13",
+    "hora": "01:23",
+    "content": "Partido contra Rival FC el 2025-05-15 a las 10:00:\nAnotense al partidoo"
+  },
+  {
+    "notification_id": "d50e0d21-97a9-4e38-9456-b06a6997325e",
+    "match_id": "none",
+    "fecha": "2025-06-13",
+    "hora": "01:26",
+    "content": "Partido contra Rival FC el 2025-05-15 a las 10:00:\nPARTIDO NUEVOOO"
   }
 ]

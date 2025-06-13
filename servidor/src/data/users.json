@@ -15,8 +15,8 @@
     "email": "jaimeamigo03@gmail.com",
     "password": "Standard2329",
     "createdAt": "2025-06-06T20:31:58.745Z",
-    "authToken": "1e0d1c94-5593-4816-949b-534b8fbde5e4",
-    "tokenCreatedAt": "2025-06-10T17:39:41.337Z",
+    "authToken": "c0914fcd-226e-44d7-a363-74d2f46f8245",
+    "tokenCreatedAt": "2025-06-13T16:46:36.168Z",
     "role": "admin"
   },
   {
@@ -95,8 +95,8 @@
     "email": "f@gmail.com",
     "password": "1",
     "createdAt": "2025-06-13T13:42:23.761Z",
-    "authToken": "95eb6504-3559-43fc-a1fe-fdddeb5741a1",
-    "tokenCreatedAt": "2025-06-13T15:17:47.998Z",
+    "authToken": "09ec5ee8-b18d-462f-983d-0deee9382172",
+    "tokenCreatedAt": "2025-06-13T16:46:59.162Z",
     "role": "parent"
   }
 ]

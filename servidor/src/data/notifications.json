@@ -182,13 +182,6 @@
     "content": "Partido contra Puercos FC el 2025-06-26 a las 11:18"
   },
   {
-    "notification_id": "23482070-21e1-4468-b3a0-7f017b4ec7f3",
-    "match_id": 4,
-    "fecha": "2025-06-13",
-    "hora": "12:25",
-    "content": "Partido contra ${matchData.rivalTeam} el ${matchData.date} a las ${matchData.time}: \n${content}"
-  },
-  {
     "notification_id": "1a098385-11d8-473e-b1c2-ccb0563d078b",
     "match_id": "none",
     "fecha": "2025-06-13",

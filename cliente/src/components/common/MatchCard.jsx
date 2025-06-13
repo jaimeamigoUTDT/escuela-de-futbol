@@ -54,17 +54,18 @@ const handleConfirmNotification = async () => {
 )}
     <div className="match-card">
       <div className="match-card-header">
-        <div className="match-title">
-          <span className="teams">
-            {localTeam} vs {rivalTeam}
-          </span>
-          
-            <button className="bell-button" onClick={handleCreateNotification} title="Crear notificación">
-              <Bell className="bell-icon" />
-            </button>
-          
-        </div>
-      </div>
+  <div className="match-title">
+    <span className="teams">
+      {localTeam} vs {rivalTeam}
+    </span>
+
+    {userRole !== "parent" && (
+      <button className="bell-button" onClick={handleCreateNotification} title="Crear notificación">
+        <Bell className="bell-icon" />
+      </button>
+    )}
+  </div>
+</div>
       <div className="match-card-content">
         <div className="content-left">
           <div className="match-detail">

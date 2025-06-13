@@ -3,11 +3,16 @@ import { v4 as uuidv4 } from "uuid";
 import "./NotificationsContent.css";
 import notificationController from "../../../controllers/notificationController.jsx";
 import NotificationCard from "./NotificationCard";
+import { useContext } from "react";
+import { AuthContext } from "../../../context/AuthContext.jsx"; 
+
 
 function NotificationsContent() {
   const [showInput, setShowInput] = useState(false);
   const [content, setContent] = useState("");
   const [notifications, setNotifications] = useState([]);
+  const { userRole } = useContext(AuthContext);
+
   
   const fetchNotifications = async () => {
         const result = await notificationController.getNotifications();
@@ -50,9 +55,11 @@ const handleConfirm = async () => {
     <div className="notifications-content-card">
       <div className="header">
         <h1>Notificaciones</h1>
-        <button className="add-button" onClick={handleAddClick}>
-          <span className="add-button__icon">+</span>
-        </button>
+        {userRole !== "parent" && (
+  <button className="add-button" onClick={handleAddClick}>
+    <span className="add-button__icon">+</span>
+  </button>
+)}
       </div>
 
       {!showInput && <p>Revisá tus últimas notificaciones:</p>}

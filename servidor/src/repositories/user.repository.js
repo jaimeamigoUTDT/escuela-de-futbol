@@ -69,10 +69,6 @@ class UserRepository {
     }
   }
 
-  findUserById(dni) {
-    return this.users.find((user) => user.dni === dni)
-  }
-
   getAllUsers() {
     return this.users
   }
@@ -111,7 +107,8 @@ class UserRepository {
   }
 
   getUserById(dni) {
-    const user = this.findUserById(dni)
+
+    const user = this.users.find((user) => Number(user.dni) === dni)
 
     if (!user) {
       console.log("User not found with DNI:", dni)

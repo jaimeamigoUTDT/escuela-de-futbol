@@ -1,8 +1,11 @@
 import playerService from '../api/services/playerService.jsx';
 import { usePlayers } from '../context/PlayersContext.jsx';
 
-const playersController = {
-    async getPlayers(params) {
+const playersController = () => {
+
+    const { players, createPlayer } = usePlayers();
+
+    const getPlayers = async (params) =>  {
 
         try {
             const players = await playerService.getPlayers(params);
@@ -13,9 +16,9 @@ const playersController = {
             console.error('Error fetching players:', error);
             throw error;
         }
-    },
+    }
 
-    async createPlayer(data) {
+    const putPlayer = async (data) => {
         try {
 
             const formmatedPlayer = {
@@ -30,14 +33,17 @@ const playersController = {
             console.log("Creating player with data:", formmatedPlayer);
 
             const newPlayer = await playerService.createPlayer(formmatedPlayer);
+
+            createPlayer(newPlayer); // Update context with the new player
+
             return newPlayer;
         } catch (error) {
             console.error('Error creating player:', error);
             throw error;
         }
-    },
+    }
 
-    async updatePlayer(dni, data) {
+    const updatePlayer = async (dni, data) => {
         try {
             const updatedPlayer = await playerService.updatePlayer(dni, data);
             return updatedPlayer;
@@ -45,9 +51,9 @@ const playersController = {
             console.error('Error updating player:', error);
             throw error;
         }
-    },
+    }
 
-    async deleteMatch(dni) {
+    const deletePlayer= async (dni) => {
         try {
             const result = await playerService.deletePlayer(dni);
             return result;
@@ -55,7 +61,14 @@ const playersController = {
             console.error('Error deleting player:', error);
             throw error;
         }
-    },
+    }
+
+    return {
+        getPlayers,
+        putPlayer,
+        updatePlayer,
+        deletePlayer
+    }
 };
 
 export default playersController;

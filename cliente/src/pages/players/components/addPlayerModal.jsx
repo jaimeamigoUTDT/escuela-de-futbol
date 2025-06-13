@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { usePlayers } from "../../../context/PlayersContext";
 import "./AddPlayerModal.css";
+import playersController from "../../../controllers/playersController";
 
 const AddPlayerModal = ({ isOpen, onClose }) => {
-  const { createPlayer } = usePlayers();
+  const { putPlayer } = playersController();
 
   const [formData, setFormData] = useState({
     dni: "",
@@ -40,7 +40,7 @@ const AddPlayerModal = ({ isOpen, onClose }) => {
 
       console.log("Creating player with data:", playerData);
 
-      await createPlayer(playerData);
+      await putPlayer(playerData);
 
       setFormData({
         dni: "",

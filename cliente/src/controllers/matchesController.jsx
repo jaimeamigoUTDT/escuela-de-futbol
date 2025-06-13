@@ -5,7 +5,7 @@ export const matchesController = () => {
 
     const { getStoredMatches, saveMatch, deleteAllMatches} = useMatches();
 
-    const getMatches = async (params = {}) => {
+    const getMatches = async (params) => {
 
         try {
     

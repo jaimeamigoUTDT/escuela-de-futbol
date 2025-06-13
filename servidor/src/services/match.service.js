@@ -40,6 +40,8 @@ class MatchService {
 
       const allMatches = matchRepository.getMatches();
 
+      console.log("matches parameters", queryParams);
+
       const filteredMatches = allMatches.filter(match => {
         return Object.keys(queryParams).every(key => {
           return match[key] && match[key].toString() === queryParams[key].toString();

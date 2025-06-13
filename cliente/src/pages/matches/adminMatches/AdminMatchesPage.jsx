@@ -1,13 +1,13 @@
 // src/components/MatchesPage.jsx
 import React, { useState } from 'react';
-import { matchesController } from "../../controllers/matchesController";
-import Navbar from '../../components/layout/Navbar';
-import './matches.css';
-import MatchCard from '../../components/common/MatchCard';
+import { matchesController } from "../../../controllers/matchesController";
+import Navbar from '../../../components/layout/Navbar';
+import './AdminMatchesPage.css';
+import MatchCard from '../../../components/common/MatchCard';
 import AddMatchModal from "./components/addMatchModal";
 import { useEffect } from 'react';
 
-function MatchesPage() {
+function AdminMatchesPage() {
 
   const { getMatches } = matchesController();
 
@@ -81,4 +81,4 @@ function MatchesPage() {
   );
 }
 
-export default MatchesPage;
+export default AdminMatchesPage;

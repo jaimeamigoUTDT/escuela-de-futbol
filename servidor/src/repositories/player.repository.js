@@ -33,10 +33,17 @@ class playerRepository {
   }
 
   createPlayer(playerData) {
-    this.players.push(new Player(playerData))
-    this.saveData()
-    console.log(this.players)
-    return playerData
+    // Check if the player already exists
+    const existingPlayer = this.players.find((p) => p.dni === playerData.dni);
+
+    if (!existingPlayer) {
+      this.players.push(new Player(playerData))
+      this.saveData()
+      console.log(this.players)
+      return playerData
+    }
+
+    return existingPlayer; // Return existing player if already exists
   }
 
   getPlayers() {

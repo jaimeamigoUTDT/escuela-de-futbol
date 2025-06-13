@@ -34,12 +34,7 @@ function createMatch(req, res) {
 function getMatches(req, res) {
     try {
         
-        queryParameters = {};
-    
-        // Check if req.body exists
-        if (req.body) {
-          queryParameters = req.body;
-        }
+        queryParameters = req.query;
     
         const data = matchService.getMatches(queryParameters)
     

@@ -6,6 +6,7 @@ const matchService = {
     
     getMatches: async (params) => {
         try {
+            
             const response = await axios.get(API_URL, { params });
             
             console.log('Fetched matches:', response.data); // Log for debugging

@@ -1,27 +1,11 @@
 [
   {
-    "dni": 20000000,
-    "name": "Juan",
-    "surname": "Pérez",
-    "date_of_birth": "2025-15-05",
-    "gender": "Masculino",
-    "parent_dni": 45235544
-  },
-  {
-    "dni": 20000001,
-    "name": "Juan",
-    "surname": "Dominguez",
-    "date_of_birth": "2025-15-05",
-    "gender": "Masculino",
-    "parent_dni": 45235544
-  },
-  {
     "dni": 20000002,
     "name": "Juan",
     "surname": "Martinez",
     "date_of_birth": "2025-15-05",
     "gender": "Masculino",
-    "parent_dni": 12345680
+    "parent_dni": 45235544
   },
   {
     "dni": 49999999,
@@ -32,58 +16,18 @@
     "parent_dni": 23333333
   },
   {
-    "dni": 222222,
-    "name": "loan",
-    "surname": "perdido",
-    "date_of_birth": "2023-07-15",
-    "gender": "Masculino",
-    "parent_dni": 222222
-  },
-  {
-    "dni": 2222222,
-    "name": "loan",
-    "surname": "perdido",
-    "date_of_birth": "2023-07-15",
-    "gender": "Masculino",
-    "parent_dni": 45224476
-  },
-  {
-    "dni": 90909090,
-    "name": "Jaime",
-    "surname": "Amigo",
-    "date_of_birth": "2005-10-10",
-    "gender": "Masculino",
-    "parent_dni": 45235544
-  },
-  {
-    "dni": 90909091,
-    "name": "Felipe",
-    "surname": "Caracoix",
-    "date_of_birth": "2003-02-01",
-    "gender": "Femenino",
-    "parent_dni": 45235544
-  },
-  {
-    "dni": 90909092,
-    "name": "jaime",
-    "surname": "amigo",
-    "date_of_birth": "1011-01-20",
-    "gender": "Masculino",
-    "parent_dni": 45235544
-  },
-  {
-    "dni": 10101010,
-    "name": "Harry",
-    "surname": "Potter",
-    "date_of_birth": "2010-10-10",
-    "gender": "Masculino",
-    "parent_dni": 45235544
-  },
-  {
-    "dni": 10101011,
+    "dni": 10101013,
     "name": "Dafydd",
     "surname": "Jenkins",
     "date_of_birth": "2004-02-02",
+    "gender": "Masculino",
+    "parent_dni": 45235544
+  },
+  {
+    "dni": 30891234,
+    "name": "Jaime",
+    "surname": "Amigo",
+    "date_of_birth": "2003-10-10",
     "gender": "Masculino",
     "parent_dni": 45235544
   }

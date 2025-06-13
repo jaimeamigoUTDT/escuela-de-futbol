@@ -95,8 +95,18 @@
     "email": "f@gmail.com",
     "password": "1",
     "createdAt": "2025-06-13T13:42:23.761Z",
-    "authToken": "09ec5ee8-b18d-462f-983d-0deee9382172",
-    "tokenCreatedAt": "2025-06-13T16:46:59.162Z",
+    "authToken": "cd32a13a-e4f2-4306-bd9a-e2bbff7c894e",
+    "tokenCreatedAt": "2025-06-13T13:42:23.761Z",
+    "role": "admin"
+  },
+  {
+    "name": "Dafydd Jenkins",
+    "dni": "45555555",
+    "email": "daf@gmail.com",
+    "password": "Daf",
+    "createdAt": "2025-06-13T14:30:13.755Z",
+    "authToken": "a4da11e3-bfcf-41b8-a848-eb3237797628",
+    "tokenCreatedAt": "2025-06-13T14:30:13.755Z",
     "role": "parent"
   }
 ]

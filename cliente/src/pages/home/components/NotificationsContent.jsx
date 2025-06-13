@@ -51,7 +51,7 @@ const handleConfirm = async () => {
       <div className="header">
         <h1>Notificaciones</h1>
         <button className="add-button" onClick={handleAddClick}>
-          <span>+</span>
+          <span className="add-button__icon">+</span>
         </button>
       </div>
 

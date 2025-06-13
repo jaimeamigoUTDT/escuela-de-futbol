@@ -5,7 +5,7 @@
     "surname": "Pérez",
     "date_of_birth": "2025-15-05",
     "gender": "Masculino",
-    "parent_dni": 12345678
+    "parent_dni": 45235544
   },
   {
     "dni": 20000001,
@@ -13,7 +13,7 @@
     "surname": "Dominguez",
     "date_of_birth": "2025-15-05",
     "gender": "Masculino",
-    "parent_dni": 12345679
+    "parent_dni": 45235544
   },
   {
     "dni": 20000002,

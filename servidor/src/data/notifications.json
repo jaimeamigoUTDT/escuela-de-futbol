@@ -166,5 +166,12 @@
     "fecha": "2025-06-11",
     "hora": "05:02",
     "content": "partido suspendido"
+  },
+  {
+    "notification_id": "bae98c14-b85f-4831-89a3-31f205dc0149",
+    "match_id": "none",
+    "fecha": "2025-06-13",
+    "hora": "10:16",
+    "content": "sada"
   }
 ]

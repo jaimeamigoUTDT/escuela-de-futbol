@@ -10,14 +10,14 @@
 }
 
 .result-card-header {
-  background-color: #2563eb; /* azul intenso */
+  background-color: #8ac4fe; /* azul intenso */
   color: white;
   padding: 12px 16px;
   font-size: 14px;
 }
 
 .result-card-header p{
-  color: white;
+  color: #1f2937;
   margin: 0;
 }
 

@@ -8,7 +8,7 @@ import Profile from "../pages/profile/Profile";
 import Results from "../pages/results/Results";
 import Tournaments from "../pages/tournaments/Tournaments";
 import Admin from "../pages/admin/Admin";
-import AdminPlayersPage from "../pages/players/AdminPlayers";
+import TeamsPage from "../pages/teams/Teams";
 import PlayersPage from "../pages/players/Players";
 import ProtectedRoute from "../components/ProtectedRoute";
 
@@ -62,7 +62,7 @@ export const routeConfig = [
         element: (
           <ProtectedRoute
             roleComponents={{
-              admin: AdminPlayersPage,
+              admin: TeamsPage,
               parent: PlayersPage,
             }}
           />

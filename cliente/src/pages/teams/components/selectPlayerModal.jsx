@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import "./playersListModal.css"
-import "./PlayerCard.css"
+import "../../players/components/PlayerCard.css"
 import "./selectPlayerModal.css"
 
 const SelectPlayersModal = ({ isOpen, onClose, allPlayers, teamPlayers, onSaveSelection, teamId }) => {
@@ -54,7 +54,7 @@ const SelectPlayersModal = ({ isOpen, onClose, allPlayers, teamPlayers, onSaveSe
                 const isSelected = selectedPlayers.includes(player.player_id)
                 return (
                   <div
-                    key={player.player_id}
+                    key={player.dni}
                     className={`player-card ${isSelected ? "selected-player" : ""}`}
                     onClick={() => togglePlayerSelection(player.player_id)}
                   >

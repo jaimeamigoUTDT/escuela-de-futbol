@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { matchesController } from "../../../controllers/matchesController";
 import { resultsController } from "../../../controllers/resultsController";
 import { v4 as uuidv4 } from "uuid";
-import "./AddResultModal.css";
-import { all } from "axios";
+import "./addResultModal.css";
 
 const AddResultModal = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({

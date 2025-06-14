@@ -82,7 +82,7 @@ function ResultsPage() {
           )}
         </div>
       </div>
-      <AddResultModal isOpen={isModalOpen} onClose={handleCloseModal} />
+      <addResultModal isOpen={isModalOpen} onClose={handleCloseModal} />
     </>
   );
 }

@@ -5,9 +5,7 @@ import { canchasController } from "../../../../controllers/canchasController";
 import { matchesController } from "../../../../controllers/matchesController";
 import notificationController from "../../../../controllers/notificationController";
 import { v4 as uuidv4 } from 'uuid';
-
-
-import "./AddMatchModal.css";
+import "./addMatchModal.css";
 
 const AddMatchModal = ({ isOpen, onClose }) => {
   const { saveMatch } = useMatches();

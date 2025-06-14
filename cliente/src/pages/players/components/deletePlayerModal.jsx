@@ -1,6 +1,6 @@
 import { useState } from "react"
 import "../Players.css"
-import "./AddPlayerModal.css"
+import "./addPlayerModal.css"
 import playersController from "../../../controllers/playersController"
 
 const DeletePlayerModal = ({ isOpen, onClose, player }) => {

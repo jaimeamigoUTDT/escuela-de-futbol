@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useEffect } from "react"
 import "./playersListModal.css"
 import "../../players/components/PlayerCard.css"

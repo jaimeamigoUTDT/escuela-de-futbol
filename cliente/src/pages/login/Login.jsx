@@ -5,7 +5,7 @@ import Form from "../../components/common/Form"
 import "../../styles/components/FormComponents.css"
 import "./Login.css"
 import useLogin from "../../hooks/useLogin"
-import { useAuth } from "../../hooks/useAuth"
+import soccerImg from '../../../public/assets/landing-soccer.png';
 
 
 function Login() {
@@ -54,7 +54,7 @@ function Login() {
             {/* Left side - Image */}
             <div className="login-image-section">
                 <img
-                    src="src/assets/landing-soccer.png"
+                    src={soccerImg}
                     alt="login illustration"
                     className="login-image"
                 />

@@ -5,6 +5,7 @@ import Form from "../../components/common/Form"
 import "../../styles/components/FormComponents.css"
 import "./Register.css"
 import useRegister from "../../hooks/useRegister"
+import soccerImg from '../../../public/assets/landing-soccer.png';
 
 function Register() {
     const [formData, setFormData] = useState({
@@ -83,7 +84,7 @@ function Register() {
             {/* Left side - Image */}
             <div className="register-image-section">
                 <img
-                    src="src/assets/landing-soccer.png"
+                    src={soccerImg}
                     alt="register illustration"
                     className="register-image"
                 />

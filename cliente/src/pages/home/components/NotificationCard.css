@@ -90,10 +90,12 @@
 .delete-button {
   background: none;
   border: none;
-  color: #dc2626;
-  font-size: 16px;
+  color: white;
+  background-color: #ef4444;
+  font-size: 8px;
   cursor: pointer;
   margin-left: 8px;
+  padding: 8px 8px;
 }
 
 .delete-button:hover {

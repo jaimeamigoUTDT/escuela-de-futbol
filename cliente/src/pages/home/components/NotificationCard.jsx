@@ -14,7 +14,7 @@ function NotificationCard({ fecha, hora, content, type = "info", showDelete = fa
           {hora}
           {showDelete && (
             <button
-              className="notification-card__delete-button"
+              className="notification-card delete-button"
               onClick={onDelete}
               title="Eliminar notificación"
             >

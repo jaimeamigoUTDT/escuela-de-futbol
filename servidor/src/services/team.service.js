@@ -14,14 +14,11 @@ class TeamService {
     const category = categoryRepository.getCategoryById(team.category_id);
     const cancha = canchaRepository.getCanchaById(match?.cancha_id);
 
-    console.log("playersids", team.players_ids);
-
     const players = team.players_ids
       ? team.players_ids.map((player_id) => playerRepository.getPlayerByDni(player_id)).filter(Boolean)
       : [];
 
-    console.log("players found:", players);
-
+    
     return {
       ...team,
       match: match ? { ...match, cancha: cancha || null } : null,

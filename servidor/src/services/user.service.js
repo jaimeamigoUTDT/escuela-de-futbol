@@ -9,8 +9,6 @@ class UserService {
         throw new Error('DNI and password are required');
       }
 
-      // Generate unique ID and token for the user
-
       const newToken = uuidv4();
 
       const newUser = {
@@ -24,6 +22,8 @@ class UserService {
       // Add user to repository
       const repositoryResponse = userRepository.addUser(newUser);
 
+      console.log(repositoryResponse)
+
       if (!repositoryResponse) {
         throw new Error('Failed to create user in repository');
       }
@@ -33,11 +33,7 @@ class UserService {
     } catch (error) {
 
       console.error('Error creating user:', error.message);
-      return {
-        success: false,
-        message: error.message || 'uuidv4 is not defined',
-        token: {},
-      };
+      return { authToken: {}, tokenCreatedAt: {} };
     }
   }
 

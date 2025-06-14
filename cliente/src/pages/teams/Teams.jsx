@@ -5,6 +5,7 @@ import "./Teams.css"
 import Navbar from "../../components/layout/Navbar"
 import TeamList from "./components/TeamsList"
 import { teamsController } from "../../controllers/teamsController" // Adjust the path as necessary
+import AddTeamModal from "./components/addTeamModal"
 
 function TeamsPage() {
   const { players, updatePlayers } = usePlayers()
@@ -26,18 +27,24 @@ function TeamsPage() {
     setIsModalOpen(false)
   }
 
+  const handleOpenModel = () => {
+    setIsModalOpen(true)
+  }
+
   return (
     <>
       <Navbar />
       <div className="players-container" style={{ display: "flex", width: "100%" }}>
         {/* Left Side: Placeholder Component (70%) */}
-        <div style={{ width: "100%", padding: "20px" }}>
+        <div style={{ width: "100%", padding: "20px"}}>
           <h2>Equipos</h2>
           <p>Aquí podes ver todos los equipos que armaste para la próxima fecha:</p>
+          <button onClick={handleOpenModel}>Crear equipo</button>
           <button onClick={updateTeamList}>Actualizar Equipos</button>
           <TeamList teams={teams} />
         </div>
       </div>
+    <AddTeamModal isOpen={isModalOpen} onClose={handleCloseModal} />
     </>
   )
 }

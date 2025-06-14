@@ -30,7 +30,7 @@ class LoginController {
 
       const user = await userService.authenticateUser(dni, password, authToken);
 
-      if (user.authToken === null) {
+      if (!user) {
         return res.status(401).json({
           success: false,
           message: 'Credenciales inválidas',
@@ -77,7 +77,9 @@ class LoginController {
 
       const newUserTokenData = await userService.createUser({ name, dni, email, password });
 
-      if (newUserTokenData.authToken === '') {
+      console.log('New User Token Data:', newUserTokenData);
+
+      if (Object.keys(newUserTokenData.authToken).length === 0) {
         return res.status(500).json({
           success: false,
           message: 'Error al crear el usuario',

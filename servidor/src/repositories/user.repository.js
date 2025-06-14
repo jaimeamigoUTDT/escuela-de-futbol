@@ -17,16 +17,7 @@ class UserRepository {
     }
 
     // Default data if file doesn't exist or error occurs
-    return [
-      {
-        name: "John Doe",
-        dni: "12345678",
-        email: "johnDoe@gmail.com",
-        password: "123456",
-        authToken: "12345678-1234-1234-1234-123456789012",
-        createdAt: "2023-10-01T12:00:00Z",
-      },
-    ]
+    return []
   }
 
   saveData() {

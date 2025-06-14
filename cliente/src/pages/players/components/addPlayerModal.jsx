@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./AddPlayerModal.css";
+import "./addPlayerModal.css";
 import playersController from "../../../controllers/playersController";
 import { useAuth } from "../../../hooks/useAuth";
 

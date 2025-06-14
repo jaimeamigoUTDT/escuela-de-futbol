@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { teamsController } from "../../../controllers/teamsController";
 import { matchesController } from "../../../controllers/matchesController";
-import { v4 as uuidv4 } from 'uuid';
-import "./AddTeamModal.css";
+import "./addTeamModal.css";
 
 const AddTeamModal = ({ isOpen, onClose, onTeamAdded }) => {
   const { createTeam } = teamsController();

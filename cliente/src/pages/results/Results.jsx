@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { resultsController } from "../../controllers/resultsController";
 import Navbar from '../../components/layout/Navbar';
-import './results.css';
+import './Results.css';
 import ResultCard from '../../components/common/ResultCard';
 import AddResultModal from "./components/addResultModal";
 import { useAuth } from "../../hooks/useAuth"; // <-- Add this import

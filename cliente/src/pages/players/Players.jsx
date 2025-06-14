@@ -98,7 +98,7 @@ function PlayersPage() {
           </div>
         </div>
       </div>
-      <addPlayerModal isOpen={isModalOpen} onClose={handleCloseModal} />
+      <AddPlayerModal isOpen={isModalOpen} onClose={handleCloseModal} />
     </>
   );
 }

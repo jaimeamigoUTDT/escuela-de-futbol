@@ -3,7 +3,7 @@ import { resultsController } from "../../controllers/resultsController";
 import Navbar from '../../components/layout/Navbar';
 import './Results.css';
 import ResultCard from '../../components/common/ResultCard';
-import addResultModal from "./components/addResultModal";
+import AddResultModal from "./components/addResultModal";
 import { useAuth } from "../../hooks/useAuth"; // <-- Add this import
 
 function ResultsPage() {
@@ -82,7 +82,7 @@ function ResultsPage() {
           )}
         </div>
       </div>
-      <addResultModal isOpen={isModalOpen} onClose={handleCloseModal} />
+      <AddResultModal isOpen={isModalOpen} onClose={handleCloseModal} />
     </>
   );
 }

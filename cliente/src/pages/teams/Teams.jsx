@@ -5,7 +5,7 @@ import "./Teams.css"
 import Navbar from "../../components/layout/Navbar"
 import TeamList from "./components/TeamsList"
 import { teamsController } from "../../controllers/teamsController" // Adjust the path as necessary
-import addTeamModal from "./components/addTeamModal"
+import AddTeamModal from "./components/addTeamModal"
 
 function TeamsPage() {
   const { updatePlayers } = usePlayers()

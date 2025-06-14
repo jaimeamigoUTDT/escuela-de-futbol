@@ -3,7 +3,7 @@ import { useAuth } from "../../hooks/useAuth";
 import "./Players.css";
 import Navbar from "../../components/layout/Navbar";
 import PlayerCard from "./components/PlayerCard";
-import addPlayerModal from "./components/addPlayerModal";
+import AddPlayerModal from "./components/addPlayerModal";
 import playersController from "../../controllers/playersController";
 
 function PlayersPage() {

@@ -1,40 +1,14 @@
 [
   {
-    "team_id": 1,
-    "name": "Equipo Junior",
-    "match_id": 2,
-    "category_id": 1,
+    "team_id": 1749939116581,
+    "name": "Testing FC",
+    "match_id": 1749824131291,
+    "category_id": 2,
     "players_ids": [
-      49999999,
-      20000002,
-      10101013,
-      30891234
+      40746804
     ],
-    "confirmed_players_ids": [49999999]
-  },
-  {
-    "team_id": 2,
-    "name": "Equipo Junior B",
-    "match_id": 1,
-    "category_id": 1,
-    "players_ids": [
-      49999999,
-      20000002,
-      10101013,
-      30891234
-    ],
-    "confirmed_players_ids": []
-  },
-  {
-    "team_id": 3,
-    "name": "Equipo Junior C",
-    "match_id": 3,
-    "category_id": 1,
-    "players_ids": [
-      49999999,
-      30891234,
-      21000000
-    ],
-    "confirmed_players_ids": []
+    "confirmed_players_ids": [
+      40746804
+    ]
   }
 ]

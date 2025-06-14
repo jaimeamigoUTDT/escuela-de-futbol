@@ -7,18 +7,22 @@ class ResultService {
   enrichResultData(result) {
     if (!result) return null;
     // Fetch related data if necessary
-    const match = matchRepository.getMatchById(result.match_id);
-    const category = categoryRepository.getCategoryById(match.category_id);
-    console.log('Match:', match);
-    console.log('Category:', category);
-
-    return {
+    if (result.match_id) {
+      const match = matchRepository.getMatchById(result.match_id);
+      if (match) {
+        const category = categoryRepository.getCategoryById(match.category_id);
+        return {
+          ...result,
+          match: match || null,
+          category: category || null
+        };
+      }
+      return {
       ...result,
       match: match || null,
-      category: category || null
     };
-    
-  
+    }
+    return result;
   }
 
     createResult(resultData) {

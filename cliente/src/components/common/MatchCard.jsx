@@ -27,6 +27,20 @@ export default function MatchCard({
   const { editTeam } = teamsController();
   const { userDni } = useAuth();
 
+  // --- New: Get the player name for this card ---
+  const [playerName, setPlayerName] = useState("");
+
+  useEffect(() => {
+    let foundName = "";
+    if (team && Array.isArray(team.players) && playerDni) {
+      const playerObj = team.players.find((player) => String(player.dni) === String(playerDni));
+      if (playerObj) {
+        foundName = `${playerObj.name} ${playerObj.surname}`;
+      }
+    }
+    setPlayerName(foundName);
+  }, [team, playerDni]);
+
   // Detect if player is already confirmed
   useEffect(() => {
     const dniToCheck = playerDni || userDni;
@@ -162,6 +176,12 @@ export default function MatchCard({
         <div className="match-card-header">
           <div className="match-title">
             <span className="teams">
+              {/* Add the name of the player if available */}
+              {playerName && (
+                <span className="player-to-confirm" style={{fontWeight: 600, marginRight: 8}}>
+                  {playerName}:
+                </span>
+              )}
               {localTeam} vs {rivalTeam}
             </span>
             {userRole !== "parent" && (

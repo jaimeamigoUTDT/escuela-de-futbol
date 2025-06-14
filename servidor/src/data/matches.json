@@ -26,41 +26,9 @@
   {
     "match_id": 1749824131291,
     "fecha": "2025-06-26",
-    "hora": "11:18",
+    "hora": "11:20",
     "rival": "Puercos FC",
     "category_id": 1,
     "cancha_id": 6
-  },
-  {
-    "match_id": 1749824170811,
-    "fecha": "2025-06-26",
-    "hora": "11:18",
-    "rival": "Puercos FC",
-    "category_id": 1,
-    "cancha_id": 6
-  },
-  {
-    "match_id": 1749824394930,
-    "fecha": "2025-06-26",
-    "hora": "11:18",
-    "rival": "Puercos FC",
-    "category_id": 1,
-    "cancha_id": 6
-  },
-  {
-    "match_id": 1749824483743,
-    "fecha": "2025-06-26",
-    "hora": "11:18",
-    "rival": "Puercos FC",
-    "category_id": 1,
-    "cancha_id": 6
-  },
-  {
-    "match_id": 1749910129426,
-    "fecha": "2025-06-20",
-    "hora": "10:00",
-    "rival": "Testing",
-    "category_id": 1,
-    "cancha_id": 5
   }
 ]

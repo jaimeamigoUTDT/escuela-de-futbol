@@ -33,7 +33,6 @@ const AddResultModal = ({ isOpen, onClose }) => {
       try {
         const allMatches = await getMatches();
         const allResults = await getResults();
-        console.log('allMatches', allMatches);
         
         const pastMatches = allMatches.filter((m) => m.fecha < today);
 

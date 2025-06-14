@@ -4,9 +4,11 @@ import Navbar from '../../components/layout/Navbar';
 import './results.css';
 import ResultCard from '../../components/common/ResultCard';
 import AddResultModal from "./components/addResultModal";
+import { useAuth } from "../../hooks/useAuth"; // <-- Add this import
 
 function ResultsPage() {
   const { getResults } = resultsController();
+  const { userRole } = useAuth(); // <-- Get userRole from auth
 
   let [results, setResults] = useState([]); // Fetch results from the controller
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -47,6 +49,9 @@ function ResultsPage() {
     setIsModalOpen(false)
   }
 
+  // Only show "Cargar Resultado" if the user is admin or superAdmin
+  const canAddResult = userRole === "admin" || userRole === "superAdmin";
+
   return (
     <>
       <Navbar />
@@ -55,7 +60,9 @@ function ResultsPage() {
         <p>Aquí puedes ver los resultados de partidos pasados</p>
         <div className="results-button-container">
           <button onClick={updateList}>Actualizar Resultados</button>
-          <button className="results-add-result" onClick={handleAddResult}>Cargar Resultado</button>
+          {canAddResult && (
+            <button className="results-add-result" onClick={handleAddResult}>Cargar Resultado</button>
+          )}
         </div>
         <div className="results-list">
           {results.length === 0 ? (
@@ -80,4 +87,4 @@ function ResultsPage() {
   );
 }
 
-export default ResultsPage;
+export default ResultsPage; 

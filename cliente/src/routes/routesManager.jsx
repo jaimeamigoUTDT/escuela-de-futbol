@@ -4,7 +4,6 @@ import Login from "../pages/login/Login";
 import Error from "../pages/error/Error";
 import AdminMatchesPage from "../pages/matches/adminMatches/AdminMatchesPage";
 import ParentMatchesPage from "../pages/matches/parentMatches/ParentMatchesPage";
-import Profile from "../pages/profile/Profile";
 import Results from "../pages/results/Results";
 import Tournaments from "../pages/tournaments/Tournaments";
 import Admin from "../pages/admin/Admin";
@@ -59,11 +58,6 @@ export const routeConfig = [
           />
         ),
         label: "Matches",
-      },
-      {
-        path: "/perfil",
-        element: <Profile />,
-        label: "Profile",
       },
       {
         path: "/resultados",

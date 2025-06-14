@@ -33,7 +33,7 @@ function MatchesSection() {
 
   useEffect(() => {
     updateList();
-  }, [matches]); // Run once on mount
+  }, []); // Run once on mount
 
   const matchItems = matches.length > 0 ? matches : [];
   const displayedMatches = matchItems.length > 2 ? matchItems.slice(0, 2) : matchItems;

@@ -1,11 +1,9 @@
-// src/components/MatchesPage.jsx
 import React, { useState, useEffect } from 'react';
 import { matchesController } from "../../../controllers/matchesController";
 import { teamsController } from "../../../controllers/teamsController";
 import Navbar from '../../../components/layout/Navbar';
-import './ParentMatchesPage.css';
 import MatchCard from '../../../components/common/MatchCard';
-import AddMatchModal from "./components/addMatchModal";
+import './ParentMatchesPage.css';
 import { useAuth } from '../../../hooks/useAuth';
 
 function ParentMatchesPage() {
@@ -18,17 +16,45 @@ function ParentMatchesPage() {
   const [teams, setTeams] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Helper: find the player's DNI and matching team for a parent user
+  function getPlayerTeams(teams, userDni) {
+    // For each team, find any player with parent_dni == userDni
+    const playerTeams = [];
+    teams.forEach(team => {
+      if (Array.isArray(team.players)) {
+        team.players.forEach(player => {
+          if (String(player.parent_dni) === String(userDni)) {
+            playerTeams.push({
+              team,
+              playerDni: player.dni,
+              match_id: team.match_id
+            });
+          }
+        });
+      }
+    });
+    return playerTeams;
+  }
+
+  // Data fetching and filtering
   const updateList = () => {
     try {
-      
-      const selectedTeams = teams.filter(team =>
-        team.players.some(player => Number(player.parent_dni) === Number(userDni))
-      );
+      // Find all player-team pairs for the parent's children
+      const playerTeams = getPlayerTeams(teams, userDni);
 
-      const finalMatches = newMatchesList.filter(match =>
-        selectedTeams.some(team => team.match_id === match.match_id)
-      );
-
+      // For each match, try to find a team and player's dni for the user
+      const finalMatches = [];
+      newMatchesList.forEach(match => {
+        // Find a playerTeam for this match
+        const pt = playerTeams.find(pt => pt.match_id === match.match_id);
+        if (pt) {
+          finalMatches.push({
+            ...match,
+            team: pt.team,
+            playerDni: pt.playerDni,
+          });
+        }
+      });
       setMatches(finalMatches);
     } catch (error) {
       console.log('Error filtering matches:', error);
@@ -39,35 +65,25 @@ function ParentMatchesPage() {
     try {
       const matchesData = await getMatches();
       const teamsData = await fetchTeams();
-      setNewMatchesList(matchesData); // Adjust based on your API response structure
-      setTeams(teamsData); // Adjust based on your API response structure
+      setNewMatchesList(matchesData);
+      setTeams(teamsData);
     } catch (error) {
       console.log('Error fetching initial data:', error);
     }
   };
 
-  // Fetch initial data when component mounts
   useEffect(() => {
     getInitData();
-  }, [newMatchesList]);
+  }, []);
 
-  // Update matches list when teams or newMatchesList change
   useEffect(() => {
-
-    console.log(teams, newMatchesList);
-
     if (teams.length > 0 && newMatchesList.length > 0) {
       updateList();
     }
   }, [teams, newMatchesList]);
 
-  const handleAddMatch = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+  // Refresh teams & matches after confirming assistance
+  const refreshData = () => getInitData();
 
   return (
     <>
@@ -89,12 +105,15 @@ function ParentMatchesPage() {
                 rivalTeam={item.rival}
                 category={item.category.gender + " " + item.category.year}
                 fieldAddress={item.cancha.address}
+                match_id={item.match_id}
+                team={item.team}
+                playerDni={item.playerDni}
+                onConfirmAssistance={refreshData}
               />
             ))
           )}
         </div>
       </div>
-      <AddMatchModal isOpen={isModalOpen} onClose={handleCloseModal} />
     </>
   );
 }

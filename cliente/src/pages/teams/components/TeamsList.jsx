@@ -1,23 +1,24 @@
-"use client"
-
 import { useState, useEffect } from "react"
 import TeamCard from "./TeamCard"
 import PlayersListModal from "./playersListModal"
 import EditTeamModal from "./editTeamModal"
 import "./TeamsList.css"
 import { teamsController } from "../../../controllers/teamsController"
-import { usePlayers } from "../../../context/PlayersContext"
+import playersController from "../../../controllers/playersController"
 
 const TeamsList = ({ teams: teamsProp }) => {
   const [isPlayersModalOpen, setIsPlayersModalOpen] = useState(false)
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
   const [selectedTeamPlayers, setSelectedTeamPlayers] = useState([])
+  const [selectedTeamConfirmedPlayers, setSelectedTeamConfirmedPlayers] = useState([])
+  const [selectedTeamUnconfirmedPlayers, setSelectedTeamUnconfirmedPlayers] = useState([])
   const [selectedTeam, setSelectedTeam] = useState(null)
   const [isSaving, setIsSaving] = useState(false)
   const [saveError, setSaveError] = useState(null)
   const [teams, setTeamsState] = useState(teamsProp || [])
   const { editTeam } = teamsController()
-  const { players } = usePlayers()
+  const { getPlayers } = playersController()
+  const [players, setPlayers] = useState([])
 
   useEffect(() => {
     if (teamsProp && teamsProp.length > 0) {
@@ -30,11 +31,27 @@ const TeamsList = ({ teams: teamsProp }) => {
       })
       setTeamsState(sortedTeams)
     }
+    handleFetchPlayers()
+  // eslint-disable-next-line
   }, [teamsProp])
 
   // Handle viewing players in modal
-  const handleViewPlayers = (players) => {
-    setSelectedTeamPlayers(players || [])
+  const handleViewPlayers = (playersList, team) => {
+    setSelectedTeam(team)
+    // Determine confirmed and unconfirmed players for this team
+    const confirmedIds = Array.isArray(team.confirmed_players_ids) ? team.confirmed_players_ids : []
+    const confirmed = []
+    const unconfirmed = []
+    ;(playersList || []).forEach(player => {
+      if (confirmedIds.includes(player.dni)) {
+        confirmed.push(player)
+      } else {
+        unconfirmed.push(player)
+      }
+    })
+    setSelectedTeamPlayers(playersList || [])
+    setSelectedTeamConfirmedPlayers(confirmed)
+    setSelectedTeamUnconfirmedPlayers(unconfirmed)
     setIsPlayersModalOpen(true)
   }
 
@@ -42,6 +59,16 @@ const TeamsList = ({ teams: teamsProp }) => {
   const handleEditTeam = (team) => {
     setSelectedTeam(team)
     setIsEditModalOpen(true)
+  }
+
+  const handleFetchPlayers = async () => {
+    try {
+      const fetchedPlayers = await getPlayers()
+      setPlayers(fetchedPlayers || [])
+    } catch (error) {
+      console.error("Error fetching players:", error)
+      alert("Error al obtener los jugadores. Por favor, inténtalo de nuevo.")
+    }
   }
 
   // Handle saving team changes
@@ -65,7 +92,7 @@ const TeamsList = ({ teams: teamsProp }) => {
     setSaveError(null)
     const selectedTeam = teams.find((team) => team.team_id === teamId)
     try {
-      selectedTeam.players = selectedPlayerIds
+      selectedTeam.players_ids = selectedPlayerIds
       await editTeam(selectedTeam)
       setTeamsState((prevTeams) =>
         prevTeams.map((team) => {
@@ -89,6 +116,9 @@ const TeamsList = ({ teams: teamsProp }) => {
   const closePlayersModal = () => {
     setIsPlayersModalOpen(false)
     setSelectedTeamPlayers([])
+    setSelectedTeamConfirmedPlayers([])
+    setSelectedTeamUnconfirmedPlayers([])
+    setSelectedTeam(null)
   }
 
   const closeEditModal = () => {
@@ -105,7 +135,7 @@ const TeamsList = ({ teams: teamsProp }) => {
             <TeamCard
               key={team.team_id}
               team={team}
-              onViewPlayers={handleViewPlayers}
+              onViewPlayers={(playersList) => handleViewPlayers(playersList, team)}
               onEditTeam={handleEditTeam}
               allPlayers={players}
               onUpdateTeamPlayers={handleUpdateTeamPlayers}
@@ -115,7 +145,14 @@ const TeamsList = ({ teams: teamsProp }) => {
           <p>No hay equipos disponibles.</p>
         )}
       </div>
-      <PlayersListModal isOpen={isPlayersModalOpen} onClose={closePlayersModal} players={selectedTeamPlayers} />
+      <PlayersListModal
+        isOpen={isPlayersModalOpen}
+        onClose={closePlayersModal}
+        players={selectedTeamPlayers}
+        confirmedPlayers={selectedTeamConfirmedPlayers}
+        unconfirmedPlayers={selectedTeamUnconfirmedPlayers}
+        team={selectedTeam}
+      />
       <EditTeamModal
         isOpen={isEditModalOpen}
         onClose={closeEditModal}

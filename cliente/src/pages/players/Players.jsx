@@ -21,24 +21,37 @@ function PlayersPage() {
   }, []);
 
   const filterPlayers = (players) => {
-    console.log("Input players:", players);
-    console.log("userDni:", userDni);
-
     return players.filter((player) => {
-      console.log("Checking player:", player.name, {
-        parent: player.parent,
-        parent_dni: player.parent_dni,
-      });
       const parentDni = player.parent?.dni || player.parent_dni;
       return parentDni && String(parentDni) === String(userDni);
     });
   };
 
+  // Format date to DD/MM/YYYY
+  const formatDate = (dateString) => {
+
+    const month = dateString?.split("-")[1]
+    const day = dateString?.split("-")[2]
+    const year = dateString?.split("-")[0]
+
+    // Format date to YYYY-MM-DD
+    const formattedDate = `${year}-${month}-${day}`
+
+    return formattedDate;
+  };
+
   const updateList = async () => {
     try {
       const fetchedPlayers = await getPlayers();
-      setPlayers(fetchedPlayers);
-      const filtered = filterPlayers(fetchedPlayers);
+
+      // Format date_of_birth for each player
+      const formattedPlayers = fetchedPlayers.map(player => ({
+        ...player,
+        date_of_birth: formatDate(player.date_of_birth)
+      }));
+
+      setPlayers(formattedPlayers);
+      const filtered = filterPlayers(formattedPlayers);
       setFilteredPlayers(filtered);
     } catch (error) {
       console.error("Error updating players:", error);

@@ -1,13 +1,5 @@
 [
   {
-    "dni": 20000002,
-    "name": "Juan",
-    "surname": "Martinez",
-    "date_of_birth": "2025-15-05",
-    "gender": "Masculino",
-    "parent_dni": 45235544
-  },
-  {
     "dni": 49999999,
     "name": "Nicho",
     "surname": "Jenkins",
@@ -16,18 +8,34 @@
     "parent_dni": 23333333
   },
   {
-    "dni": 10101013,
-    "name": "Dafydd",
-    "surname": "Jenkins",
-    "date_of_birth": "2004-02-02",
+    "dni": 30891234,
+    "name": "Jaime",
+    "surname": "Amigo",
+    "date_of_birth": "2003-10-25",
     "gender": "Masculino",
     "parent_dni": 45235544
   },
   {
-    "dni": 30891234,
-    "name": "Jaime",
-    "surname": "Amigo",
-    "date_of_birth": "2003-10-10",
+    "dni": 10101013,
+    "name": "Dafydd",
+    "surname": "Jenkins",
+    "date_of_birth": "2004-02-19",
+    "gender": "Masculino",
+    "parent_dni": 45235544
+  },
+  {
+    "dni": 20000002,
+    "name": "Juan",
+    "surname": "Martinez",
+    "date_of_birth": "2025-05-15",
+    "gender": "Masculino",
+    "parent_dni": 45235544
+  },
+  {
+    "dni": 21000000,
+    "name": "Mariano",
+    "surname": "Sanson",
+    "date_of_birth": "2019-02-07",
     "gender": "Masculino",
     "parent_dni": 45235544
   }

@@ -101,6 +101,51 @@ class LoginController {
       next(error);
     }
   }
+
+  async updateUserRole(req, res, next) {
+    try {
+      if (!req.body) {
+        return res.status(400).json({
+          success: false,
+          message: 'Request body is missing or invalid',
+          userData: {},
+        });
+      }
+
+      const { userId, newRole } = req.body;
+
+      if (!userId || !newRole) {
+        return res.status(400).json({
+          success: false,
+          message: 'Todos los campos son obligatorios',
+          userData: {},
+        });
+      }
+
+      const updatedUser = await userService.updateUserRole(userId, newRole);
+
+      if (!updatedUser) {
+        return res.status(404).json({
+          success: false,
+          message: 'Usuario no encontrado',
+          userData: {},
+        });
+      }
+
+      return res.status(200).json({
+        success: true,
+        message: 'Rol de usuario actualizado exitosamente',
+        userData: updatedUser,
+      });
+    } catch (error) {
+      res.status(500).json({
+        success: false,
+        message: error.message || 'Error interno del servidor',
+        userData: {},
+      });
+      next(error);
+    }
+  }
 }
 
 module.exports = new LoginController();

@@ -1,65 +1,30 @@
 [
   {
-    "notification_id": "fa8b15a3-def0-4b06-aa3b-f55f708c4aec",
-    "match_id": "none",
-    "fecha": "2025-06-11",
-    "hora": "04:52",
-    "content": "esteban se enfermo, se suspenden las clases"
+    "notification_id": "362d9c59-c02b-4175-8a2a-e4ecee51ec1d",
+    "match_id": 1749824131291,
+    "fecha": "2025-06-14",
+    "hora": "10:35",
+    "content": "Partido contra Puercos FC el 2025-06-26 a las 11:18:\npartido suspendido"
   },
   {
-    "notification_id": "e0afca92-446c-4971-90cf-d3bc09c1d9fc",
+    "notification_id": "c02ee152-71a3-4690-94b6-efcc1bf0ff62",
     "match_id": "none",
-    "fecha": "2025-06-11",
-    "hora": "04:56",
-    "content": "partido del sabado adelantado a 9 am"
+    "fecha": "2025-06-14",
+    "hora": "10:35",
+    "content": "Hola"
   },
   {
-    "notification_id": "0dcbe369-f234-48fa-9825-f3be1e439977",
-    "match_id": "none",
-    "fecha": "2025-06-11",
-    "hora": "05:01",
-    "content": "partido suspendido"
+    "notification_id": "3559dae6-99a7-49be-a663-2c55dce296f1",
+    "match_id": 2,
+    "fecha": "2025-06-14",
+    "hora": "10:36",
+    "content": "Partido contra Puercos FC el 2025-06-26 a las 11:18:\nhola"
   },
   {
-    "notification_id": "df1a4351-0da9-4ac9-acb8-8e7362cdaef0",
-    "match_id": "none",
-    "fecha": "2025-06-11",
-    "hora": "05:02",
-    "content": "partido suspendido"
-  },
-  {
-    "notification_id": "c14bddb4-e6ab-4701-8de9-e0b1c6b94896",
-    "match_id": 1749824483743,
-    "fecha": "2025-06-13",
-    "hora": "11:21",
-    "content": "Partido contra Puercos FC el 2025-06-26 a las 11:18"
-  },
-  {
-    "notification_id": "1a098385-11d8-473e-b1c2-ccb0563d078b",
-    "match_id": "none",
-    "fecha": "2025-06-13",
-    "hora": "12:40",
-    "content": "Partido contra Barcelona el 2025-05-16 a las 10:00:\nPARTIDO SUSPENDIDO"
-  },
-  {
-    "notification_id": "a2d51ce3-3682-4dc2-9bf9-906bbb986f4a",
-    "match_id": "none",
-    "fecha": "2025-06-13",
-    "hora": "01:22",
-    "content": "Partido contra Barcelona el 2025-05-16 a las 10:00:\npartido postergado"
-  },
-  {
-    "notification_id": "da57f158-9b96-4de9-a83c-133eae55f352",
-    "match_id": "none",
-    "fecha": "2025-06-13",
-    "hora": "01:23",
-    "content": "Partido contra Rival FC el 2025-05-15 a las 10:00:\nAnotense al partidoo"
-  },
-  {
-    "notification_id": "d50e0d21-97a9-4e38-9456-b06a6997325e",
-    "match_id": "none",
-    "fecha": "2025-06-13",
-    "hora": "01:26",
-    "content": "Partido contra Rival FC el 2025-05-15 a las 10:00:\nPARTIDO NUEVOOO"
+    "notification_id": "94557d0d-5977-4f40-bb4b-a6f823d82d40",
+    "match_id": 1749910129426,
+    "fecha": "2025-06-14",
+    "hora": "11:08",
+    "content": "Partido contra Testing el 2025-06-20 a las 10:00"
   }
 ]

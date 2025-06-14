@@ -35,9 +35,9 @@
     "email": "jaimeamigo03@gmail.com",
     "password": "123456",
     "createdAt": "2025-06-11T20:17:35.378Z",
-    "authToken": "12c95ea7-8102-4ff7-80c7-73d2ef26211f",
-    "tokenCreatedAt": "2025-06-13T20:46:25.338Z",
-    "role": "parent"
+    "authToken": "cbf2d850-17bc-4bbf-97a9-0ce1e82435a6",
+    "tokenCreatedAt": "2025-06-14T21:43:21.045Z",
+    "role": "admin"
   },
   {
     "name": "Jaime Amigo",

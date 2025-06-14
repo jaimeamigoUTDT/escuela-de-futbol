@@ -69,6 +69,27 @@ class UserService {
       return null;
     }
   }
+
+  async updateUserRole(userId, newRole) {
+    try {
+      // Validate inputs
+      if (!userId || !newRole) {
+        throw new Error('User ID and new role are required');
+      }
+
+      // Update user role in repository
+      const updatedUser = await userRepository.updateUserRole(userId, newRole);
+
+      if (!updatedUser) {
+        throw new Error('Failed to update user role');
+      }
+
+      return updatedUser;
+    } catch (error) {
+      console.error('Error updating user role:', error.message);
+      throw error; // Re-throw the error for further handling
+    }
+  }
 }
 
 module.exports = new UserService();

@@ -39,7 +39,8 @@ class teamRepository {
       name: teamData.name,
       match_id: teamData.match_id,
       category_id: teamData.category_id,
-      players: teamData.players
+      players_ids: teamData.players_ids,
+      confirmed_players_ids: teamData.confirmed_players_ids,
     }
 
     this.teams.push(updatedTeam)
@@ -48,6 +49,7 @@ class teamRepository {
   }
 
   getTeams() {
+
     return this.teams
   }
 
@@ -65,7 +67,8 @@ class teamRepository {
       name: teamData.name,
       match_id: teamData.match_id,
       category_id: teamData.category_id,
-      players: teamData.players
+      players_ids: teamData.players_ids,
+      confirmed_players_ids: teamData.confirmed_players_ids,
     }
     
     this.createTeam(updatedTeam)

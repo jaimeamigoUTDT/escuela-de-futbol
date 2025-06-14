@@ -1,5 +1,5 @@
 import "./ResultCard.css";
-import { Calendar, Clock, MapPin, Users, Bell } from "lucide-react"
+import { Calendar, Users } from "lucide-react"
 
 export default function ResultCard({ date, category, localTeam, rivalTeam, localScore, rivalScore }) {
   return (

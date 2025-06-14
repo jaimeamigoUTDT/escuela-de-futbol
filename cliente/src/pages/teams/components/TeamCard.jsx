@@ -27,7 +27,10 @@ const TeamCard = ({ team, onViewPlayers, onEditTeam, allPlayers, onUpdateTeamPla
           {team.category?.gender && team.category?.year ? `${team.category.gender} ${team.category.year}` : "N/A"}
         </p>
         <p>
-          <strong>Jugadores confirmados:</strong> {team.players?.length || "0"}
+          <strong>Jugadores elegidos:</strong> {team.players?.length || "0"}
+        </p>
+        <p>
+          <strong>Jugadores confirmados:</strong> {team.confirmed_players_ids?.length || "0"}
         </p>
       </div>
       <div>

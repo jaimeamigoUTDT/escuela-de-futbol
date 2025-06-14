@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "../pages/home/Home";
 import Register from "../pages/register/Register";
 import Login from "../pages/login/Login";
 import Error from "../pages/error/Error";
@@ -12,6 +11,8 @@ import Admin from "../pages/admin/Admin";
 import TeamsPage from "../pages/teams/Teams";
 import PlayersPage from "../pages/players/Players";
 import ProtectedRoute from "../components/ProtectedRoute";
+import adminHome from "../pages/home/adminHome/adminHome";
+import parentHome from "../pages/home/parentHome/parentHome";
 
 // Route configurations
 export const routeConfig = [
@@ -34,17 +35,26 @@ export const routeConfig = [
     element: <ProtectedRoute />, // General protected routes
     children: [
       {
-        path: "/home",
-        element: <Home />,
-        label: "Home",
-      },
-      {
         path: "/partidos",
         element: (
           <ProtectedRoute
             roleComponents={{
+              superAdmin: AdminMatchesPage, // Assuming AdminMatchesPage is defined elsewhere
               admin: AdminMatchesPage,
               parent: ParentMatchesPage, // Assuming ParentMatchesPage is defined elsewhere
+            }}
+          />
+        ),
+        label: "Matches",
+      },
+      {
+        path: "/home",
+        element: (
+          <ProtectedRoute
+            roleComponents={{
+              superAdmin: adminHome,
+              admin: adminHome,
+              parent: parentHome, // Assuming ParentMatchesPage is defined elsewhere
             }}
           />
         ),
@@ -70,6 +80,7 @@ export const routeConfig = [
         element: (
           <ProtectedRoute
             roleComponents={{
+              superAdmin: TeamsPage, // Assuming PlayersPage is defined elsewhere
               admin: TeamsPage,
               parent: PlayersPage,
             }}

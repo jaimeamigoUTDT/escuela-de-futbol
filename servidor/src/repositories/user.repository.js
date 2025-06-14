@@ -108,6 +108,20 @@ class UserRepository {
 
     return { ...user }
   }
+
+  updateUserRole(dni, newRole) {
+    const userIndex = this.users.findIndex((user) => user.dni === dni)
+
+    if (userIndex === -1) {
+      console.log("User not found with DNI:", dni)
+      return null
+    }
+
+    this.users[userIndex].role = newRole
+    this.saveData()
+    console.log("User role updated successfully:", this.users[userIndex])
+    return this.users[userIndex]
+  }
 }
 
 module.exports = new UserRepository()

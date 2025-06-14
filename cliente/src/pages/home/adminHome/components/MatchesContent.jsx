@@ -1,6 +1,6 @@
 import MatchesSection from "./MatchesSection"
 import "./MatchesContent.css"
-import { useAuth } from "../../../hooks/useAuth"
+import { useAuth } from "../../../../hooks/useAuth"
 
 function MatchesContent() {
 

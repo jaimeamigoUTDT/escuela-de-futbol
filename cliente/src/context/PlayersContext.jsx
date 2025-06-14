@@ -1,5 +1,4 @@
 import React, { createContext, useState, useContext } from 'react';
-import playersController from '../controllers/playersController';
 
 export const PlayersContext = createContext();
 
@@ -20,13 +19,11 @@ export const PlayersProvider = ({ children }) => {
         );
     };
 
-    const updatePlayers = async () => {
+    const updatePlayers = async (newPlayers) => {
         try {
-            const newPlayers = await playersController.getPlayers();
-            
+
             // Ensure we have an array before mapping
             if (!Array.isArray(newPlayers)) {
-                console.error('Expected array but got:', typeof newPlayers);
                 return;
             }
             

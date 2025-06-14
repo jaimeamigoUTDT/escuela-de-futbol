@@ -8,7 +8,7 @@ import { teamsController } from "../../controllers/teamsController" // Adjust th
 import AddTeamModal from "./components/addTeamModal"
 
 function TeamsPage() {
-  const { players, updatePlayers } = usePlayers()
+  const { updatePlayers } = usePlayers()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const { teams } = useTeams() // Get teams directly from context
   const { fetchTeams } = teamsController() // Initialize teamsController
@@ -17,6 +17,7 @@ function TeamsPage() {
   useEffect(() => {
     updatePlayers()
     updateTeamList() // Fetch teams when the component mounts
+    // eslint-disable-next-line
   }, [])
 
   const updateTeamList = async () => {
@@ -31,6 +32,11 @@ function TeamsPage() {
     setIsModalOpen(true)
   }
 
+  // Called after a team is added in the modal
+  const handleTeamAdded = () => {
+    updateTeamList()
+  }
+
   return (
     <>
       <Navbar />
@@ -39,12 +45,14 @@ function TeamsPage() {
         <div style={{ width: "100%", padding: "20px"}}>
           <h2>Equipos</h2>
           <p>Aquí podes ver todos los equipos que armaste para la próxima fecha:</p>
-          <button onClick={handleOpenModel}>Crear equipo</button>
-          <button onClick={updateTeamList}>Actualizar Equipos</button>
+          <div className="players-button-container">
+            <button onClick={handleOpenModel}>Crear equipo</button>
+            <button onClick={updateTeamList}>Actualizar Equipos</button>
+          </div>
           <TeamList teams={teams} />
         </div>
       </div>
-    <AddTeamModal isOpen={isModalOpen} onClose={handleCloseModal} />
+      <AddTeamModal isOpen={isModalOpen} onClose={handleCloseModal} onTeamAdded={handleTeamAdded} />
     </>
   )
 }

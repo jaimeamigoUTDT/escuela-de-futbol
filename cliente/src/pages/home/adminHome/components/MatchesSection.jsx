@@ -1,7 +1,7 @@
 import "./MatchesSection.css";
-import MatchCard from "../../../components/common/MatchCard.jsx";
+import MatchCard from "../../../../components/common/MatchCard.jsx";
 import { useEffect, useState } from 'react';
-import { matchesController } from "../../../controllers/matchesController.jsx";
+import { matchesController } from "../../../../controllers/matchesController.jsx";
 
 function MatchesSection() {
   const { getMatches } = matchesController();
@@ -22,7 +22,18 @@ function MatchesSection() {
         throw new Error('Expected an array of matches, got:', newMatchesList);
       }
 
-      setMatches(newMatchesList);
+      // Filter matches to only those whose date is today or in the future
+      const today = new Date();
+      today.setHours(0, 0, 0, 0); // Remove time part
+
+      const filteredMatches = newMatchesList.filter(match => {
+        // Assume match.fecha is in 'YYYY-MM-DD' format
+        if (!match.fecha) return false;
+        const matchDate = new Date(match.fecha + "T00:00:00");
+        return matchDate >= today;
+      });
+
+      setMatches(filteredMatches);
     } catch (error) {
       console.error('Error fetching matches:', error);
       setError(error.message);
@@ -60,6 +71,7 @@ function MatchesSection() {
             rivalTeam={item.rival}
             category={item.category.gender + " " + item.category.year}
             fieldAddress={item.cancha.address}
+            match_id={item.match_id}
           />
         ))}
       </div>

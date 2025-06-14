@@ -24,6 +24,15 @@ const authService = {
             throw error.response ? error.response.data : error;
         }
     },
+
+    updateUserRole: async (userId, newRole) => {
+        try {
+            const response = await axios.put(`${API_URL}/update-user`, { userId, newRole });
+            return response.data; // Return updated user data
+        } catch (error) {
+            throw error.response ? error.response.data : error;
+        }
+    }
 };
 
 export default authService;

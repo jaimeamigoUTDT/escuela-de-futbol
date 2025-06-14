@@ -1,14 +1,44 @@
 import "./MatchCard.css"
-import { Calendar, Clock, MapPin, Users, Bell } from "lucide-react"
-import React, { useContext, useState } from "react";
+import { Calendar, Clock, MapPin, Users, Bell, CheckCircle, XCircle } from "lucide-react"
+import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext.jsx"
 import { v4 as uuidv4 } from "uuid"
 import notificationController from "../../controllers/notificationController.jsx"
+import { teamsController } from "../../controllers/teamsController.jsx"
+import { useAuth } from "../../hooks/useAuth"
 
-export default function MatchCard({ time, date, localTeam, rivalTeam, category, fieldAddress, matchData }) {
+export default function MatchCard({
+  time,
+  date,
+  localTeam,
+  rivalTeam,
+  category,
+  fieldAddress,
+  match_id,
+  team, // passed from ParentMatchesPage
+  playerDni, // passed from ParentMatchesPage
+  onConfirmAssistance, // callback to refresh
+}) {
   const { userRole } = useContext(AuthContext)
   const [showModal, setShowModal] = useState(false);
   const [notificationContent, setNotificationContent] = useState("");
+  const [assistConfirmed, setAssistConfirmed] = useState(false);
+  const [assistLoading, setAssistLoading] = useState(false);
+  const { editTeam } = teamsController();
+  const { userDni } = useAuth();
+
+  // Detect if player is already confirmed
+  useEffect(() => {
+    const dniToCheck = playerDni || userDni;
+    setAssistConfirmed(
+      !!(
+        team &&
+        Array.isArray(team.confirmed_players_ids) &&
+        team.confirmed_players_ids.includes(dniToCheck)
+      )
+    );
+  }, [team, playerDni, userDni]);
+
   const handleCreateNotification = () => {
     setNotificationContent("");
     setShowModal(true);
@@ -19,7 +49,7 @@ export default function MatchCard({ time, date, localTeam, rivalTeam, category, 
     try {
       await notificationController.createNotification(
         uuidv4(),
-        "none",
+        match_id,
         new Date().toISOString().split("T")[0],
         new Date().toLocaleTimeString().slice(0, 5),
         `Partido contra ${rivalTeam} el ${date} a las ${time}:\n${notificationContent}`
@@ -32,6 +62,81 @@ export default function MatchCard({ time, date, localTeam, rivalTeam, category, 
     }
   };
 
+  // Assistance confirmation logic
+  const handleConfirmAssistance = async () => {
+    setAssistLoading(true);
+    try {
+      const dniToAdd = playerDni || userDni;
+
+      if (!team || !team.team_id) {
+        alert("No se encontró el equipo para este partido.");
+        setAssistLoading(false);
+        return;
+      }
+
+      const confirmed = Array.isArray(team.confirmed_players_ids)
+        ? [...team.confirmed_players_ids]
+        : [];
+
+      if (!confirmed.includes(dniToAdd)) {
+        confirmed.push(dniToAdd);
+      } else {
+        alert("La asistencia ya fue confirmada.");
+        setAssistLoading(false);
+        return;
+      }
+
+      await editTeam({
+        ...team,
+        confirmed_players_ids: confirmed,
+      });
+
+      setAssistConfirmed(true);
+      alert("¡Asistencia confirmada!");
+      if (onConfirmAssistance) onConfirmAssistance();
+    } catch (err) {
+      console.error("Error al confirmar asistencia:", err);
+      alert("Hubo un error al confirmar la asistencia.");
+    } finally {
+      setAssistLoading(false);
+    }
+  };
+
+  // Remove assistance confirmation
+  const handleRemoveAssistance = async () => {
+    setAssistLoading(true);
+    try {
+      const dniToRemove = playerDni || userDni;
+
+      if (!team || !team.team_id) {
+        alert("No se encontró el equipo para este partido.");
+        setAssistLoading(false);
+        return;
+      }
+
+      const confirmed = Array.isArray(team.confirmed_players_ids)
+        ? [...team.confirmed_players_ids]
+        : [];
+
+      if (confirmed.includes(dniToRemove)) {
+        const updated = confirmed.filter(dni => dni !== dniToRemove);
+        await editTeam({
+          ...team,
+          confirmed_players_ids: updated,
+        });
+        setAssistConfirmed(false);
+        alert("Confirmación eliminada.");
+        if (onConfirmAssistance) onConfirmAssistance();
+      } else {
+        alert("La asistencia no estaba confirmada.");
+      }
+    } catch (err) {
+      console.error("Error al eliminar confirmación:", err);
+      alert("Hubo un error al eliminar la confirmación.");
+    } finally {
+      setAssistLoading(false);
+    }
+  };
 
   return (
     <>
@@ -40,25 +145,25 @@ export default function MatchCard({ time, date, localTeam, rivalTeam, category, 
           <div className="modal">
             <h3>Crear notificación</h3>
             <textarea
+              className="notification-textarea"
               rows="4"
               placeholder="Escribí el contenido adicional..."
               value={notificationContent}
               onChange={(e) => setNotificationContent(e.target.value)}
             />
             <div className="modal-buttons">
-              <button onClick={() => setShowModal(false)}>Cancelar</button>
-              <button onClick={handleConfirmNotification}>Confirmar</button>
+              <button className="cancel-button" onClick={() => setShowModal(false)}>Cancelar</button>
+              <button className="confirm-button" onClick={handleConfirmNotification}>Confirmar</button>
             </div>
           </div>
         </div>
       )}
-      <div className="match-card">
+      <div className={`match-card${assistConfirmed && userRole === "parent" ? " match-card-confirmed" : ""}`}>
         <div className="match-card-header">
           <div className="match-title">
             <span className="teams">
               {localTeam} vs {rivalTeam}
             </span>
-
             {userRole !== "parent" && (
               <button className="bell-button" onClick={handleCreateNotification} title="Crear notificación">
                 <Bell className="bell-icon" />
@@ -88,8 +193,29 @@ export default function MatchCard({ time, date, localTeam, rivalTeam, category, 
             </div>
           </div>
         </div>
-
-
+        {/* Confirm assistance button for parents */}
+        {userRole === "parent" && team && playerDni && (
+          <div className="confirm-assistance-container">
+            {!assistConfirmed ? (
+              <button
+                className="confirm-assistance-button"
+                onClick={handleConfirmAssistance}
+                disabled={assistConfirmed || assistLoading}
+              >
+                {assistLoading ? "Confirmando..." : "Confirmar Asistencia"}
+              </button>
+            ) : (
+              <button
+                className="remove-assistance-button"
+                onClick={handleRemoveAssistance}
+                disabled={assistLoading}
+              >
+                <XCircle size={18} style={{ marginRight: 4 }} />
+                Eliminar confirmación
+              </button>
+            )}
+          </div>
+        )}
       </div>
     </>
   )

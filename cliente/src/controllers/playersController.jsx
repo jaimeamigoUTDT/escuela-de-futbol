@@ -3,15 +3,15 @@ import { usePlayers } from '../context/PlayersContext.jsx';
 
 const playersController = () => {
 
-    const { players, createPlayer } = usePlayers();
+    const { updatePlayers, createPlayer } = usePlayers();
 
     const getPlayers = async (params) =>  {
-
         try {
             const players = await playerService.getPlayers(params);
 
-            return players.data; 
+            updatePlayers(players.data); // Update context with fetched players
 
+            return players.data; 
         } catch (error) {
             console.error('Error fetching players:', error);
             throw error;
@@ -20,7 +20,6 @@ const playersController = () => {
 
     const putPlayer = async (data) => {
         try {
-
             const formmatedPlayer = {
                 dni: data.dni,
                 name: data.name,
@@ -29,13 +28,9 @@ const playersController = () => {
                 gender: data.gender,
                 parent_dni: data.parent_dni
             }
-
             console.log("Creating player with data:", formmatedPlayer);
-
             const newPlayer = await playerService.createPlayer(formmatedPlayer);
-
             createPlayer(newPlayer); // Update context with the new player
-
             return newPlayer;
         } catch (error) {
             console.error('Error creating player:', error);
@@ -63,11 +58,26 @@ const playersController = () => {
         }
     }
 
+    const getChildrenOfParent = async (parentDni) => {
+        try {
+            const allPlayers = await getPlayers();
+
+            const children = allPlayers.filter(p => Number(p.parent_dni) === Number(parentDni));
+            
+            return children
+
+        } catch (error) {
+            console.error('Error fetching children of parent:', error);
+            return { success: false, message: error.message, data: [] };
+        }
+    };
+
     return {
         getPlayers,
         putPlayer,
         updatePlayer,
-        deletePlayer
+        deletePlayer,
+        getChildrenOfParent
     }
 };
 

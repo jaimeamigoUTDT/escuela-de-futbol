@@ -1,76 +1,75 @@
 .players-container {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
 .players-button-container{
-  display: flex;
-  justify-content: left;
-  gap: 10px;
+display: flex;
+justify-content: left;
+gap: 10px;
+margin-bottom: 24px;
 }
 
 .players-add-match {
-  background-color: #00af23 !important;
+background-color: #00af23 !important;
 }
 
 .players-container-temp {
-  width: 300px;
-  height: 100%;
+width: 300px;
+height: 100%;
 }
 
-  .players-container h2 {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 8px;
-    color: #1f2937;
-  }
-  
-  .players-container p {
-    font-size: 1.1rem;
-    color: #6b7280;
-    margin-bottom: 24px;
-  }
-  
-  .players-container button {
-    background-color: #3b82f6;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 12px 24px;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    margin-bottom: 24px;
-    transition: all 0.2s ease-in-out;
-  }
-  
-  .players-container button:hover {
-    background-color: #2563eb;
-  }
-  
-  .players-list{
-    height: 300px;
-    overflow-y: auto !important;
-  }
-  
-  .match-item {
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    padding: 16px;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-  }
-  
-  .match-item h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: #1f2937;
-  }
-  
-  .match-item p {
-    margin: 4px 0;
-    color: #6b7280;
-  }
-  
+.players-container h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #1f2937;
+}
+
+.players-container p {
+  font-size: 1.1rem;
+  color: #6b7280;
+  margin-bottom: 24px;
+}
+
+.players-container button {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.players-container button:hover {
+  background-color: #2563eb;
+}
+
+.players-list{
+  height: 300px;
+  overflow-y: auto !important;
+}
+
+.match-item {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.match-item h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #1f2937;
+}
+
+.match-item p {
+  margin: 4px 0;
+  color: #6b7280;
+}

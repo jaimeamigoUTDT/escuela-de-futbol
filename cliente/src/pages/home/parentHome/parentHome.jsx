@@ -1,10 +1,10 @@
-import Navbar from "../../components/layout/Navbar"
-import MainLayout from "../../components/layout/MainLayout"
+import Navbar from "../../../components/layout/Navbar"
+import MainLayout from "../../../components/layout/MainLayout"
 import MatchesContent from "./components/MatchesContent"
 import NotificationsContent from "./components/NotificationsContent"
-import "./home.css"
+import "./parentHome.css"
 
-function Home() {
+function parentHome() {
 
   const leftContent = <MatchesContent />
 
@@ -17,4 +17,4 @@ function Home() {
   )
 }
 
-export default Home
+export default parentHome

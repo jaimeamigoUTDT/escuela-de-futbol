@@ -37,7 +37,6 @@ function getResults(req, res) {
         if (req.body) {
           queryParameters = req.body;
         }
-        console.log("Fetching results...");
         const data = resultService.getResults(queryParameters)
     
         res.status(200).send({ message: 'List of results', data: data});

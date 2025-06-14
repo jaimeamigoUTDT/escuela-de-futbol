@@ -47,8 +47,6 @@ class TeamService {
   async getTeams(queryParams) {
     const allTeams = teamRepository.getTeams();
 
-    console.log(allTeams);
-
     // Filter teams based on query parameters
     const filteredTeams = allTeams.filter((team) =>
       Object.keys(queryParams).every((key) => {
@@ -63,17 +61,22 @@ class TeamService {
 
     // Enrich each team with related data
     const enrichedTeams = filteredTeams.map((team) => this.enrichTeamData(team));
-    
+
     return enrichedTeams;
   }
 
   async updateTeam(teamData) {
     const existingTeam = teamRepository.teams.find((team) => team.team_id === teamData.team_id);
+
+    console.log(existingTeam);
+
     if (!existingTeam) {
       return null;
     }
 
     const updatedTeams = [...teamRepository.updateTeam(teamData.team_id, teamData)];
+
+    console.log(teamData);
     
     if (!updatedTeams) {
       return null;

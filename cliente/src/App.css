@@ -1,8 +1,41 @@
-body {
-  font-family: Arial, sans-serif;
+.App {
   text-align: center;
-  margin-top: 50px;
+  
 }
-h1 {
-  color: #333;
+
+header {
+  padding: 1rem;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 2rem;
+}
+
+nav {
+  margin-top: 1rem;
+}
+
+nav a {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: #007bff;
+  font-weight: 500;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.backend-status {
+  padding: 1rem;
+  margin-bottom: 2rem;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.error {
+  color: #dc3545;
+  font-weight: 500;
+}
+
+main {
+  padding: 0 2rem;
 }

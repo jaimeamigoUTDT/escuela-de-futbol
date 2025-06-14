@@ -3,7 +3,7 @@ info:
   title: API CRUD para escuela de fúbol
   version: 1.0.0
 paths:
-  /user:
+  /users:
     post:
       tags:
         - User
@@ -29,7 +29,7 @@ paths:
         '500':
           description: Internal server error
 
-  /player:
+  /players:
     post:
       tags:
           - Player
@@ -73,7 +73,7 @@ paths:
       summary: Obtener todos los jugadores
       parameters:
         - in: query
-          name: player_dni
+          name: dni
           schema:
             type: integer
             example: 12345678
@@ -173,7 +173,7 @@ paths:
         '500':
           description: Internal server error
     
-  /match:
+  /matches:
     post:
       tags:
           - Match
@@ -328,7 +328,7 @@ paths:
         '500':
           description: Internal server error
     
-  /notitication:
+  /notifications:
     post:
       tags:
           - Notification
@@ -340,7 +340,7 @@ paths:
             schema:
               type: object
               properties:
-                notitication_id:
+                notification_id:
                   type: integer
                   example: 1
                 match_id:
@@ -370,7 +370,7 @@ paths:
       summary: Obtener todas las notificaciones
       parameters:
         - in: query
-          name: notitication_id
+          name: notification_id
           schema:
             type: integer
             example: 1234
@@ -426,7 +426,7 @@ paths:
             schema:
               type: object
               properties:
-                notitication_id:
+                notification_id:
                   type: integer
                   example: 1
                 match_id:
@@ -456,7 +456,7 @@ paths:
       summary: Eliminar una notificación
       parameters:
         - in: query
-          name: notitication_id
+          name: notification_id
           schema:
             type: integer
             example: 1234
@@ -477,7 +477,7 @@ paths:
         '500':
           description: Internal server error
 
-  /team:
+  /teams:
     post:
       tags:
           - Team
@@ -623,7 +623,7 @@ paths:
         '500':
           description: Internal server error
 
-  /category:
+  /categories:
     get:
       tags: 
           - Category
@@ -665,7 +665,7 @@ paths:
         '500':
           description: Internal server error
         
-  /cancha:
+  /canchas:
     get:
       tags: 
           - Cancha
@@ -724,7 +724,6 @@ paths:
           description: Unauthorized
         '500':
           description: Internal server error
-
 
 components:
   schemas:
@@ -822,14 +821,14 @@ components:
     Notification:
       type: object
       required:
-        - notitication_id
+        - notification_id
         - match_id
         - fecha
         - hora
         - content
 
       properties:
-        notitication_id:
+        notification_id:
           type: integer
           example: 1
         match_id:

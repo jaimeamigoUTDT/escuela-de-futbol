@@ -1,6 +1,6 @@
 class Notification {
-    constructor({ notitication_id, match_id, fecha, hora, content }) {
-      this.notitication_id = notitication_id;
+    constructor({ notification_id, match_id, fecha, hora, content }) {
+      this.notification_id = notification_id;
       this.match_id = match_id;
       this.fecha = fecha;
       this.hora = hora;
@@ -8,4 +8,4 @@ class Notification {
     }
   }
 
-export default Notification;
+module.exports = { Notification };

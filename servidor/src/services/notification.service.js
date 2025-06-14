@@ -1,19 +1,35 @@
+const notificationRepository = require('../repositories/notification.repository');
+
 class NotificationService {
-    createNotification(notificationData) {
-      return { message: 'Notification created', data: notificationData };
+  createNotification(data) {
+    const exists = notificationRepository.notifications.find(n => n.notification_id === data.notification_id);
+
+    if (exists) {
+      return {success: false};
     }
-  
-    getNotifications(queryParams) {
-      return { message: 'List of notifications', filters: queryParams };
-    }
-  
-    updateNotification(notificationData) {
-      return { message: 'Notification updated', data: notificationData };
-    }
-  
-    deleteNotification(notification_id) {
-      return { message: 'Notification deleted', notification_id };
-    }
+    return notificationRepository.createNotification(data);
   }
+
+  getNotifications(queryParams) {
+    const all = notificationRepository.getNotifications();
+    const filtered = all.filter(notification => {
+      return Object.keys(queryParams).every(key =>
+        notification[key] && notification[key].toString() === queryParams[key].toString()
+      );
+    });
+    return filtered;
+  }
+
+  updateNotification(data) {
+    const exists = notificationRepository.notifications.find(n => n.notification_id === data.notification_id);
+    if (!exists) return null;
+
+    return notificationRepository.updateNotification(data.notification_id, data);
+  }
+
+  deleteNotification(id) {
+    return notificationRepository.deleteNotification(id);
+  }
+}
 
 module.exports = new NotificationService();

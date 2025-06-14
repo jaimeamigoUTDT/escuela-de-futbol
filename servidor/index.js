@@ -22,6 +22,7 @@ const notificacionRoutes = require('./src/routes/notification.routes');
 const matchRoutes = require('./src/routes/match.routes');
 const categoryRoutes = require('./src/routes/category.routes');
 const playerRoutes = require('./src/routes/player.routes');
+const resultRoutes = require('./src/routes/result.routes');
 
 // Serve Swagger UI at /api-docs
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
@@ -30,13 +31,14 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api/users', userRoutes);
 app.use('/api/teams', teamRoutes);
 app.use('/api/canchas', canchaRoutes);
-app.use('/api/notificaciones', notificacionRoutes);
+app.use('/api/notifications', notificacionRoutes);
 app.use('/api/matches', matchRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/players', playerRoutes);
+app.use('/api/results', resultRoutes);
 
 // Sample API route (optional, can be removed if not needed)
-app.get('/api', (req, res) => {
+app.get('/hello-world', (req, res) => {
   res.json({ message: 'Hello from the Node.js backend!' });
 });
 

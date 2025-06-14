@@ -1,0 +1,124 @@
+.player-card {
+  background-color: #fdfdfd;
+  border: 1px solid #ccc;
+  border-left: 5px solid #1e90ff;
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  transition: box-shadow 0.2s ease;
+  color: #000;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+.player-info {
+  color: #000;
+}
+
+.info-item {
+  color: #000;
+}
+
+.player-card:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.player-header {
+  margin-bottom: 10px;
+}
+
+.player-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.player-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+
+.players-container {
+  display: flex;
+  width: 100%;
+  min-height: calc(100vh - 60px); /* Adjust based on Navbar height */
+}
+
+.players-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.players-button-container {
+  display: flex;
+  gap: 10px;
+}
+
+/* Actions container for buttons */
+.player-card__actions {
+  display: flex;
+  gap: 8px;
+}
+/* Icon styles */
+.player-card__icon {
+  width: 16px; /* Explicit size for SVG */
+  height: 16px;
+  color: #ffffff; /* White for contrast on blue/red buttons */
+}
+
+/* Edit button (blue) */
+.player-card__button--edit {
+  background-color: #3b82f6;
+}
+
+/* Edit button hover */
+.player-card__button--edit:hover {
+  background-color: #2563eb;
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Edit button active */
+.player-card__button--edit:active {
+  transform: scale(0.95);
+}
+
+/* Edit button focus */
+.player-card__button--edit:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+/* Delete button (red) */
+.player-card__button--delete {
+  background-color: #ef4444 !important;
+}
+
+/* Delete button hover */
+.player-card__button--delete:hover {
+  background-color: #dc2626;
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Delete button active */
+.player-card__button--delete:active {
+  transform: scale(0.95);
+}
+
+/* Delete button focus */
+.player-card__button--delete:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
+}

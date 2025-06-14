@@ -1,0 +1,32 @@
+.matches-content-card {
+  background: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 100%;
+}
+
+.matches-content-card h1 {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.matches-content-card > p {
+  color: #666;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .matches-content-card {
+    padding: 1.5rem;
+  }
+
+  .matches-content-card h1 {
+    font-size: 1.5rem;
+  }
+}

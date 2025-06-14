@@ -1,0 +1,112 @@
+/* register Page Layout */
+.register-container {
+    display: flex;
+    align-items: center;
+    background-color: #f8f9fa;
+  }
+  
+  /* Left side - Image Section */
+  .register-image-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+  }
+  
+  .register-image {
+    max-width: 90%;
+    height: auto;
+    
+  }
+  
+  /* Right side - Form Section */
+  .register-form-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+  }
+  
+  .register-form-container {
+    width: 100%;
+    max-width: 400px;
+    padding-top: 0px;
+    padding-bottom: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* register Form Styles */
+  .register-title {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 28px;
+    font-weight: 600;
+  }
+  
+  .register-submit-button {
+    margin-top: 10px;
+    width: 100%;
+    background-color: #333;
+    color: white;
+  }
+  
+  .register-signup-link {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #666;
+    font-size: 14px;
+  }
+  
+  .register-signup-link a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .register-signup-link a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .register-container {
+      flex-direction: column;
+    }
+  
+    .register-image-section {
+      min-height: 200px;
+      padding: 20px;
+    }
+  
+    .register-form-section {
+      padding: 20px;
+    }
+  
+    .register-form-container {
+      padding: 30px 20px;
+    }
+  
+    .register-title {
+      font-size: 24px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .register-form-container {
+      padding: 20px 15px;
+    }
+  
+    .register-title {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+  }
+  

@@ -1,0 +1,30 @@
+[
+  {
+    "notification_id": "362d9c59-c02b-4175-8a2a-e4ecee51ec1d",
+    "match_id": 1749824131291,
+    "fecha": "2025-06-14",
+    "hora": "10:35",
+    "content": "Partido contra Puercos FC el 2025-06-26 a las 11:18:\npartido suspendido"
+  },
+  {
+    "notification_id": "c02ee152-71a3-4690-94b6-efcc1bf0ff62",
+    "match_id": "none",
+    "fecha": "2025-06-14",
+    "hora": "10:35",
+    "content": "Hola"
+  },
+  {
+    "notification_id": "3559dae6-99a7-49be-a663-2c55dce296f1",
+    "match_id": 2,
+    "fecha": "2025-06-14",
+    "hora": "10:36",
+    "content": "Partido contra Puercos FC el 2025-06-26 a las 11:18:\nhola"
+  },
+  {
+    "notification_id": "94557d0d-5977-4f40-bb4b-a6f823d82d40",
+    "match_id": 1749910129426,
+    "fecha": "2025-06-14",
+    "hora": "11:08",
+    "content": "Partido contra Testing el 2025-06-20 a las 10:00"
+  }
+]

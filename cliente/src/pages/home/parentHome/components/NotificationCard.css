@@ -1,0 +1,103 @@
+/* NotificationCard.css */
+
+/* Base styles for the notification card */
+.notification-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  margin-bottom: 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  max-width: 500px; /* Limit width for readability */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Hover effect */
+.notification-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Variant styles based on type prop */
+.notification-card--info {
+  border-left: 4px solid #3b82f6; /* Blue for info */
+}
+
+.notification-card--warning {
+  border-left: 4px solid #f59e0b; /* Amber for warning */
+}
+
+.notification-card--error {
+  border-left: 4px solid #ef4444; /* Red for error */
+}
+
+/* Header layout */
+.notification-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: #6b7280; /* Gray for secondary text */
+}
+
+/* Date and time spans */
+.notification-card__date,
+.notification-card__time {
+  display: flex;
+  align-items: center;
+}
+
+/* Icon styles */
+.notification-card__icon {
+  margin-right: 6px;
+  color: #4b5563; /* Slightly darker gray for icons */
+}
+
+/* Content styles */
+.notification-card__content {
+  font-size: 16px;
+  color: #1f2937; /* Dark gray for primary text */
+  line-height: 1.5;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .notification-card {
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+
+  .notification-card__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+  }
+
+  .notification-card__content {
+    font-size: 14px;
+  }
+}
+
+.notification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  color: white;
+  background-color: #ef4444;
+  font-size: 8px;
+  cursor: pointer;
+  margin-left: 8px;
+  padding: 8px 8px;
+}
+
+.delete-button:hover {
+  color: #b91c1c;
+}

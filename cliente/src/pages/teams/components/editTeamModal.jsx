@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import "./EditTeamModal.css"
+import "./editTeamModal.css"
 import {matchesController} from "../../../controllers/matchesController"
 
 const EditTeamModal = ({ isOpen, onClose, team, onSave }) => {

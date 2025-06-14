@@ -1,5 +1,3 @@
-"use client"
-
 import "./TeamCard.css"
 import { useState } from "react"
 import SelectPlayersModal from "./selectPlayerModal"

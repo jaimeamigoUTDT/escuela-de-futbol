@@ -66,7 +66,7 @@ const SelectPlayersModal = ({ isOpen, onClose, allPlayers, teamPlayers, onSaveSe
                         </strong>
                       </p>
                       <p>
-                        Categoría: {player.gender} - {new Date(player.dateOfBirth).getFullYear() || "N/A"}
+                        Categoría: {player.gender} - {new Date(player.date_of_birth).getFullYear() || "N/A"}
                       </p>
                       {isSelected && <div className="selection-indicator">✓</div>}
                     </div>

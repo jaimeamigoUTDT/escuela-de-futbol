@@ -52,7 +52,7 @@ function TeamsPage() {
           <TeamList teams={teams} />
         </div>
       </div>
-      <addTeamModal isOpen={isModalOpen} onClose={handleCloseModal} onTeamAdded={handleTeamAdded} />
+      <AddTeamModal isOpen={isModalOpen} onClose={handleCloseModal} onTeamAdded={handleTeamAdded} />
     </>
   )
 }

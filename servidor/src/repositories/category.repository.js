@@ -44,7 +44,15 @@ class categoryRepository {
   }
 
   getCategoryById(category_id) {
-    const category = this.categories.find((c) => c.category_id === category_id)
+
+    console.log(category_id, "category_id in repo")
+
+    console.log(this.categories)
+
+    const category = this.categories.find((c) => String(c.category_id) === String(category_id))
+
+    console.log(category, "category in repo")
+
     return category
   }
 

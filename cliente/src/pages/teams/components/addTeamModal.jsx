@@ -40,7 +40,7 @@ const AddTeamModal = ({ isOpen, onClose, onTeamAdded }) => {
       };
       fetchMatches();
     }
-  }, [isOpen, getMatches]);
+  }, [isOpen]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

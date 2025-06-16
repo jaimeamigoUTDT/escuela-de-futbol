@@ -7,10 +7,16 @@ class ResultService {
   enrichResultData(result) {
     if (!result) return null;
     // Fetch related data if necessary
+
+    console.log("result", result)
+
     if (result.match_id) {
       const match = matchRepository.getMatchById(result.match_id);
-      if (match) {
+
+      if (match.category_id) {
+
         const category = categoryRepository.getCategoryById(match.category_id);
+
         return {
           ...result,
           match: match || null,

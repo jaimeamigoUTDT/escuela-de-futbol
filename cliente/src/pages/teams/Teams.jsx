@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react"
-import { usePlayers } from "../../context/PlayersContext"
 import { useTeams } from "../../context/TeamsContext"
 import "./Teams.css"
 import Navbar from "../../components/layout/Navbar"
@@ -8,16 +7,13 @@ import { teamsController } from "../../controllers/teamsController" // Adjust th
 import AddTeamModal from "./components/addTeamModal"
 
 function TeamsPage() {
-  const { updatePlayers } = usePlayers()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const { teams } = useTeams() // Get teams directly from context
   const { fetchTeams } = teamsController() // Initialize teamsController
 
   // Fetch players when the component mounts (only once)
   useEffect(() => {
-    updatePlayers()
     updateTeamList() // Fetch teams when the component mounts
-    // eslint-disable-next-line
   }, [])
 
   const updateTeamList = async () => {
@@ -41,7 +37,6 @@ function TeamsPage() {
     <>
       <Navbar />
       <div className="players-container" style={{ display: "flex", width: "100%" }}>
-        {/* Left Side: Placeholder Component (70%) */}
         <div style={{ width: "100%", padding: "20px"}}>
           <h2>Equipos</h2>
           <p>Aquí podes ver todos los equipos que armaste para la próxima fecha:</p>

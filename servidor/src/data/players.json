@@ -1,19 +1,12 @@
 [
   {
-    "dni": 49999999,
-    "name": "Nicho",
-    "surname": "Jenkins",
-    "date_of_birth": "2025-06-25",
-    "gender": "Masculino",
-    "parent_dni": 23333333
-  },
-  {
     "dni": 40746804,
     "name": "Camila",
     "surname": "Amigo",
     "date_of_birth": "1997-11-16",
     "gender": "Femenino",
-    "parent_dni": 45235544
+    "parent_dni": 45235544,
+    "category_id": 1
   },
   {
     "dni": 45235543,
@@ -21,6 +14,16 @@
     "surname": "Amigo",
     "date_of_birth": "2003-10-08",
     "gender": "Masculino",
-    "parent_dni": 45235544
+    "parent_dni": 45235544,
+    "category_id": 3
+  },
+  {
+    "dni": 49999999,
+    "name": "Nicho",
+    "surname": "Jenkins",
+    "date_of_birth": "2008-10-31",
+    "gender": "Masculino",
+    "parent_dni": 45555555,
+    "category_id": "cat-1750052005858"
   }
 ]

@@ -19,7 +19,7 @@ function createPlayer(req, res) {
             return res.status(400).send({message: "Gender is missing"});
         } else if (!newPlayerData.parent_dni){
             return res.status(400).send({message: "Parent DNI is missing"});
-        }
+        } 
 
         const playerData = playerService.createPlayer(newPlayerData);
 

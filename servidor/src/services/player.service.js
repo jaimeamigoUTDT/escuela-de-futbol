@@ -72,6 +72,19 @@ class PlayerService {
         return null;
       }
 
+      // Assign category_id
+      const playerYear = parseInt(new Date(playerData.date_of_birth).getFullYear());
+      let existingCategory = categoryRepository.getCategoryByGenderYear(playerData.gender, playerYear);
+      if (!existingCategory) {
+        const newCategoryData = {
+          "category_id": `cat-${Date.now()}`,
+          "year": playerYear,
+          "gender": playerData.gender
+        }
+        existingCategory = categoryRepository.createCategory(newCategoryData);
+      }
+      playerData.category_id = existingCategory.category_id;
+
       const updatedPlayer = playerRepository.updatePlayer(dni, playerData);
 
       return updatedPlayer;

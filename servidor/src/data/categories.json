@@ -5,6 +5,7 @@
     "gender": "Masculino"
   },
   {
+
     "category_id": "1",
     "year": 2003,
     "gender": "Masculino"
@@ -12,6 +13,20 @@
   {
     "category_id": "cat-1750101373062",
     "year": 2004,
+  },
+  {  
+  "category_id": 2,
+    "year": 1997,
+    "gender": "Femenino"
+  },
+  {
+    "category_id": 1750052005858,
+    "year": 2008,
+    "gender": "Masculino"
+  },
+  {
+    "category_id": 1750052571689,
+    "year": 2009,
     "gender": "Masculino"
   }
 ]

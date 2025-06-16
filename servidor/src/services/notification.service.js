@@ -12,6 +12,10 @@ class NotificationService {
 
   getNotifications(queryParams) {
     const all = notificationRepository.getNotifications();
+
+    delete queryParams.authToken;
+    delete queryParams.dni;
+
     const filtered = all.filter(notification => {
       return Object.keys(queryParams).every(key =>
         notification[key] && notification[key].toString() === queryParams[key].toString()

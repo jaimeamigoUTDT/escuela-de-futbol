@@ -7,7 +7,7 @@ function createPlayer(req, res) {
     
         const newPlayerData = req.body;
 
-        if (!newPlayerData.dni){
+        if (!newPlayerData.player_dni){
             return res.status(400).send({ message: 'DNI is missing' });
         } else if (!newPlayerData.name){
             return res.status(400).send({ message: 'Name is missing' });

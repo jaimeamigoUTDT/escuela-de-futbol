@@ -20,8 +20,10 @@ const playersController = () => {
 
     const putPlayer = async (data) => {
         try {
+
+            console.log(data)
             const formmatedPlayer = {
-                dni: data.dni,
+                player_dni: data.dni,
                 name: data.name,
                 surname: data.surname,
                 date_of_birth: data.dateOfBirth,

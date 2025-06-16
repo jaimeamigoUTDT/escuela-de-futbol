@@ -1,17 +1,14 @@
-import axios from 'axios';
+import api from '../axios';
 
 const API_URL = 'http://localhost:5000/api/teams';
 
 const teamsService = {
-
-    getTeams: async (params) => {
+    getTeams: async (params = {}) => {
         try {
-            const response = (await axios.get(API_URL, { params })).data;
-            
+            const response = await api.get(API_URL, { params });
+            // Backend likely returns { success, message, data }
             console.log('Fetched teams:', response.data); // Log for debugging
-            
-            return response.data;
-
+            return response.data.data; // Return the array of teams
         } catch (error) {
             console.error('Error fetching teams:', error);
             throw error;
@@ -20,7 +17,7 @@ const teamsService = {
 
     createTeam: async (teamData) => {
         try {
-            const response = await axios.post(API_URL, teamData);
+            const response = await api.post(API_URL, teamData);
             return response.data;
         } catch (error) {
             console.error('Error creating team:', error);
@@ -30,14 +27,13 @@ const teamsService = {
 
     editTeam: async (updatedTeamData) => {
         try {
-            const response = await axios.put(`${API_URL}`, updatedTeamData);
+            const response = await api.put(API_URL, updatedTeamData);
             return response.data;
         } catch (error) {
             console.error('Error updating team:', error);
             throw error;
         }
     },
-
-}
+};
 
 export default teamsService;

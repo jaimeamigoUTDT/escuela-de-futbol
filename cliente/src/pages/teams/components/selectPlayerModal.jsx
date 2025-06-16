@@ -9,6 +9,12 @@ const SelectPlayersModal = ({ isOpen, onClose, allPlayers, teamPlayers, onSaveSe
 
   // Initialize selected players when modal opens
   useEffect(() => {
+
+    for (let i = 0; i < allPlayers.length; i++) {
+      let player = allPlayers[i]
+      player.dni = Number(player.dni) // Ensure dni is a number
+    }
+
     if (isOpen && teamPlayers) {
       // Set initially selected players based on team's current players
       setSelectedPlayers(teamPlayers.map((player) => player.dni))
@@ -32,7 +38,6 @@ const SelectPlayersModal = ({ isOpen, onClose, allPlayers, teamPlayers, onSaveSe
 
   // Handle save button click
   const handleSave = () => {
-
     onSaveSelection(teamId, selectedPlayers)
     onClose()
   }

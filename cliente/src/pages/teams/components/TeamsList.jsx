@@ -38,6 +38,7 @@ const TeamsList = ({ teams: teamsProp }) => {
   // Handle viewing players in modal
   const handleViewPlayers = (playersList, team) => {
     setSelectedTeam(team)
+    console.log("playersList", playersList)
     // Determine confirmed and unconfirmed players for this team
     const confirmedIds = Array.isArray(team.confirmed_players_ids) ? team.confirmed_players_ids : []
     const confirmed = []

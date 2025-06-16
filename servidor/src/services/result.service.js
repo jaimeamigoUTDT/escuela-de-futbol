@@ -52,6 +52,9 @@ class ResultService {
 
       const allResults = resultRepository.getResults();
 
+      delete queryParams.authToken;
+      delete queryParams.dni;
+
       const filteredResults = allResults.filter(result => {
         return Object.keys(queryParams).every(key => {
           return result[key] && result[key].toString() === queryParams[key].toString();

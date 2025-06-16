@@ -170,3 +170,13 @@
 .match-section {
   color: #000;
 }
+
+.btn-submit {
+  background-color: #3b82f6 !important; /* Blue */
+  color: white;
+  border: none;
+}
+
+.btn-submit:hover:not(:disabled) {
+  background-color: #2563eb !important; /* Darker blue */
+}

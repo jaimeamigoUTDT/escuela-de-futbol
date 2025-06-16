@@ -32,7 +32,7 @@ class PlayerService {
       let existingCategory = categoryRepository.getCategoryByGenderYear(playerData.gender, playerYear);
       if (!existingCategory) {
         const newCategoryData = {
-          "category_id": `cat-${Date.now()}`,
+          "category_id": Date.now(),
           "year": playerYear,
           "gender": playerData.gender
         }
@@ -84,6 +84,7 @@ class PlayerService {
           "year": playerYear,
           "gender": playerData.gender
         }
+
         existingCategory = categoryRepository.createCategory(newCategoryData);
       }
       playerData.category_id = existingCategory.category_id;

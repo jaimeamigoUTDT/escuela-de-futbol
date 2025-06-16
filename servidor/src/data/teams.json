@@ -10,9 +10,20 @@
       45235541
     ],
     "confirmed_players_ids": [
-      45235543,
       45235542,
       45235541
+    ]
+  },
+  {
+    "team_id": 1750103164853,
+    "name": "Jaime FC",
+    "match_id": 1750102773891,
+    "category_id": 1750052005858,
+    "players_ids": [
+      45235543
+    ],
+    "confirmed_players_ids": [
+      45235543
     ]
   }
 ]

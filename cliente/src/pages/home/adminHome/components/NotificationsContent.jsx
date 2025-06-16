@@ -65,7 +65,7 @@ function NotificationsContent() {
   const handleConfirm = async () => {
     const notification_id = uuidv4();
     const fecha = new Date().toISOString().split("T")[0];
-    const hora = new Date().toLocaleTimeString().slice(0, 5);
+    const hora = new Date().toLocaleTimeString().slice(0, 4);
     const match_id = "none";
 
     const result = await notificationController.createNotification(

@@ -65,7 +65,7 @@ export default function MatchCard({
         uuidv4(),
         match_id,
         new Date().toISOString().split("T")[0],
-        new Date().toLocaleTimeString().slice(0, 5),
+        new Date().toLocaleTimeString().slice(0, 4),
         `Partido contra ${rivalTeam} el ${date} a las ${time}:\n${notificationContent}`
       );
       alert("Notificación enviada correctamente.");

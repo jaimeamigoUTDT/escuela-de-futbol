@@ -83,7 +83,7 @@ const AddMatchModal = ({ isOpen, onClose }) => {
         uuidv4(),
         matchData.id,
         new Date().toISOString().split("T")[0],
-        new Date().toLocaleTimeString().slice(0, 5),
+        new Date().toLocaleTimeString().slice(0, 4),
         "Partido contra " + matchData.rivalTeam + " el " + matchData.date + " a las " + matchData.time
       );
 

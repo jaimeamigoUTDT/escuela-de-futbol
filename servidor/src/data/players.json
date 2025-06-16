@@ -6,7 +6,7 @@
     "date_of_birth": "2003-10-08",
     "gender": "Masculino",
     "parent_dni": "45235544",
-    "category_id": "cat-1750099565589"
+    "category_id": "1750099565589"
   },
   {
     "dni": 45235542,
@@ -15,7 +15,7 @@
     "date_of_birth": "2003-09-20",
     "gender": "Masculino",
     "parent_dni": "45235544",
-    "category_id": "cat-1750099565589"
+    "category_id": "1750099565589"
   },
   {
     "dni": 45235541,
@@ -24,6 +24,6 @@
     "date_of_birth": "2004-05-31",
     "gender": "Masculino",
     "parent_dni": "45235544",
-    "category_id": "cat-1750101373062"
+    "category_id": "1750101373062"
   }
 ]

@@ -36,7 +36,6 @@ function AdminMatchesPage() {
   // Fetch matches when the component mounts or when a match is updated
   useEffect(() => {
     updateList();
-    // eslint-disable-next-line
   }, []); // Only on mount
 
   const handleAddMatch = () => {

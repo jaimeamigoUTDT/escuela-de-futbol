@@ -160,7 +160,7 @@ const AddTeamModal = ({ isOpen, onClose, onTeamAdded }) => {
             <button type="button" onClick={handleClose} className="btn-cancel" disabled={loading}>
               Cancelar
             </button>
-            <button type="submit" className="btn-btn" disabled={loading}>
+            <button type="submit" className="btn-submit" disabled={loading}>
               {loading ? "Creando..." : "Crear Equipo"}
             </button>
           </div>

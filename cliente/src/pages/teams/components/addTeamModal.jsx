@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { teamsController } from "../../../controllers/teamsController";
 import { matchesController } from "../../../controllers/matchesController";
+import { categoriesController } from "../../../controllers/categoriesController";
 import "./addTeamModal.css";
 
 const AddTeamModal = ({ isOpen, onClose, onTeamAdded }) => {
   const { createTeam } = teamsController();
   const { getMatches } = matchesController();
+  const { getCategories } = categoriesController();
 
   const [formData, setFormData] = useState({
     teamName: "",
@@ -19,12 +21,15 @@ const AddTeamModal = ({ isOpen, onClose, onTeamAdded }) => {
 
   useEffect(() => {
     if (isOpen) {
-      setCategories([
-        { category_id: 1, year: "2023", gender: "Masculino" },
-        { category_id: 2, year: "2023", gender: "Femenino" },
-        { category_id: 3, year: "2024", gender: "Masculino" },
-        { category_id: 4, year: "2024", gender: "Femenino" },
-      ]);
+      const fetchCategories = async () => {
+        try {
+          const result = await getCategories();
+          setCategories(result || []);
+        } catch (error) {
+          setCategories([]);
+        }
+      };
+      fetchCategories();
     }
   }, [isOpen]);
 

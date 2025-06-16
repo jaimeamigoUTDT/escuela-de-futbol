@@ -77,7 +77,7 @@ class PlayerService {
       let existingCategory = categoryRepository.getCategoryByGenderYear(playerData.gender, playerYear);
       if (!existingCategory) {
         const newCategoryData = {
-          "category_id": `cat-${Date.now()}`,
+          "category_id": parseInt(Date.now()),
           "year": playerYear,
           "gender": playerData.gender
         }

@@ -1,0 +1,17 @@
+[
+  {
+    "category_id": 3,
+    "year": 2003,
+    "gender": "Masculino"
+  },
+  {
+    "category_id": 1,
+    "year": 1997,
+    "gender": "Femenino"
+  },
+  {
+    "category_id": "cat-1750052005858",
+    "year": 2008,
+    "gender": "Masculino"
+  }
+]

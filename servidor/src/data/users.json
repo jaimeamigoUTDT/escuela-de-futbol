@@ -4,9 +4,9 @@
     "dni": "12345678",
     "email": "johnDoe@gmail.com",
     "password": "123456",
-    "authToken": "cda53927-a2f0-48de-a018-691d4df8a438",
+    "authToken": "7aafa535-06e4-4eaa-9338-1e5f7c2aff69",
     "createdAt": "2023-10-01T12:00:00Z",
-    "tokenCreatedAt": "2025-06-14T22:11:03.908Z",
+    "tokenCreatedAt": "2025-06-16T20:08:10.473Z",
     "role": "superAdmin"
   },
   {
@@ -17,6 +17,6 @@
     "createdAt": "2025-06-16T18:45:04.109Z",
     "authToken": "1422e863-780e-4f8c-8f3d-a3ed332a983f",
     "tokenCreatedAt": "2025-06-16T18:45:04.109Z",
-    "role": "parent"
+    "role": "admin"
   }
 ]

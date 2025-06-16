@@ -68,7 +68,6 @@ export default function MatchCard({
         new Date().toLocaleTimeString().slice(0, 4),
         `Partido contra ${rivalTeam} el ${date} a las ${time}:\n${notificationContent}`
       );
-      alert("Notificación enviada correctamente.");
       setShowModal(false);
     } catch (error) {
       console.error("Error al crear la notificación:", error);
@@ -95,7 +94,6 @@ export default function MatchCard({
       if (!confirmed.includes(dniToAdd)) {
         confirmed.push(dniToAdd);
       } else {
-        alert("La asistencia ya fue confirmada.");
         setAssistLoading(false);
         return;
       }
@@ -106,7 +104,6 @@ export default function MatchCard({
       });
 
       setAssistConfirmed(true);
-      alert("¡Asistencia confirmada!");
       if (onConfirmAssistance) onConfirmAssistance();
     } catch (err) {
       console.error("Error al confirmar asistencia:", err);
@@ -139,10 +136,7 @@ export default function MatchCard({
           confirmed_players_ids: updated,
         });
         setAssistConfirmed(false);
-        alert("Confirmación eliminada.");
         if (onConfirmAssistance) onConfirmAssistance();
-      } else {
-        alert("La asistencia no estaba confirmada.");
       }
     } catch (err) {
       console.error("Error al eliminar confirmación:", err);

@@ -70,7 +70,6 @@ const AddResultModal = ({ isOpen, onClose }) => {
       };
 
       await createResult(resultData);
-      alert("Resultado cargado correctamente.");
       onClose(); // Cierra el modal
     } catch (error) {
       console.error("Error creando resultado:", error);

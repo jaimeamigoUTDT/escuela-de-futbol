@@ -18,9 +18,9 @@ class ResultService {
         };
       }
       return {
-      ...result,
-      match: match || null,
-    };
+        ...result,
+        match: match || null
+      };
     }
     return result;
   }

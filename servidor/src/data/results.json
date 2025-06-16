@@ -1,21 +1,14 @@
 [
   {
-    "result_id": 1,
-    "match_id": 1749824131291,
-    "resultado_san_esteban": 6,
-    "resultado_rival": 0
-  },
-  {
-    "result_id": 2,
-    "match_id": 1749824170811,
-    "resultado_san_esteban": 8,
-    "resultado_rival": 1
-  },
-  {
     "result_id": "b1cd1a15-513a-4b09-abf4-6568ecbf6e80",
     "match_id": 3,
     "resultado_san_esteban": 2,
     "resultado_rival": 2
+  },
+  {
+    "result_id": "93d49b4b-1f14-4860-88df-ee1e82f345ad",
+    "match_id": 1,
+    "resultado_san_esteban": 12,
+    "resultado_rival": 12
   }
- 
 ]

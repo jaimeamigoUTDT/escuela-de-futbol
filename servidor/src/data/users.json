@@ -1,132 +1,22 @@
 [
   {
-    "name": "John Doe",
+    "name": "Esteban",
     "dni": "12345678",
     "email": "johnDoe@gmail.com",
     "password": "123456",
     "authToken": "cda53927-a2f0-48de-a018-691d4df8a438",
     "createdAt": "2023-10-01T12:00:00Z",
     "tokenCreatedAt": "2025-06-14T22:11:03.908Z",
-    "role": "admin"
-  },
-  {
-    "name": "Jaime Amigo",
-    "dni": "12345680",
-    "email": "jaimeamigo03@gmail.com",
-    "password": "Standard2329",
-    "createdAt": "2025-06-06T20:31:58.745Z",
-    "authToken": "28863cae-96c2-4914-a519-7d0ab3feeffc",
-    "tokenCreatedAt": "2025-06-13T16:50:30.228Z",
-    "role": "admin"
-  },
-  {
-    "name": "Jaime Amigo",
-    "dni": "45235541",
-    "email": "jaimeamigo03@gmail.com",
-    "password": "123456",
-    "createdAt": "2025-06-11T17:49:29.607Z",
-    "authToken": "dd2b2239-2b45-4504-8519-abf01979685b",
-    "tokenCreatedAt": "2025-06-11T17:49:29.607Z",
-    "role": "parent"
+    "role": "superAdmin"
   },
   {
     "name": "Jaime Amigo",
     "dni": "45235544",
     "email": "jaimeamigo03@gmail.com",
     "password": "123456",
-    "createdAt": "2025-06-11T20:17:35.378Z",
-    "authToken": "27ef2f9e-b0f4-477c-a33c-547d2cc77451",
-    "tokenCreatedAt": "2025-06-16T15:38:34.238Z",
-    "role": "admin"
-  },
-  {
-    "name": "Jaime Amigo",
-    "dni": "45235543",
-    "email": "jaimeamigo03@gmail.com",
-    "password": "123456",
-    "createdAt": "2025-06-11T20:27:46.380Z",
-    "authToken": "99535a70-b826-4e60-b58c-d5650bb411d3",
-    "tokenCreatedAt": "2025-06-11T20:27:46.380Z",
-    "role": "parent"
-  },
-  {
-    "name": "Jaime Amigo",
-    "dni": "45235546",
-    "email": "jaimeamigo03@gmail.com",
-    "password": "123456",
-    "createdAt": "2025-06-11T20:28:27.770Z",
-    "authToken": "f8c54fc0-17d4-4100-a92a-6f325475044e",
-    "tokenCreatedAt": "2025-06-11T20:28:27.770Z",
-    "role": "parent"
-  },
-  {
-    "name": "Jaime Amigo",
-    "dni": "45235550",
-    "email": "jaimeamigo03@gmail.com",
-    "password": "123456",
-    "createdAt": "2025-06-11T20:29:04.195Z",
-    "authToken": "3ff85ac8-a462-4f70-a945-9bca24977f9f",
-    "tokenCreatedAt": "2025-06-11T20:29:04.195Z",
-    "role": "parent"
-  },
-  {
-    "name": "Jaime Amigo",
-    "dni": "45235510",
-    "email": "jaimeamigo03@gmail.com",
-    "password": "123456",
-    "createdAt": "2025-06-11T20:30:01.187Z",
-    "authToken": "d07ec383-511c-47e1-86d0-3af5111b33a6",
-    "tokenCreatedAt": "2025-06-11T20:30:01.187Z",
-    "role": "parent"
-  },
-  {
-    "name": "Jaime Amigo",
-    "dni": "45235540",
-    "email": "jaimeamigo03@gmail.com",
-    "password": "123456",
-    "createdAt": "2025-06-11T20:30:40.628Z",
-    "authToken": "d0ff28ec-3351-4121-884d-f9e57310d198",
-    "tokenCreatedAt": "2025-06-11T20:30:40.628Z",
-    "role": "parent"
-  },
-  {
-    "name": "felipe caracoix",
-    "dni": "45224476",
-    "email": "f@gmail.com",
-    "password": "1",
-    "createdAt": "2025-06-13T13:42:23.761Z",
-    "authToken": "cd32a13a-e4f2-4306-bd9a-e2bbff7c894e",
-    "tokenCreatedAt": "2025-06-13T13:42:23.761Z",
-    "role": "admin"
-  },
-  {
-    "name": "Dafydd Jenkins",
-    "dni": "45555555",
-    "email": "daf@gmail.com",
-    "password": "Daf",
-    "createdAt": "2025-06-13T14:30:13.755Z",
-    "authToken": "c4f4cd0f-69ff-41f1-b679-2e31fc9c617a",
-    "tokenCreatedAt": "2025-06-14T23:59:18.003Z",
-    "role": "parent"
-  },
-  {
-    "name": "Mariano Sanson",
-    "dni": "45963658",
-    "email": "mariano@sanson.com",
-    "password": "123456",
-    "createdAt": "2025-06-13T20:41:57.952Z",
-    "authToken": "736fa42a-8e94-4bc2-9297-03309f4c2e6e",
-    "tokenCreatedAt": "2025-06-13T20:50:04.615Z",
-    "role": "admin"
-  },
-  {
-    "name": "Jaime Amigo",
-    "dni": "90909098",
-    "email": "jaimeamigo03@gmail.com",
-    "password": "123456",
-    "createdAt": "2025-06-13T20:43:52.042Z",
-    "authToken": "c1620c3f-c6e4-4432-9ad8-cd29f3dce405",
-    "tokenCreatedAt": "2025-06-13T20:43:52.042Z",
+    "createdAt": "2025-06-16T18:45:04.109Z",
+    "authToken": "1422e863-780e-4f8c-8f3d-a3ed332a983f",
+    "tokenCreatedAt": "2025-06-16T18:45:04.109Z",
     "role": "parent"
   }
 ]

@@ -22,7 +22,7 @@ class PlayerService {
     createPlayer(playerData) {
 
       // Check if the player already exists
-      const existingPlayer = playerRepository.players.find(player => player.dni === playerData.dni);
+      const existingPlayer = playerRepository.players.find(player => player.dni === playerData.player_dni);
       if (existingPlayer) {
         return { message: 'Player already exists', data: existingPlayer };
       }
@@ -52,6 +52,9 @@ class PlayerService {
     getPlayers(queryParams) {
 
       const allPlayers = playerRepository.getPlayers();
+
+      delete queryParams.authToken;
+      delete queryParams.dni;
 
       const filteredPlayers = allPlayers.filter(player => {
         return Object.keys(queryParams).every(key => {

@@ -1,35 +1,36 @@
-import axios from 'axios';
+import api from '../axios';
 
 const API_URL = 'http://localhost:5000/api/notifications';
 
 const notificationService = {
   // POST /api/notifications
   createNotification: async (notificationData) => {
-    
-    var response = await axios.post(API_URL, notificationData).then(res => res.data);
-    console.log(response);
-    return response;
+    const response = await api.post(API_URL, notificationData);
+    console.log(response.data);
+    return response.data;
   },
 
   // GET /api/notifications
   getNotifications: async () => {
-    
-    var response = await axios.get(API_URL).then(res => res.data);
+    const response = await api.get(API_URL);
     console.log(response.data);
-    return response;
+    return response.data;
   },
 
   // PUT /api/notifications
   updateNotification: async (notificationData) => {
-    return axios.put(API_URL, notificationData).then(res => res.data);
+    const response = await api.put(API_URL, notificationData);
+    return response.data;
   },
 
   // DELETE /api/notifications
-deleteNotification: async (notification_id) => {
-  return axios.delete(API_URL, {
-    data: { notification_id }
-  }).then(res => res.data);
-}
+  deleteNotification: async (notification_id) => {
+    // For axios.delete with a body, use the 'data' config property
+    const response = await api.delete(API_URL, {
+      data: { notification_id }
+    });
+    return response.data;
+  }
 };
 
 export default notificationService;

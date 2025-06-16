@@ -21,10 +21,8 @@ export const TeamsProvider = ({ children }) => {
   }
 
   const updateTeams = (newTeams) => {
-    setTeams([])
-    setTeams(newTeams)
-
-    return newTeams
+    setTeams(newTeams);
+    return newTeams;
   }
 
   const editTeam = (teamId, updatedTeam) => {

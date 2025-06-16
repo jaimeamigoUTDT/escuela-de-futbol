@@ -22,6 +22,9 @@ class CategoryService {
 
     const allCategories = categoryRepository.getCategories();
 
+    delete queryParams.authToken;
+    delete queryParams.dni;
+
     const filteredCategories = allCategories.filter(category => {
       return Object.keys(queryParams).every(key => {
         return category[key] && category[key].toString() === queryParams[key].toString();

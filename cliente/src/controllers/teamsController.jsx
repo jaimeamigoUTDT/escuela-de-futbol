@@ -2,15 +2,17 @@ import { useTeams } from "../context/TeamsContext"; // Adjust the path as necess
 import teamsService from "../api/services/teamsService"; // Adjust the path to your service
 
 export const teamsController = () => {
-  const { teams, updateTeams, saveTeam } = useTeams(); // Adjust path to TeamsContext
+  const { updateTeams, saveTeam } = useTeams(); // Adjust path to TeamsContext
 
   const fetchTeams = async ({ params } = {}) => {
     try {
-      const teams = await teamsService.getTeams(params);
+      const newTeams = await teamsService.getTeams(params);
 
-      updateTeams(teams); // Update the teams in context or state
+      console.log("Fetched teams:", newTeams); // Log for debugging
 
-      return teams;
+      updateTeams(newTeams); // Update the teams in context or state
+
+      return newTeams;
     } catch (error) {
       console.error("Error fetching teams:", error);
       throw error;

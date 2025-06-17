@@ -7,7 +7,7 @@ import AddMatchModal from "./components/addMatchModal";
 
 function AdminMatchesPage() {
 
-  const { getMatches } = matchesController();
+  const { getMatches, deleteMatch } = matchesController();
 
   const [matches, setMatches] = useState([]); // Fetch matches from the controller
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,6 +27,13 @@ function AdminMatchesPage() {
         return matchDate >= today;
       });
 
+      // Sort the matches so that the soonest match comes first
+      filteredMatches.sort((a, b) => {
+        const dateA = new Date(a.fecha + "T" + (a.hora || "00:00"));
+        const dateB = new Date(b.fecha + "T" + (b.hora || "00:00"));
+        return dateA - dateB;
+      });
+
       setMatches(filteredMatches); 
     } catch (error) {
       console.log('Error fetching matches:', error);
@@ -36,8 +43,19 @@ function AdminMatchesPage() {
   // Fetch matches when the component mounts or when a match is updated
   useEffect(() => {
     updateList();
-    // eslint-disable-next-line
   }, []); // Only on mount
+
+  const handleDeleteMatch = async (matchId) => {
+    if (window.confirm("¿Estás seguro de que querés eliminar este partido?")) {
+      try {
+        await deleteMatch(matchId);
+        await updateList();
+      } catch (error) {
+        console.error("Error al eliminar el equipo:", error);
+        alert("No se pudo eliminar el equipo.");
+      }
+    }
+  };
 
   const handleAddMatch = () => {
     setIsModalOpen(true)
@@ -45,6 +63,7 @@ function AdminMatchesPage() {
 
   const handleCloseModal = () => {
     setIsModalOpen(false)
+    updateList();
   }
 
   return (
@@ -70,7 +89,9 @@ function AdminMatchesPage() {
                 rivalTeam={item.rival}
                 category={item.category.gender + " " + item.category.year}
                 fieldAddress={item.cancha.address}
-                match_id = {item.match_id}
+                match_id={item.match_id}
+                onDeleteMatch={() => handleDeleteMatch(item.match_id)}
+                cancha={item.cancha}
               />
             ))
           )}

@@ -171,4 +171,14 @@
       padding: 16px;
     }
   }
+  .btn-btn {
+    background-color: #3b82f6 !important;
+    /* Blue */
+    color: white;
+    border: none;
+  }
   
+  .btn-btn:hover:not(:disabled) {
+    background-color: #2563eb !important;
+    /* Darker blue */
+  }

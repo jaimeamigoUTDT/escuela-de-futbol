@@ -1,15 +1,16 @@
-import axios from 'axios';
+import api from '../axios';
 
-const API_URL = 'http://localhost:5000/api/matches';
+const API_URL = 'https://escuela-de-futbol.onrender.com/api/matches';
 
 const matchService = {
-    
-    getMatches: async (params) => {
+
+    getMatches: async (params = {}) => {
         try {
-            
-            const response = await axios.get(API_URL, { params });
-            
+            const response = await api.get(API_URL, { params });
             console.log('Fetched matches:', response.data); // Log for debugging
+            // If your backend wraps data like { success, message, data: [...] }, return only the array:
+            // return response.data.data;
+            // Otherwise, return as needed:
             return response.data;
         } catch (error) {
             console.error('Error fetching matches:', error);
@@ -19,7 +20,7 @@ const matchService = {
 
     createMatch: async (match) => {
         try {
-            const response = await axios.post(API_URL, match);
+            const response = await api.post(API_URL, match);
             return response.data;
         } catch (error) {
             console.error('Error creating match:', error);
@@ -29,7 +30,9 @@ const matchService = {
 
     deleteMatch: async (id) => {
         try {
-            const response = await axios.delete(`${API_URL}/${id}`);
+            const response = await api.delete(API_URL, {
+                data: { "match_id":id }, // Send dni in the request body
+            });
             return response.data;
         } catch (error) {
             console.error('Error deleting match:', error);
@@ -39,14 +42,13 @@ const matchService = {
 
     editMatch: async (id, updatedMatch) => {
         try {
-            const response = await axios.put(`${API_URL}/${id}`, updatedMatch);
+            const response = await api.put(`${API_URL}/${id}`, updatedMatch);
             return response.data;
         } catch (error) {
             console.error('Error editing match:', error);
             throw error;
         }
     }
-
 
 };
 

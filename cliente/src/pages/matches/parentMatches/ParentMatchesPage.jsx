@@ -42,18 +42,27 @@ function ParentMatchesPage() {
       // Find all player-team pairs for the parent's children
       const playerTeams = getPlayerTeams(teams, userDni);
 
-      // For each match, try to find a team and player's dni for the user
+      // Get today's date at midnight
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      // For each match, collect all playerTeams for this match
       const finalMatches = [];
       newMatchesList.forEach(match => {
-        // Find a playerTeam for this match
-        const pt = playerTeams.find(pt => pt.match_id === match.match_id);
-        if (pt) {
+        // Only consider matches with a date in the future
+        if (!match.fecha) return;
+        const matchDate = new Date(match.fecha + "T00:00:00");
+        if (matchDate <= today) return; // Skip matches not in the future
+
+        // Find ALL playerTeams for this match
+        const pts = playerTeams.filter(pt => pt.match_id === match.match_id);
+        pts.forEach(pt => {
           finalMatches.push({
             ...match,
             team: pt.team,
             playerDni: pt.playerDni,
           });
-        }
+        });
       });
       setMatches(finalMatches);
     } catch (error) {
@@ -96,9 +105,9 @@ function ParentMatchesPage() {
           {matches.length === 0 ? (
             <p>No hay partidos disponibles. Haz clic en "Actualizar Partidos".</p>
           ) : (
-            matches.map((item) => (
+            matches.map((item, idx) => (
               <MatchCard
-                key={item.match_id}
+                key={`${item.match_id}-${item.playerDni}`} // Now key is match and child
                 time={item.hora}
                 date={item.fecha}
                 localTeam="San Esteban"
@@ -109,6 +118,7 @@ function ParentMatchesPage() {
                 team={item.team}
                 playerDni={item.playerDni}
                 onConfirmAssistance={refreshData}
+                cancha={item.cancha}
               />
             ))
           )}

@@ -1,34 +1,18 @@
 [
   {
-    "match_id": 1,
-    "fecha": "2025-05-15",
+    "match_id": 1750179483411,
+    "fecha": "2025-06-18",
     "hora": "10:00",
-    "rival": "Rival FC",
-    "category_id": 1,
-    "cancha_id": 1
+    "rival": "Di Tella FC",
+    "category_id": 1750164448390,
+    "cancha_id": 8
   },
   {
-    "match_id": 2,
-    "fecha": "2025-05-16",
-    "hora": "10:00",
-    "rival": "Barcelona",
-    "category_id": 1,
-    "cancha_id": 1
-  },
-  {
-    "match_id": 3,
-    "fecha": "2025-05-14",
+    "match_id": 1750179628377,
+    "fecha": "2025-05-10",
     "hora": "10:00",
     "rival": "Real Madrid",
-    "category_id": 1,
-    "cancha_id": 1
-  },
-  {
-    "match_id": 1749824131291,
-    "fecha": "2025-06-26",
-    "hora": "11:20",
-    "rival": "Puercos FC",
-    "category_id": 1,
-    "cancha_id": 6
+    "category_id": 2,
+    "cancha_id": 9
   }
 ]

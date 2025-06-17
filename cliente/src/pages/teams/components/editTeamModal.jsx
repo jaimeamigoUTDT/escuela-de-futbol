@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react"
-import "./EditTeamModal.css"
+import "./editTeamModal.css"
 import {matchesController} from "../../../controllers/matchesController"
+import { categoriesController } from "../../../controllers/categoriesController"
 
 const EditTeamModal = ({ isOpen, onClose, team, onSave }) => {
   const [editingTeam, setEditingTeam] = useState(null)
   const [availableMatches, setAvailableMatches] = useState([])
   const [isLoadingMatches, setIsLoadingMatches] = useState(false)
   const [showMatchDropdown, setShowMatchDropdown] = useState(false)
+  const [availableCategories, setAvailableCategories] = useState([])
+  const [isLoadingCategoriess, setIsLoadingCategories] = useState(false)
 
   const { getMatches } = matchesController();
+  const { getCategories } = categoriesController();
 
   useEffect(() => {
     if (team) {
@@ -19,6 +23,12 @@ const EditTeamModal = ({ isOpen, onClose, team, onSave }) => {
   useEffect(() => {
       loadAvailableMatches()
   }, [showMatchDropdown])
+  
+  useEffect(() => {
+    if (isOpen) {
+      loadAvailableCategories();
+    }
+  }, [isOpen]);
 
   const loadAvailableMatches = async () => {
     setIsLoadingMatches(true)
@@ -34,14 +44,36 @@ const EditTeamModal = ({ isOpen, onClose, team, onSave }) => {
       setIsLoadingMatches(false)
     }
   }
+  
+  const loadAvailableCategories = async () => {
+    setIsLoadingCategories(true)
+    try {
+      const categories = await getCategories();
+
+      setAvailableCategories(categories || [])
+      
+    } catch (error) {
+      console.error("Error loading categories:", error)
+      setAvailableCategories([])
+    } finally {
+      setIsLoadingCategories(false)
+    }
+  }
 
   if (!isOpen || !editingTeam) return null
 
   const handleSaveTeam = (e) => {
-    e.preventDefault()
-    onSave(editingTeam)
-    onClose()
-  }
+    e.preventDefault();
+
+    const cleanedTeam = {
+      ...editingTeam,
+      category_id: editingTeam.category?.category_id || editingTeam.category_id,
+    };
+
+    onSave(cleanedTeam);
+    onClose();
+  };
+
 
   const handleInputChange = (field, value) => {
     setEditingTeam((prev) => ({
@@ -74,6 +106,23 @@ const EditTeamModal = ({ isOpen, onClose, team, onSave }) => {
 
     setShowMatchDropdown(false)
   }
+  
+  const handleAssignCategory = (selectedCategoryId) => {
+    const selectedCategory = availableCategories.find(
+      (c) => c.category_id === parseInt(selectedCategoryId)
+    );
+    if (selectedCategory) {
+      setEditingTeam((prev) => ({
+        ...prev,
+        category_id: selectedCategory.category_id, // ← Esto es clave
+        category: {
+          category_id: selectedCategory.category_id,
+          year: selectedCategory.year,
+          gender: selectedCategory.gender,
+        },
+      }));
+    }
+  };
 
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -86,23 +135,20 @@ const EditTeamModal = ({ isOpen, onClose, team, onSave }) => {
         </div>
         <div className="modal-body">
           <form onSubmit={handleSaveTeam} className="edit-form">
-            <div className="form-row">
-              <div className="form-group">
-                <label>Género:</label>
-                <input
-                  type="text"
-                  value={editingTeam.category?.gender || ""}
-                  onChange={(e) => handleNestedInputChange("category", "gender", e.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <label>Año:</label>
-                <input
-                  type="text"
-                  value={editingTeam.category?.year || ""}
-                  onChange={(e) => handleNestedInputChange("category", "year", e.target.value)}
-                />
-              </div>
+            <div className="form-group">
+              <label>Categoría:</label>
+              <select
+                value={editingTeam.category?.category_id || ""}
+                onChange={(e) => handleAssignCategory(e.target.value)}
+                required
+              >
+                <option value="">Seleccionar categoría</option>
+                {availableCategories.map((category) => (
+                  <option key={category.category_id} value={category.category_id}>
+                    {category.gender} - {category.year}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div className="form-group">

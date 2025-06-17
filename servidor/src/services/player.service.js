@@ -1,5 +1,6 @@
 const playerRepository = require('../repositories/player.repository');
 const userRepository = require('../repositories/user.repository');
+const categoryRepository = require('../repositories/category.repository');
 
 class PlayerService {
 
@@ -9,20 +10,35 @@ class PlayerService {
 
       // Fetch related data
       const parent = userRepository.getUserById(player.parent_dni);
+      const category = categoryRepository.getCategoryById(player.category_id);
       
       return {
         ...player,
-        parent: parent ? { ...parent } : null
+        parent: parent ? { ...parent } : null,
+        category: category ? { ...category } : null,
       };
     }
 
     createPlayer(playerData) {
 
       // Check if the player already exists
-      const existingPlayer = playerRepository.players.find(player => player.dni === playerData.dni);
+      const existingPlayer = playerRepository.players.find(player => player.dni === playerData.player_dni);
       if (existingPlayer) {
         return { message: 'Player already exists', data: existingPlayer };
       }
+
+      // Assign category_id
+      const playerYear = parseInt(new Date(playerData.date_of_birth).getFullYear());
+      let existingCategory = categoryRepository.getCategoryByGenderYear(playerData.gender, playerYear);
+      if (!existingCategory) {
+        const newCategoryData = {
+          "category_id": Date.now(),
+          "year": playerYear,
+          "gender": playerData.gender
+        }
+        existingCategory = categoryRepository.createCategory(newCategoryData);
+      }
+      playerData.category_id = existingCategory.category_id;
 
       const newPlayer = playerRepository.createPlayer(playerData);
 
@@ -36,6 +52,9 @@ class PlayerService {
     getPlayers(queryParams) {
 
       const allPlayers = playerRepository.getPlayers();
+
+      delete queryParams.authToken;
+      delete queryParams.dni;
 
       const filteredPlayers = allPlayers.filter(player => {
         return Object.keys(queryParams).every(key => {
@@ -55,6 +74,20 @@ class PlayerService {
       if (!existingPlayer) {
         return null;
       }
+
+      // Assign category_id
+      const playerYear = parseInt(new Date(playerData.date_of_birth).getFullYear());
+      let existingCategory = categoryRepository.getCategoryByGenderYear(playerData.gender, playerYear);
+      if (!existingCategory) {
+        const newCategoryData = {
+          "category_id": parseInt(Date.now()),
+          "year": playerYear,
+          "gender": playerData.gender
+        }
+
+        existingCategory = categoryRepository.createCategory(newCategoryData);
+      }
+      playerData.category_id = existingCategory.category_id;
 
       const updatedPlayer = playerRepository.updatePlayer(dni, playerData);
 

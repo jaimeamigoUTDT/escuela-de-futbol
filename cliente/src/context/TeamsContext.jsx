@@ -12,7 +12,7 @@ export const TeamsProvider = ({ children }) => {
   }
 
   const deleteTeam = (teamId) => {
-    setTeams((prevTeams) => prevTeams.filter((team) => team.id !== teamId))
+    setTeams((prevTeams) => prevTeams.filter((team) => team.team_id !== teamId))
   }
 
   const getStoredTeams = () => {
@@ -21,10 +21,8 @@ export const TeamsProvider = ({ children }) => {
   }
 
   const updateTeams = (newTeams) => {
-    setTeams([])
-    setTeams(newTeams)
-
-    return newTeams
+    setTeams(newTeams);
+    return newTeams;
   }
 
   const editTeam = (teamId, updatedTeam) => {

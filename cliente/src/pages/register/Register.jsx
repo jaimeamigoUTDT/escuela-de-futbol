@@ -3,7 +3,7 @@ import FormField from "../../components/common/FormField"
 import Button from "../../components/common/Button"
 import Form from "../../components/common/Form"
 import "../../styles/components/FormComponents.css"
-import "./Register.css"
+import "./register.css"
 import useRegister from "../../hooks/useRegister"
 import soccerImg from '../../../public/assets/landing-soccer.png';
 

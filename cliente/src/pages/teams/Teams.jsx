@@ -1,34 +1,30 @@
 import { useState, useEffect } from "react"
-import { usePlayers } from "../../context/PlayersContext"
 import { useTeams } from "../../context/TeamsContext"
 import "./Teams.css"
 import Navbar from "../../components/layout/Navbar"
 import TeamList from "./components/TeamsList"
-import { teamsController } from "../../controllers/teamsController" // Adjust the path as necessary
+import { teamsController } from "../../controllers/teamsController"
 import AddTeamModal from "./components/addTeamModal"
 
 function TeamsPage() {
-  const { updatePlayers } = usePlayers()
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const { teams } = useTeams() // Get teams directly from context
-  const { fetchTeams } = teamsController() // Initialize teamsController
+  const { teams } = useTeams() // Get teams from context
+  const { fetchTeams, deleteTeam } = teamsController()
 
-  // Fetch players when the component mounts (only once)
   useEffect(() => {
-    updatePlayers()
-    updateTeamList() // Fetch teams when the component mounts
+    updateTeamList()
     // eslint-disable-next-line
   }, [])
 
   const updateTeamList = async () => {
-    await fetchTeams() // This will update the teams in context
+    await fetchTeams()
   }
 
   const handleCloseModal = () => {
     setIsModalOpen(false)
   }
 
-  const handleOpenModel = () => {
+  const handleOpenModal = () => {
     setIsModalOpen(true)
   }
 
@@ -37,19 +33,32 @@ function TeamsPage() {
     updateTeamList()
   }
 
+  // This will be passed to TeamList, which will call it with the team id
+  const handleDeleteTeam = async (teamId) => {
+    if (window.confirm("¿Estás seguro de que querés eliminar este equipo?")) {
+      try {
+        await deleteTeam(teamId)
+        await updateTeamList()
+      } catch (error) {
+        console.error("Error al eliminar el equipo:", error)
+        alert("No se pudo eliminar el equipo.")
+      }
+    }
+  }
+
   return (
     <>
       <Navbar />
       <div className="players-container" style={{ display: "flex", width: "100%" }}>
-        {/* Left Side: Placeholder Component (70%) */}
-        <div style={{ width: "100%", padding: "20px"}}>
+        <div style={{ width: "100%", padding: "20px" }}>
           <h2>Equipos</h2>
           <p>Aquí podes ver todos los equipos que armaste para la próxima fecha:</p>
           <div className="players-button-container">
-            <button onClick={handleOpenModel}>Crear equipo</button>
+            <button onClick={handleOpenModal}>Crear equipo</button>
             <button onClick={updateTeamList}>Actualizar Equipos</button>
           </div>
-          <TeamList teams={teams} />
+          {/* Pass the handler itself; TeamList will call it with correct team id */}
+          <TeamList teams={teams} handleDeleteTeam={handleDeleteTeam} />
         </div>
       </div>
       <AddTeamModal isOpen={isModalOpen} onClose={handleCloseModal} onTeamAdded={handleTeamAdded} />

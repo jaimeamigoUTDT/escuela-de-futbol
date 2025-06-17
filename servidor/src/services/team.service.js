@@ -47,6 +47,9 @@ class TeamService {
   async getTeams(queryParams) {
     const allTeams = teamRepository.getTeams();
 
+    delete queryParams.authToken;
+    delete queryParams.dni;
+
     // Filter teams based on query parameters
     const filteredTeams = allTeams.filter((team) =>
       Object.keys(queryParams).every((key) => {

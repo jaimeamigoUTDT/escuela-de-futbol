@@ -48,7 +48,7 @@ El frontend se encuentra en el directorio `cliente` y utiliza Vite con la planti
 
 3. Crea un archivo `.env` en el directorio `cliente` para configurar la URL de la API del backend:
    ```env
-   VITE_API_URL=http://localhost:5000
+   VITE_API_URL=https://escuela-de-futbol.onrender.com
    ```
 
 4. Inicia el servidor de desarrollo del frontend:
@@ -75,7 +75,7 @@ El backend se encuentra en el directorio `servidor` y utiliza Express para servi
    ```bash
    npm start
    ```
-   - Verifica que el servidor esté funcionando visitando `http://localhost:5000/api` en tu navegador. Deberías ver:
+   - Verifica que el servidor esté funcionando visitando `https://escuela-de-futbol.onrender.com/api` en tu navegador. Deberías ver:
      ```json
      { "message": "¡Hola desde el backend de Node.js!" }
      ```

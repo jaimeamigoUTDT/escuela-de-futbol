@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import "./Players.css";
@@ -93,6 +91,7 @@ function PlayersPage() {
                   dateOfBirth={item.date_of_birth}
                   gender={item.gender}
                   parent={item.parent}
+                  category={item.category}
                   updateList={updateList} // Pass updateList
                 />
               ))

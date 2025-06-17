@@ -1,4 +1,3 @@
-// src/main.jsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
@@ -7,8 +6,9 @@ import { MatchesProvider } from './context/MatchesContext';
 import { PlayersProvider } from './context/PlayersContext';
 import { CanchasProvider } from './context/CanchasContext';
 import { TeamsProvider } from './context/TeamsContext';
-import './index.css';
 import { ResultsProvider } from './context/ResultsContext';
+import { CategoriesProvider } from './context/CategoriesContext';
+import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 
@@ -18,7 +18,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <CanchasProvider>
           <PlayersProvider>
             <ResultsProvider>
-              <App />
+              <CategoriesProvider>
+                <App />
+              </CategoriesProvider>
             </ResultsProvider>
           </PlayersProvider>
         </CanchasProvider>

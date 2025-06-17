@@ -23,7 +23,7 @@ function Navbar() {
     { key: "home", label: "Inicio" },
     { key: "partidos", label: "Partidos" },
     { key: "resultados", label: "Resultados" },
-    { key: "jugadores", label: userRole === "admin" || "superAdmin" ? "Equipos " : "Mis hijos" },
+    { key: "jugadores", label: userRole === "admin" ? "Equipos " : userRole === "superAdmin" ? "Equipos" : "Mis hijos" },
   ]
 
   return (

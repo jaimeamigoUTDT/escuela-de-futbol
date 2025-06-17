@@ -1,5 +1,5 @@
 import "./MatchCard.css"
-import { Calendar, Clock, MapPin, Users, Bell, CheckCircle, XCircle } from "lucide-react"
+import { Calendar, Clock, MapPin, Users, Bell, XCircle, Trash2, Wheat, CircleParking, UtensilsCrossed } from "lucide-react"
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext.jsx"
 import { v4 as uuidv4 } from "uuid"
@@ -15,9 +15,11 @@ export default function MatchCard({
   category,
   fieldAddress,
   match_id,
-  team, // passed from ParentMatchesPage
-  playerDni, // passed from ParentMatchesPage
-  onConfirmAssistance, // callback to refresh
+  cancha,
+  team,
+  playerDni,
+  onConfirmAssistance,
+  onDeleteMatch, 
 }) {
   const { userRole } = useContext(AuthContext)
   const [showModal, setShowModal] = useState(false);
@@ -27,7 +29,6 @@ export default function MatchCard({
   const { editTeam } = teamsController();
   const { userDni } = useAuth();
 
-  // --- New: Get the player name for this card ---
   const [playerName, setPlayerName] = useState("");
 
   useEffect(() => {
@@ -53,6 +54,7 @@ export default function MatchCard({
     );
   }, [team, playerDni, userDni]);
 
+  
   const handleCreateNotification = () => {
     setNotificationContent("");
     setShowModal(true);
@@ -65,10 +67,9 @@ export default function MatchCard({
         uuidv4(),
         match_id,
         new Date().toISOString().split("T")[0],
-        new Date().toLocaleTimeString().slice(0, 5),
+        new Date().toLocaleTimeString().slice(0, 4),
         `Partido contra ${rivalTeam} el ${date} a las ${time}:\n${notificationContent}`
       );
-      alert("Notificación enviada correctamente.");
       setShowModal(false);
     } catch (error) {
       console.error("Error al crear la notificación:", error);
@@ -95,7 +96,6 @@ export default function MatchCard({
       if (!confirmed.includes(dniToAdd)) {
         confirmed.push(dniToAdd);
       } else {
-        alert("La asistencia ya fue confirmada.");
         setAssistLoading(false);
         return;
       }
@@ -106,7 +106,6 @@ export default function MatchCard({
       });
 
       setAssistConfirmed(true);
-      alert("¡Asistencia confirmada!");
       if (onConfirmAssistance) onConfirmAssistance();
     } catch (err) {
       console.error("Error al confirmar asistencia:", err);
@@ -139,10 +138,7 @@ export default function MatchCard({
           confirmed_players_ids: updated,
         });
         setAssistConfirmed(false);
-        alert("Confirmación eliminada.");
         if (onConfirmAssistance) onConfirmAssistance();
-      } else {
-        alert("La asistencia no estaba confirmada.");
       }
     } catch (err) {
       console.error("Error al eliminar confirmación:", err);
@@ -184,11 +180,20 @@ export default function MatchCard({
               )}
               {localTeam} vs {rivalTeam}
             </span>
-            {userRole !== "parent" && (
-              <button className="bell-button" onClick={handleCreateNotification} title="Crear notificación">
-                <Bell className="bell-icon" />
-              </button>
-            )}
+            <div>
+              {userRole !== "parent" && (
+                <button className="bell-button" onClick={handleCreateNotification} title="Crear notificación">
+                  <Bell className="bell-icon" />
+                </button>
+                
+              )}
+              {userRole !== "parent" && (
+                <button className="delete-button" onClick={onDeleteMatch} title="Eliminar partido">
+                  <Trash2 className="trash-icon" />
+                </button>
+              )}
+            </div>
+            
           </div>
         </div>
         <div className="match-card-content">
@@ -201,6 +206,14 @@ export default function MatchCard({
               <Clock className="icon" />
               <span>{time}</span>
             </div>
+            <div className="match-detail">
+              <Users className="icon" />
+              <span>{cancha.size} jugadores</span>
+            </div>
+            <div className="match-detail">
+              <UtensilsCrossed className="icon" />
+              <span>Buffet disponible: {cancha.buffet_available === "true" ? "Si" : "No"}</span>
+            </div>
           </div>
           <div className="content-right">
             <div className="match-detail">
@@ -210,6 +223,14 @@ export default function MatchCard({
             <div className="match-detail">
               <Users className="icon" />
               <span>{category}</span>
+            </div>
+            <div className="match-detail">
+              <Wheat className="icon" />
+              <span>Pasto {cancha.shoe_type}</span>
+            </div>
+            <div className="match-detail">
+              <CircleParking  className="icon" />
+              <span>Estacionamiento disponible: {cancha.buffet_available === "true" ? "Si" : "No"}</span>
             </div>
           </div>
         </div>

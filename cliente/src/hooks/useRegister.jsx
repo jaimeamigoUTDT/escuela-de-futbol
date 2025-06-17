@@ -1,4 +1,3 @@
-// src/hooks/useRegister.jsx
 import { useState } from 'react';
 import { useAuth } from "./useAuth"
 import registerController from '../controllers/registerController';

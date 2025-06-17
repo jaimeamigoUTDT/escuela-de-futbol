@@ -3,6 +3,8 @@ const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
 const path = require('path');
+const authMiddleware = require('./src/middleware/authMiddleware'); // Adjust path
+
 
 const app = express();
 const port = 5000;
@@ -10,6 +12,18 @@ const port = 5000;
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use((req, res, next) => {
+  // List routes that should NOT require authentication
+  const openRoutes = [
+    '/api/users/login',
+    '/api/users/register',
+    '/api-docs'
+  ];
+  if (openRoutes.includes(req.path) || req.path.startsWith('/api-docs')) {
+    return next();
+  }
+  return authMiddleware(req, res, next);
+});
 
 // Load Swagger YAML file
 const swaggerDocument = YAML.load(path.join(__dirname, 'src/docs/swagger.yaml'));

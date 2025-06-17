@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { matchesController } from "../../../controllers/matchesController";
 import { resultsController } from "../../../controllers/resultsController";
 import { v4 as uuidv4 } from "uuid";
-import "./AddResultModal.css";
-import { all } from "axios";
+import "./addResultModal.css";
 
 const AddResultModal = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
@@ -71,7 +70,6 @@ const AddResultModal = ({ isOpen, onClose }) => {
       };
 
       await createResult(resultData);
-      alert("Resultado cargado correctamente.");
       onClose(); // Cierra el modal
     } catch (error) {
       console.error("Error creando resultado:", error);
@@ -128,7 +126,7 @@ const AddResultModal = ({ isOpen, onClose }) => {
           </div>
 
           <div className="form-actions">
-            <button type="button" onClick={onClose}>
+            <button type="button" className="btn-btn" onClick={onClose}>
               Cancelar
             </button>
             <button id='guardar_button' type="submit" disabled={loading} >

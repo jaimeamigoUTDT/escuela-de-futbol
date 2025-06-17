@@ -25,17 +25,17 @@ export const canchasController = () => {
 
       const response = await canchasService.getCanchas(params);
 
-      console.log('Response from canchasService:', response); // Debugging
+      console.log('Response from canchasService:', response);
 
       if (!response) {
           console.log('Invalid response:', response);
           saveCanchas([]); // Clear canchas if no data
-      } else if (response.data.length === 0) {
+      } else if (response.length === 0) {
           console.log('No canchas found');
           saveCanchas([]); // Clear canchas if no data
       }
 
-      const canchasData = response.data;
+      const canchasData = response;
 
       const formattedCanchas = formatCanchas(canchasData);
 

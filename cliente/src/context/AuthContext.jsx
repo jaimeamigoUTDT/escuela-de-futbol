@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
 
   const saveUserInfo = (user) => {
     localStorage.setItem('userName', user.name || '');
-    localStorage.setItem('userDni', user.dni || '');
+    localStorage.setItem('userDni', String(user.dni) || '');
     localStorage.setItem('userEmail', user.email || '');
     localStorage.setItem('userRole', user.role || '');
     setUserName(user.name || '');

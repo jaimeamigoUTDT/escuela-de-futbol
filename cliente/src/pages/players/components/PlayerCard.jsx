@@ -1,9 +1,7 @@
-"use client";
-
 import { useState } from "react";
 import { Calendar, Pencil, Trash2 } from "lucide-react";
-import EditPlayerModal from "./EditPlayerModal";
-import DeletePlayerModal from "./DeletePlayerModal";
+import EditPlayerModal from "./editPlayerModal";
+import DeletePlayerModal from "./deletePlayerModal";
 
 const PlayerCard = ({ name, surname, dateOfBirth, gender, dni, parent, updateList }) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);

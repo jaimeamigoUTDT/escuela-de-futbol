@@ -33,8 +33,6 @@ function ProfileDropdown({ isOpen, onToggle }) {
     // e.g. await coachController.addCoach(dni)
     updateUserRole(dni, "admin");
     
-    alert(`Entrenador con DNI ${dni} agregado (simulado).`);
-    
     handleModalClose();
   };
 

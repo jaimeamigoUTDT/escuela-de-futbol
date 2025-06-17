@@ -5,8 +5,6 @@ import Error from "../pages/error/Error";
 import AdminMatchesPage from "../pages/matches/adminMatches/AdminMatchesPage";
 import ParentMatchesPage from "../pages/matches/parentMatches/ParentMatchesPage";
 import Results from "../pages/results/Results";
-import Tournaments from "../pages/tournaments/Tournaments";
-import Admin from "../pages/admin/Admin";
 import TeamsPage from "../pages/teams/Teams";
 import PlayersPage from "../pages/players/Players";
 import ProtectedRoute from "../components/ProtectedRoute";
@@ -65,11 +63,6 @@ export const routeConfig = [
         label: "Results",
       },
       {
-        path: "/torneos",
-        element: <Tournaments />,
-        label: "Tournaments",
-      },
-      {
         path: "/jugadores",
         element: (
           <ProtectedRoute
@@ -81,16 +74,6 @@ export const routeConfig = [
           />
         ),
         label: "Players",
-      },
-    ],
-  },
-  {
-    element: <ProtectedRoute requiredRole="admin" />, // Admin-only routes
-    children: [
-      {
-        path: "/admin",
-        element: <Admin />,
-        label: "Admin",
       },
     ],
   },

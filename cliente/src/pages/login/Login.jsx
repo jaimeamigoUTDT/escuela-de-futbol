@@ -3,7 +3,7 @@ import FormField from "../../components/common/FormField"
 import Button from "../../components/common/Button"
 import Form from "../../components/common/Form"
 import "../../styles/components/FormComponents.css"
-import "./Login.css"
+import "./login.css"
 import useLogin from "../../hooks/useLogin"
 import soccerImg from '../../../public/assets/landing-soccer.png';
 

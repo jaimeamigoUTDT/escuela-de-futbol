@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { teamsController } from "../../../controllers/teamsController";
 import { matchesController } from "../../../controllers/matchesController";
-import { v4 as uuidv4 } from 'uuid';
-import "./AddTeamModal.css";
+import { categoriesController } from "../../../controllers/categoriesController";
+import "./addTeamModal.css";
 
 const AddTeamModal = ({ isOpen, onClose, onTeamAdded }) => {
   const { createTeam } = teamsController();
   const { getMatches } = matchesController();
+  const { getCategories } = categoriesController();
 
   const [formData, setFormData] = useState({
     teamName: "",
@@ -20,12 +21,16 @@ const AddTeamModal = ({ isOpen, onClose, onTeamAdded }) => {
 
   useEffect(() => {
     if (isOpen) {
-      setCategories([
-        { category_id: 1, year: "2023", gender: "Masculino" },
-        { category_id: 2, year: "2023", gender: "Femenino" },
-        { category_id: 3, year: "2024", gender: "Masculino" },
-        { category_id: 4, year: "2024", gender: "Femenino" },
-      ]);
+      const fetchCategories = async () => {
+        try {
+          let result = await getCategories();
+          result = (result || []).sort((a, b) => Number(a.year) - Number(b.year));
+          setCategories(result);
+        } catch (error) {
+          setCategories([]);
+        }
+      };
+      fetchCategories();
     }
   }, [isOpen]);
 
@@ -41,7 +46,7 @@ const AddTeamModal = ({ isOpen, onClose, onTeamAdded }) => {
       };
       fetchMatches();
     }
-  }, [isOpen, getMatches]);
+  }, [isOpen]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -156,7 +161,7 @@ const AddTeamModal = ({ isOpen, onClose, onTeamAdded }) => {
             <button type="button" onClick={handleClose} className="btn-cancel" disabled={loading}>
               Cancelar
             </button>
-            <button type="submit" className="btn-btn" disabled={loading}>
+            <button type="submit" className="btn-submit" disabled={loading}>
               {loading ? "Creando..." : "Crear Equipo"}
             </button>
           </div>

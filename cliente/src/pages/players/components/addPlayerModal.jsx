@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./AddPlayerModal.css";
+import "./addPlayerModal.css";
 import playersController from "../../../controllers/playersController";
 import { useAuth } from "../../../hooks/useAuth";
 
@@ -13,7 +13,7 @@ const AddPlayerModal = ({ isOpen, onClose }) => {
     surname: "",
     dateOfBirth: "",
     gender: "",
-    parent_dni: Number(userDni),
+    parent_dni: String(userDni),
   });
 
   const [loading, setLoading] = useState(false);
@@ -37,7 +37,7 @@ const AddPlayerModal = ({ isOpen, onClose }) => {
         surname: formData.surname,
         dateOfBirth: formData.dateOfBirth,
         gender: formData.gender,
-        parent_dni: Number(userDni),
+        parent_dni: String(userDni),
       };
 
       console.log("Creating player with data:", playerData);
@@ -50,7 +50,7 @@ const AddPlayerModal = ({ isOpen, onClose }) => {
         surname: "",
         dateOfBirth: "",
         gender: "",
-        parent_dni: Number(userDni),
+        parent_dni: String(userDni),
       });
 
       onClose();
@@ -69,7 +69,7 @@ const AddPlayerModal = ({ isOpen, onClose }) => {
       surname: "",
       dateOfBirth: "",
       gender: "",
-      parent_dni: Number(userDni),
+      parent_dni: String(userDni),
     });
     onClose();
   };

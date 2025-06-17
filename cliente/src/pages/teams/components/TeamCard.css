@@ -43,6 +43,16 @@
     font-size: 0.9em;
   }
 
+  .delete-button {
+    padding: 5px 10px;
+    background-color: #dc3545 !important;
+    color: #fff;
+    border: none ;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.9em;
+  }
+
 
   
   .view-players-button:hover,

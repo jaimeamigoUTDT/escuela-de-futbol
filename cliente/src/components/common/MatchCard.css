@@ -188,6 +188,7 @@
 .confirm-assistance-container {
   margin-top: 12px;
   text-align: right;
+  margin-left: 12px;
 }
 .confirm-assistance-button {
   background: #388e3c;
@@ -210,12 +211,8 @@
   margin-right: 5px;
 }
 
-.match-card-confirmed {
-  border: 2px solid #d32f2f !important;
-  background: #ffeaea !important;
-}
 .remove-assistance-button {
-  background: #d32f2f;
+  background: #d32f2f !important  ;     /* Red */
   color: #fff;
   border: none;
   padding: 7px 14px;
@@ -226,6 +223,10 @@
   display: flex;
   align-items: center;
   transition: background 0.2s;
+}
+.remove-assistance-button:hover,
+.remove-assistance-button:focus {
+  background: #b71c1c;     /* Darker red on hover/focus */
 }
 .remove-assistance-button:disabled {
   background: #888;

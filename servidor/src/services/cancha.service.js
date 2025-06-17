@@ -5,7 +5,8 @@ class CanchaService {
         
     const allCanchas = canchaRepository.getCanchas();
 
-    console.log('All canchas:', allCanchas);
+    delete queryParams.authToken;
+    delete queryParams.dni;
 
     const filteredCanchas = allCanchas.filter(cancha => {
       return Object.keys(queryParams).every(key => {

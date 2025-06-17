@@ -1,56 +1,20 @@
 [
   {
-    "dni": 45235543,
-    "name": "Jaimito",
-    "surname": "Amigo",
-    "date_of_birth": "2003-10-08",
-    "gender": "Masculino",
-    "parent_dni": "45235544",
-    "category_id": "1750099565589"
-  },
-  {
-    "dni": 45235542,
-    "name": "Felipito",
-    "surname": "Amigo",
-    "date_of_birth": "2003-09-20",
-    "gender": "Masculino",
-    "parent_dni": "45235544",
-    "category_id": "1750099565589"
-  },
-  {
-    "dni": 45235541,
-    "name": "Marianito",
-    "surname": "Amigo",
-    "date_of_birth": "2004-05-31",
-    "gender": "Masculino",
-    "parent_dni": "45235544",
-    "category_id": "1750101373062"
-  },
-  {
-    "dni": 49999999,
-    "name": "Nicho",
-    "surname": "Jenkins",
-    "date_of_birth": "2008-10-31",
-    "gender": "Masculino",
-    "parent_dni": "45555555",
-    "category_id": 1750052005858
-  },
-  {
-    "dni": 45000000,
-    "name": "Jaimito",
-    "surname": "Amigo",
-    "date_of_birth": "2003-10-08",
-    "gender": "Masculino",
-    "parent_dni": "40000000",
-    "category_id": 1
-  },
-  {
     "dni": 46000000,
-    "name": "Felipito",
+    "name": "Felipe",
     "surname": "Amigo",
     "date_of_birth": "2004-09-20",
     "gender": "Masculino",
-    "parent_dni": "40000000",
+    "parent_dni": "45235544",
     "category_id": 1750164448390
+  },
+  {
+    "dni": 47000000,
+    "name": "Dafydd",
+    "surname": "Amigo",
+    "date_of_birth": "2003-10-10",
+    "gender": "Masculino",
+    "parent_dni": "45235544",
+    "category_id": 1
   }
 ]

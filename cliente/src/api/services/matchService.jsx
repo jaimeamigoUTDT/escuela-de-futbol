@@ -1,6 +1,6 @@
 import api from '../axios';
 
-const API_URL = 'http://localhost:5000/api/matches';
+const API_URL = 'https://escuela-de-futbol.onrender.com/api/matches';
 
 const matchService = {
 

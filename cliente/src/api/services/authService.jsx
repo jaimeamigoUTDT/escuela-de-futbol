@@ -1,7 +1,7 @@
 import axios from "axios";
 import api from "../axios";
 
-const API_URL = "http://localhost:5000/api/users"; // Replace with your backend URL
+const API_URL = "https://escuela-de-futbol.onrender.com/api/users"; // Replace with your backend URL
 
 const authService = {
   // Validate user credentials

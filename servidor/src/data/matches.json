@@ -1,33 +1,17 @@
 [
   {
-    "match_id": 1750102773891,
-    "fecha": "2025-06-15",
+    "match_id": 1750179483411,
+    "fecha": "2025-06-18",
     "hora": "10:00",
-    "rival": "Puerquitos FC",
-    "category_id": 1,
-    "cancha_id": 10
+    "rival": "Di Tella FC",
+    "category_id": 1750164448390,
+    "cancha_id": 8
   },
   {
-    "match_id": 1750102805039,
-    "fecha": "2025-06-15",
+    "match_id": 1750179628377,
+    "fecha": "2025-05-10",
     "hora": "10:00",
-    "rival": "Independiente",
-    "category_id": 1,
-    "cancha_id": 10
-  },
-  {
-    "match_id": 1750102832224,
-    "fecha": "2025-06-15",
-    "hora": "10:00",
-    "rival": "Independiente",
-    "category_id": 1,
-    "cancha_id": 9
-  },
-  {
-    "match_id": 1750166668566,
-    "fecha": "2025-10-20",
-    "hora": "11:00",
-    "rival": "Puercos FC",
+    "rival": "Real Madrid",
     "category_id": 2,
     "cancha_id": 9
   }

@@ -4,9 +4,9 @@
     "dni": "12345678",
     "email": "johnDoe@gmail.com",
     "password": "123456",
-    "authToken": "76d1f747-adcf-4a43-a667-870806b8de4a",
+    "authToken": "c247fa39-bcd9-4915-a15d-28da1c85dcd1",
     "createdAt": "2023-10-01T12:00:00Z",
-    "tokenCreatedAt": "2025-06-17T13:37:35.741Z",
+    "tokenCreatedAt": "2025-06-17T16:59:27.895Z",
     "role": "superAdmin"
   },
   {
@@ -14,29 +14,9 @@
     "dni": "45235544",
     "email": "jaimeamigo03@gmail.com",
     "password": "123456",
-    "createdAt": "2025-06-16T18:45:04.109Z",
-    "authToken": "1422e863-780e-4f8c-8f3d-a3ed332a983f",
-    "tokenCreatedAt": "2025-06-16T18:45:04.109Z",
+    "createdAt": "2025-06-17T16:56:12.696Z",
+    "authToken": "e906395e-8e88-4d16-acff-2d3db9fe341c",
+    "tokenCreatedAt": "2025-06-17T17:57:50.226Z",
     "role": "admin"
-  },
-  {
-    "name": "Dafydd Jenkins",
-    "dni": "45555555",
-    "email": "daf@gmail.com",
-    "password": "Daf",
-    "createdAt": "2025-06-16T22:41:13.972Z",
-    "authToken": "fd370ff3-ac50-46e6-9168-750bfc4660f7",
-    "tokenCreatedAt": "2025-06-17T04:06:56.640Z",
-    "role": "parent"
-  },
-  {
-    "name": "Jaime Amigo",
-    "dni": "40000000",
-    "email": "jaime@amigo.com",
-    "password": "123456",
-    "createdAt": "2025-06-17T12:46:24.457Z",
-    "authToken": "5141345a-5bac-438d-9c8d-e8474ee2b1eb",
-    "tokenCreatedAt": "2025-06-17T14:03:22.300Z",
-    "role": "parent"
   }
 ]

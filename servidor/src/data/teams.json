@@ -1,16 +1,14 @@
 [
   {
-    "team_id": 1750167110808,
-    "name": "Testing FC",
-    "match_id": 1750166668566,
-    "category_id": 1,
+    "team_id": 1750179508712,
+    "name": "San Esteban A",
+    "match_id": 1750179483411,
+    "category_id": 1750164448390,
     "players_ids": [
-      45235543,
-      45235542,
-      45000000
+      46000000
     ],
     "confirmed_players_ids": [
-      45000000
+      46000000
     ]
   }
 ]

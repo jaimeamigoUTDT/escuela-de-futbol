@@ -8,12 +8,24 @@ class MatchService {
     if (!match) return null;
     // Fetch related data if necessary
     const cancha = canchaRepository.getCanchaById(match.cancha_id);
+
+    console.log(cancha)
+
+    const formattedCancha = {
+      cancha_id: cancha ? cancha.cancha_id : null,
+      address: cancha ? cancha.address : null,
+      shoe_type: cancha ? cancha.shoe_type : null,
+      size: cancha ? cancha.size : null,
+      buffet_available: cancha.buffet_available ? "true" : "false",
+      parking_available: cancha.parking_available ? "true" : "false",
+    }
+
     const category = categoryRepository.getCategoryById(match.category_id);
 
     return {
       ...match,
       category: category || null,
-      cancha: cancha || [],
+      cancha: formattedCancha || [],
     };
     
   

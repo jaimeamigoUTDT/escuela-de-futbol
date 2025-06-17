@@ -42,9 +42,18 @@ function ParentMatchesPage() {
       // Find all player-team pairs for the parent's children
       const playerTeams = getPlayerTeams(teams, userDni);
 
+      // Get today's date at midnight
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
       // For each match, collect all playerTeams for this match
       const finalMatches = [];
       newMatchesList.forEach(match => {
+        // Only consider matches with a date in the future
+        if (!match.fecha) return;
+        const matchDate = new Date(match.fecha + "T00:00:00");
+        if (matchDate <= today) return; // Skip matches not in the future
+
         // Find ALL playerTeams for this match
         const pts = playerTeams.filter(pt => pt.match_id === match.match_id);
         pts.forEach(pt => {
@@ -109,6 +118,7 @@ function ParentMatchesPage() {
                 team={item.team}
                 playerDni={item.playerDni}
                 onConfirmAssistance={refreshData}
+                cancha={item.cancha}
               />
             ))
           )}

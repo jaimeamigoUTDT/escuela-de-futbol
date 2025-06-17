@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { matchesController } from "../../../../controllers/matchesController.jsx";
 
 function MatchesSection() {
-  const { getMatches } = matchesController();
+  const { getMatches, deleteMatch } = matchesController();
   const [matches, setMatches] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -54,6 +54,18 @@ function MatchesSection() {
     window.location.href = "/partidos";
   };
 
+  const handleDeleteMatch = async (matchId) => {
+    if (window.confirm("¿Estás seguro de que querés eliminar este partido?")) {
+      try {
+        await deleteMatch(matchId);
+        await updateList(); // <-- reload after delete
+      } catch (error) {
+        console.error("Error al eliminar el equipo:", error);
+        alert("No se pudo eliminar el equipo.");
+      }
+    }
+  };
+
   return (
     <div>
       {loading && <p className="loading">Cargando partidos...</p>}
@@ -72,6 +84,8 @@ function MatchesSection() {
             category={item.category.gender + " " + item.category.year}
             fieldAddress={item.cancha.address}
             match_id={item.match_id}
+            onDeleteMatch={() => handleDeleteMatch(item.match_id)}
+            cancha={item.cancha}
           />
         ))}
       </div>

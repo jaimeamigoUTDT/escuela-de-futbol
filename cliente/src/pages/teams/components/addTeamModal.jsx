@@ -23,8 +23,9 @@ const AddTeamModal = ({ isOpen, onClose, onTeamAdded }) => {
     if (isOpen) {
       const fetchCategories = async () => {
         try {
-          const result = await getCategories();
-          setCategories(result || []);
+          let result = await getCategories();
+          result = (result || []).sort((a, b) => Number(a.year) - Number(b.year));
+          setCategories(result);
         } catch (error) {
           setCategories([]);
         }

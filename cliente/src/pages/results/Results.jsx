@@ -4,34 +4,63 @@ import Navbar from '../../components/layout/Navbar';
 import './Results.css';
 import ResultCard from '../../components/common/ResultCard';
 import AddResultModal from "./components/addResultModal";
-import { useAuth } from "../../hooks/useAuth"; // <-- Add this import
+import { useAuth } from "../../hooks/useAuth";
+import playersController from "../../controllers/playersController";
+import { teamsController } from "../../controllers/teamsController";
 
 function ResultsPage() {
   const { getResults } = resultsController();
-  const { userRole } = useAuth(); // <-- Get userRole from auth
+  const { userRole, userDni } = useAuth();
+  const { getChildrenOfParent } = playersController();
+  const { getTeamsByChildren } = teamsController();
 
-  let [results, setResults] = useState([]); // Fetch results from the controller
+  const [results, setResults] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const updateList = async () => {
     try {
-      const newResultsList = await getResults(); // Fetch results from the server
-      console.log('Results fetched successfully:', newResultsList); // Log the fetched matches
-
-      // Only show results from matches older than today
+      const allResults = await getResults();
       const today = new Date();
       today.setHours(0, 0, 0, 0);
 
-      const filteredResults = (newResultsList || []).filter(result => {
+      // Only show results from matches older than today
+      const filteredResults = (allResults || []).filter(result => {
         const matchFecha = result.match?.fecha;
         if (!matchFecha) return false;
         const matchDate = new Date(matchFecha + "T00:00:00");
         return matchDate < today;
       });
 
-      setResults(filteredResults);
+      // Filtering for parents
+      if (userRole === "parent") {
+        // 1. Get children DNIs
+        const childrenRes = await getChildrenOfParent(userDni);
+        const children = Array.isArray(childrenRes) ? childrenRes : childrenRes?.data ?? [];
+        if (!children.length) {
+          setResults([]); // No children, show nothing
+          return;
+        }
+
+        // 2. Get teams for these children
+        const teams = await getTeamsByChildren(children);
+        // 3. Collect all match_ids from those teams
+        const allowedMatchIds = new Set();
+        (teams || []).forEach(team => {
+          if (team.match_id) allowedMatchIds.add(team.match_id);
+        });
+
+        // 4. Filter results by allowed match_ids
+        const parentResults = filteredResults.filter(result =>
+          result.match && allowedMatchIds.has(result.match.match_id)
+        );
+        setResults(parentResults);
+      } else {
+        // For admins and superAdmins, show all
+        setResults(filteredResults);
+      }
     } catch (error) {
       console.log('Error fetching results:', error);
+      setResults([]);
     }
   };
 
@@ -39,17 +68,17 @@ function ResultsPage() {
   useEffect(() => {
     updateList();
     // eslint-disable-next-line
-  }, []); // Empty dependency array ensures this runs only once on mount
+  }, [userRole, userDni]); // Make sure to update if auth changes
 
   const handleAddResult = () => {
     setIsModalOpen(true)
-  }
+  };
 
   const handleCloseModal = () => {
     setIsModalOpen(false)
-  }
+    updateList();
+  };
 
-  // Only show "Cargar Resultado" if the user is admin or superAdmin
   const canAddResult = userRole === "admin" || userRole === "superAdmin";
 
   return (
@@ -87,4 +116,4 @@ function ResultsPage() {
   );
 }
 
-export default ResultsPage; 
+export default ResultsPage;

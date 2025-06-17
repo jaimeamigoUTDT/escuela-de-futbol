@@ -34,5 +34,23 @@
     "gender": "Masculino",
     "parent_dni": "45555555",
     "category_id": 1750052005858
+  },
+  {
+    "dni": 45000000,
+    "name": "Jaimito",
+    "surname": "Amigo",
+    "date_of_birth": "2003-10-08",
+    "gender": "Masculino",
+    "parent_dni": "40000000",
+    "category_id": 1
+  },
+  {
+    "dni": 46000000,
+    "name": "Felipito",
+    "surname": "Amigo",
+    "date_of_birth": "2004-09-20",
+    "gender": "Masculino",
+    "parent_dni": "40000000",
+    "category_id": 1750164448390
   }
 ]

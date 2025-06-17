@@ -4,5 +4,17 @@
     "match_id": 1750102773891,
     "resultado_san_esteban": 1,
     "resultado_rival": 0
+  },
+  {
+    "result_id": "78b3fe1e-d4d3-453f-89b9-6c6d915323c4",
+    "match_id": 1750102805039,
+    "resultado_san_esteban": 2,
+    "resultado_rival": 1
+  },
+  {
+    "result_id": "5a1d44f8-cbd6-4eb9-b5b1-fcb9e3b9f54c",
+    "match_id": 1750102832224,
+    "resultado_san_esteban": 3,
+    "resultado_rival": 3
   }
 ]

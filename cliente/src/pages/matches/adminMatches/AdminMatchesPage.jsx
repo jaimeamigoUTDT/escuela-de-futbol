@@ -27,6 +27,13 @@ function AdminMatchesPage() {
         return matchDate >= today;
       });
 
+      // Sort the matches so that the soonest match comes first
+      filteredMatches.sort((a, b) => {
+        const dateA = new Date(a.fecha + "T" + (a.hora || "00:00"));
+        const dateB = new Date(b.fecha + "T" + (b.hora || "00:00"));
+        return dateA - dateB;
+      });
+
       setMatches(filteredMatches); 
     } catch (error) {
       console.log('Error fetching matches:', error);
@@ -42,7 +49,7 @@ function AdminMatchesPage() {
     if (window.confirm("¿Estás seguro de que querés eliminar este partido?")) {
       try {
         await deleteMatch(matchId);
-
+        await updateList();
       } catch (error) {
         console.error("Error al eliminar el equipo:", error);
         alert("No se pudo eliminar el equipo.");
@@ -56,6 +63,7 @@ function AdminMatchesPage() {
 
   const handleCloseModal = () => {
     setIsModalOpen(false)
+    updateList();
   }
 
   return (
@@ -81,8 +89,9 @@ function AdminMatchesPage() {
                 rivalTeam={item.rival}
                 category={item.category.gender + " " + item.category.year}
                 fieldAddress={item.cancha.address}
-                match_id = {item.match_id}
+                match_id={item.match_id}
                 onDeleteMatch={() => handleDeleteMatch(item.match_id)}
+                cancha={item.cancha}
               />
             ))
           )}

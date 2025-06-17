@@ -3,6 +3,7 @@ import { useMatches } from "../../../../context/MatchesContext";
 import { useCanchas, CanchasProvider } from "../../../../context/CanchasContext";
 import { canchasController } from "../../../../controllers/canchasController";
 import { matchesController } from "../../../../controllers/matchesController";
+import { categoriesController } from "../../../../controllers/categoriesController";
 import notificationController from "../../../../controllers/notificationController";
 import { v4 as uuidv4 } from 'uuid';
 import "./addMatchModal.css";
@@ -12,6 +13,7 @@ const AddMatchModal = ({ isOpen, onClose }) => {
   const { canchas } = useCanchas();
   const { fetchCanchas } = canchasController();
   const { createMatch } = matchesController();
+  const { getCategories } = categoriesController();
 
   const [formData, setFormData] = useState({
     time: "",
@@ -25,15 +27,19 @@ const AddMatchModal = ({ isOpen, onClose }) => {
   const [loading, setLoading] = useState(false);
   const [canchasLoading, setCanchasLoading] = useState(false);
 
-  // Fetch categories (mocked for now)
+  // Fetch categories from controller (like AddTeamModal) and order by year
   useEffect(() => {
     if (isOpen) {
-      setCategories([
-        { category_id: 1, year: "2023", gender: "Masculino" },
-        { category_id: 2, year: "2023", gender: "Femenino" },
-        { category_id: 3, year: "2024", gender: "Masculino" },
-        { category_id: 4, year: "2024", gender: "Femenino" },
-      ]);
+      const fetchCategories = async () => {
+        try {
+          let result = await getCategories();
+          result = (result || []).sort((a, b) => Number(a.year) - Number(b.year));
+          setCategories(result);
+        } catch (error) {
+          setCategories([]);
+        }
+      };
+      fetchCategories();
     }
   }, [isOpen]);
 
@@ -42,8 +48,7 @@ const AddMatchModal = ({ isOpen, onClose }) => {
     if (isOpen) {
       const loadCanchas = async () => {
         setCanchasLoading(true);
-        console.log("Fetching canchas... in view"); // Debugging
-        const success = await fetchCanchas(); // Fetch all canchas
+        await fetchCanchas();
         setCanchasLoading(false);
       };
       loadCanchas();
@@ -73,17 +78,14 @@ const AddMatchModal = ({ isOpen, onClose }) => {
         cancha_id: Number.parseInt(formData.cancha_id),
       };
 
-      console.log("Creating match with data:", matchData);
-
       await saveMatch(matchData);
-
       await createMatch(matchData);
 
       await notificationController.createNotification(
         uuidv4(),
         matchData.id,
         new Date().toISOString().split("T")[0],
-        now.toTimeString().slice(0, 4),
+        new Date().toTimeString().slice(0, 5),
         "Partido contra " + matchData.rivalTeam + " el " + matchData.date + " a las " + matchData.time
       );
 

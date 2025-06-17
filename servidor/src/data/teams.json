@@ -1,29 +1,16 @@
 [
   {
-    "team_id": 1750101406673,
-    "name": "Ditella FC",
-    "match_id": 1750100625687,
+    "team_id": 1750167110808,
+    "name": "Testing FC",
+    "match_id": 1750166668566,
     "category_id": 1,
     "players_ids": [
       45235543,
       45235542,
-      45235541
+      45000000
     ],
     "confirmed_players_ids": [
-      45235542,
-      45235541
-    ]
-  },
-  {
-    "team_id": 1750103164853,
-    "name": "Jaime FC",
-    "match_id": 1750102773891,
-    "category_id": 1750052005858,
-    "players_ids": [
-      45235543
-    ],
-    "confirmed_players_ids": [
-      45235543
+      45000000
     ]
   }
 ]

@@ -6,7 +6,7 @@ import "./TeamsList.css"
 import { teamsController } from "../../../controllers/teamsController"
 import playersController from "../../../controllers/playersController"
 
-const TeamsList = ({ teams: teamsProp }) => {
+const TeamsList = ({ teams: teamsProp, handleDeleteTeam }) => {
   const [isPlayersModalOpen, setIsPlayersModalOpen] = useState(false)
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
   const [selectedTeamPlayers, setSelectedTeamPlayers] = useState([])
@@ -16,30 +16,27 @@ const TeamsList = ({ teams: teamsProp }) => {
   const [isSaving, setIsSaving] = useState(false)
   const [saveError, setSaveError] = useState(null)
   const [teams, setTeamsState] = useState(teamsProp || [])
-  const { deleteTeam, editTeam, fetchTeams } = teamsController()
+  const { editTeam } = teamsController()
   const { getPlayers } = playersController()
   const [players, setPlayers] = useState([])
 
   useEffect(() => {
-    if (teamsProp && teamsProp.length > 0) {
+    if (teamsProp) {
       // Sort teams by match date and time
       const sortedTeams = [...teamsProp].sort((a, b) => {
-        // Combine date and time into Date objects for comparison
-        const dateA = a.match ? new Date(`${a.match.fecha}T${a.match.hora}`) : new Date(0) // Fallback to epoch if no match
+        const dateA = a.match ? new Date(`${a.match.fecha}T${a.match.hora}`) : new Date(0)
         const dateB = b.match ? new Date(`${b.match.fecha}T${b.match.hora}`) : new Date(0)
-        return dateA - dateB // Ascending order
+        return dateA - dateB
       })
       setTeamsState(sortedTeams)
     }
     handleFetchPlayers()
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, [teamsProp])
 
   // Handle viewing players in modal
   const handleViewPlayers = (playersList, team) => {
     setSelectedTeam(team)
-    console.log("playersList", playersList)
-    // Determine confirmed and unconfirmed players for this team
     const confirmedIds = Array.isArray(team.confirmed_players_ids) ? team.confirmed_players_ids : []
     const confirmed = []
     const unconfirmed = []
@@ -114,19 +111,6 @@ const TeamsList = ({ teams: teamsProp }) => {
     }
   }
 
-  
-  const handleDeleteTeam = async (teamId) => {
-    if (window.confirm("¿Estás seguro de que querés eliminar este equipo?")) {
-      try {
-        await deleteTeam(teamId);
-        await fetchTeams(); // Actualiza la lista
-      } catch (error) {
-        console.error("Error al eliminar el equipo:", error);
-        alert("No se pudo eliminar el equipo.");
-      }
-    }
-  };
-
   const closePlayersModal = () => {
     setIsPlayersModalOpen(false)
     setSelectedTeamPlayers([])
@@ -147,7 +131,7 @@ const TeamsList = ({ teams: teamsProp }) => {
         {teams && teams.length > 0 ? (
           teams.map((team) => (
             <TeamCard
-              key={team.team_id}
+              key={new Date()}
               team={team}
               onViewPlayers={(playersList) => handleViewPlayers(playersList, team)}
               onEditTeam={handleEditTeam}

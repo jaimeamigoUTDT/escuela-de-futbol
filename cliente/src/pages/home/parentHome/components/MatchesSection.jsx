@@ -8,7 +8,7 @@ import { useAuth } from "../../../../hooks/useAuth.jsx";
 function MatchesSection() {
   const { getMatches } = matchesController();
   const { fetchTeams } = teamsController();
-  const { userDni } = useAuth();
+  const { userDni, userRole } = useAuth();
 
   const [matches, setMatches] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -36,30 +36,56 @@ function MatchesSection() {
     getInitData();
   }, []);
 
-  // Update matches list when teams or newMatchesList change
+  // Filter matches for future dates and, for parents, only show those associated with their children
   useEffect(() => {
-    if (teams.length > 0 && newMatchesList.length > 0) {
+    if (newMatchesList.length === 0) {
+      setMatches([]);
+      return;
+    }
+
+    // Get today's date at midnight
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    // Only matches with a date after today
+    const futureMatches = newMatchesList.filter(match => {
+      if (!match.fecha) return false;
+      const matchDate = new Date(match.fecha + "T00:00:00");
+      return matchDate > today;
+    });
+
+    if (userRole === "admin" || userRole === "superAdmin") {
+      setMatches(futureMatches);
+      return;
+    }
+
+    // For parents: filter matches associated with their children
+    if (userRole === "parent" && teams.length > 0) {
       try {
-        // Filter teams for those that have a player whose parent_dni matches the current user
+        // Find teams where any player has parent_dni equal to userDni
         const selectedTeams = teams.filter(team =>
           Array.isArray(team.players) &&
           team.players.some(player => player.parent_dni && String(player.parent_dni) === String(userDni))
         );
 
-        // Filter matches that are associated with selected teams
-        const finalMatches = newMatchesList.filter(match =>
-          selectedTeams.some(team => team.match_id === match.match_id)
-        );
+        // Collect match_ids of those teams
+        const allowedMatchIds = new Set(selectedTeams.map(team => team.match_id));
 
+        // Filter to only future matches that are associated with those teams
+        const finalMatches = futureMatches.filter(match =>
+          allowedMatchIds.has(match.match_id)
+        );
         setMatches(finalMatches);
       } catch (error) {
         console.log('Error filtering matches:', error);
         setError('Error filtering matches');
+        setMatches([]);
       }
     } else {
+      // For other roles, show nothing (or adjust as needed)
       setMatches([]);
     }
-  }, [teams, newMatchesList, userDni]);
+  }, [teams, newMatchesList, userDni, userRole]);
 
   const matchItems = matches.length > 0 ? matches : [];
   const displayedMatches = matchItems.length > 2 ? matchItems.slice(0, 2) : matchItems;
@@ -87,6 +113,7 @@ function MatchesSection() {
             category={item.category.gender + " " + item.category.year}
             fieldAddress={item.cancha.address}
             match_id={item.match_id}
+            cancha={item.cancha}
           />
         ))}
       </div>

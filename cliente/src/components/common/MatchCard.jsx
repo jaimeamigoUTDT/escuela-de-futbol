@@ -1,5 +1,5 @@
 import "./MatchCard.css"
-import { Calendar, Clock, MapPin, Users, Bell, CheckCircle, XCircle, Trash2 } from "lucide-react"
+import { Calendar, Clock, MapPin, Users, Bell, XCircle, Trash2, Wheat, CircleParking, UtensilsCrossed } from "lucide-react"
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext.jsx"
 import { v4 as uuidv4 } from "uuid"
@@ -15,10 +15,11 @@ export default function MatchCard({
   category,
   fieldAddress,
   match_id,
-  team, // passed from ParentMatchesPage
-  playerDni, // passed from ParentMatchesPage
-  onConfirmAssistance, // callback to refresh
-  onDeleteMatch, // callback to delete match
+  cancha,
+  team,
+  playerDni,
+  onConfirmAssistance,
+  onDeleteMatch, 
 }) {
   const { userRole } = useContext(AuthContext)
   const [showModal, setShowModal] = useState(false);
@@ -28,7 +29,6 @@ export default function MatchCard({
   const { editTeam } = teamsController();
   const { userDni } = useAuth();
 
-  // --- New: Get the player name for this card ---
   const [playerName, setPlayerName] = useState("");
 
   useEffect(() => {
@@ -206,6 +206,14 @@ export default function MatchCard({
               <Clock className="icon" />
               <span>{time}</span>
             </div>
+            <div className="match-detail">
+              <Users className="icon" />
+              <span>{cancha.size} jugadores</span>
+            </div>
+            <div className="match-detail">
+              <UtensilsCrossed className="icon" />
+              <span>Buffet disponible: {cancha.buffet_available === "true" ? "Si" : "No"}</span>
+            </div>
           </div>
           <div className="content-right">
             <div className="match-detail">
@@ -215,6 +223,14 @@ export default function MatchCard({
             <div className="match-detail">
               <Users className="icon" />
               <span>{category}</span>
+            </div>
+            <div className="match-detail">
+              <Wheat className="icon" />
+              <span>Pasto {cancha.shoe_type}</span>
+            </div>
+            <div className="match-detail">
+              <CircleParking  className="icon" />
+              <span>Estacionamiento disponible: {cancha.buffet_available === "true" ? "Si" : "No"}</span>
             </div>
           </div>
         </div>

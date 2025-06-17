@@ -16,7 +16,7 @@ const TeamsList = ({ teams: teamsProp }) => {
   const [isSaving, setIsSaving] = useState(false)
   const [saveError, setSaveError] = useState(null)
   const [teams, setTeamsState] = useState(teamsProp || [])
-  const { editTeam } = teamsController()
+  const { deleteTeam, editTeam, fetchTeams } = teamsController()
   const { getPlayers } = playersController()
   const [players, setPlayers] = useState([])
 
@@ -114,6 +114,19 @@ const TeamsList = ({ teams: teamsProp }) => {
     }
   }
 
+  
+  const handleDeleteTeam = async (teamId) => {
+    if (window.confirm("¿Estás seguro de que querés eliminar este equipo?")) {
+      try {
+        await deleteTeam(teamId);
+        await fetchTeams(); // Actualiza la lista
+      } catch (error) {
+        console.error("Error al eliminar el equipo:", error);
+        alert("No se pudo eliminar el equipo.");
+      }
+    }
+  };
+
   const closePlayersModal = () => {
     setIsPlayersModalOpen(false)
     setSelectedTeamPlayers([])
@@ -138,6 +151,7 @@ const TeamsList = ({ teams: teamsProp }) => {
               team={team}
               onViewPlayers={(playersList) => handleViewPlayers(playersList, team)}
               onEditTeam={handleEditTeam}
+              onDeleteTeam={() => handleDeleteTeam(team.team_id)}
               allPlayers={players}
               onUpdateTeamPlayers={handleUpdateTeamPlayers}
             />

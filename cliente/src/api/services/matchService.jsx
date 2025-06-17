@@ -30,7 +30,9 @@ const matchService = {
 
     deleteMatch: async (id) => {
         try {
-            const response = await api.delete(`${API_URL}/${id}`);
+            const response = await api.delete(API_URL, {
+                data: { "match_id":id }, // Send dni in the request body
+            });
             return response.data;
         } catch (error) {
             console.error('Error deleting match:', error);

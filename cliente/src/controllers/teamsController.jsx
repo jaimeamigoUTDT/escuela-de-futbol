@@ -79,5 +79,15 @@ export const teamsController = () => {
     }
   };
 
-  return { fetchTeams, createTeam, editTeam, getTeamsByChildren };
+  const deleteTeam = async (id) => {
+        try {
+            const result = await teamsService.deleteTeam(id);
+            return result;
+        } catch (error) {
+            console.error('Error deleting team:', error);
+            throw error;
+        }
+    };
+
+  return { fetchTeams, createTeam, editTeam, getTeamsByChildren, deleteTeam};
 };

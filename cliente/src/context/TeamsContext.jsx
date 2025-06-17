@@ -12,7 +12,7 @@ export const TeamsProvider = ({ children }) => {
   }
 
   const deleteTeam = (teamId) => {
-    setTeams((prevTeams) => prevTeams.filter((team) => team.id !== teamId))
+    setTeams((prevTeams) => prevTeams.filter((team) => team.team_id !== teamId))
   }
 
   const getStoredTeams = () => {

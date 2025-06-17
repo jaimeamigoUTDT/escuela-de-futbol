@@ -34,6 +34,18 @@ const teamsService = {
             throw error;
         }
     },
+
+    deleteTeam: async (id) => {
+        try {
+            const response = await api.delete(API_URL, {
+                data: { "team_id":id }, // Send dni in the request body
+            });
+            return response.data;
+        } catch (error) {
+            console.error('Error deleting team:', error);
+            throw error;
+        }
+    },
 };
 
 export default teamsService;

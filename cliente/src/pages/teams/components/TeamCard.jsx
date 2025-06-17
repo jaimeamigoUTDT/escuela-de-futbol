@@ -2,7 +2,7 @@ import "./TeamCard.css"
 import { useState } from "react"
 import SelectPlayersModal from "./selectPlayerModal"
 
-const TeamCard = ({ team, onViewPlayers, onEditTeam, allPlayers, onUpdateTeamPlayers }) => {
+const TeamCard = ({ team, onViewPlayers, onEditTeam, allPlayers, onUpdateTeamPlayers, onDeleteTeam  }) => {
   const [isSelectPlayersModalOpen, setIsSelectPlayersModalOpen] = useState(false)
 
   const handleAddPlayers = () => {
@@ -58,6 +58,7 @@ const TeamCard = ({ team, onViewPlayers, onEditTeam, allPlayers, onUpdateTeamPla
           <button className="edit-button" onClick={() => onEditTeam(team)} aria-label="Editar equipo">
             Editar datos de equipo
           </button>
+          <button className="delete-button" onClick={onDeleteTeam}>Eliminar equipo</button>
         </div>
     
       {/* Add the SelectPlayersModal */}

@@ -1,5 +1,5 @@
 import "./MatchCard.css"
-import { Calendar, Clock, MapPin, Users, Bell, CheckCircle, XCircle } from "lucide-react"
+import { Calendar, Clock, MapPin, Users, Bell, CheckCircle, XCircle, Trash2 } from "lucide-react"
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext.jsx"
 import { v4 as uuidv4 } from "uuid"
@@ -18,6 +18,7 @@ export default function MatchCard({
   team, // passed from ParentMatchesPage
   playerDni, // passed from ParentMatchesPage
   onConfirmAssistance, // callback to refresh
+  onDeleteMatch, // callback to delete match
 }) {
   const { userRole } = useContext(AuthContext)
   const [showModal, setShowModal] = useState(false);
@@ -53,6 +54,7 @@ export default function MatchCard({
     );
   }, [team, playerDni, userDni]);
 
+  
   const handleCreateNotification = () => {
     setNotificationContent("");
     setShowModal(true);
@@ -178,11 +180,20 @@ export default function MatchCard({
               )}
               {localTeam} vs {rivalTeam}
             </span>
-            {userRole !== "parent" && (
-              <button className="bell-button" onClick={handleCreateNotification} title="Crear notificación">
-                <Bell className="bell-icon" />
-              </button>
-            )}
+            <div>
+              {userRole !== "parent" && (
+                <button className="bell-button" onClick={handleCreateNotification} title="Crear notificación">
+                  <Bell className="bell-icon" />
+                </button>
+                
+              )}
+              {userRole !== "parent" && (
+                <button className="delete-button" onClick={onDeleteMatch} title="Eliminar partido">
+                  <Trash2 className="trash-icon" />
+                </button>
+              )}
+            </div>
+            
           </div>
         </div>
         <div className="match-card-content">

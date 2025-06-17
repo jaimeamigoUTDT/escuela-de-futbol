@@ -7,7 +7,7 @@ import AddMatchModal from "./components/addMatchModal";
 
 function AdminMatchesPage() {
 
-  const { getMatches } = matchesController();
+  const { getMatches, deleteMatch } = matchesController();
 
   const [matches, setMatches] = useState([]); // Fetch matches from the controller
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,6 +37,18 @@ function AdminMatchesPage() {
   useEffect(() => {
     updateList();
   }, []); // Only on mount
+
+  const handleDeleteMatch = async (matchId) => {
+    if (window.confirm("¿Estás seguro de que querés eliminar este partido?")) {
+      try {
+        await deleteMatch(matchId);
+
+      } catch (error) {
+        console.error("Error al eliminar el equipo:", error);
+        alert("No se pudo eliminar el equipo.");
+      }
+    }
+  };
 
   const handleAddMatch = () => {
     setIsModalOpen(true)
@@ -70,6 +82,7 @@ function AdminMatchesPage() {
                 category={item.category.gender + " " + item.category.year}
                 fieldAddress={item.cancha.address}
                 match_id = {item.match_id}
+                onDeleteMatch={() => handleDeleteMatch(item.match_id)}
               />
             ))
           )}

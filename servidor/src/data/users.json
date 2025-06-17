@@ -18,5 +18,15 @@
     "authToken": "1422e863-780e-4f8c-8f3d-a3ed332a983f",
     "tokenCreatedAt": "2025-06-16T18:45:04.109Z",
     "role": "admin"
+  },
+  {
+    "name": "Dafydd Jenkins",
+    "dni": "45555555",
+    "email": "daf@gmail.com",
+    "password": "Daf",
+    "createdAt": "2025-06-16T22:41:13.972Z",
+    "authToken": "fd370ff3-ac50-46e6-9168-750bfc4660f7",
+    "tokenCreatedAt": "2025-06-17T04:06:56.640Z",
+    "role": "parent"
   }
 ]

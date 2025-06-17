@@ -25,5 +25,14 @@
     "gender": "Masculino",
     "parent_dni": "45235544",
     "category_id": "1750101373062"
+  },
+  {
+    "dni": 49999999,
+    "name": "Nicho",
+    "surname": "Jenkins",
+    "date_of_birth": "2008-10-31",
+    "gender": "Masculino",
+    "parent_dni": "45555555",
+    "category_id": 1750052005858
   }
 ]
